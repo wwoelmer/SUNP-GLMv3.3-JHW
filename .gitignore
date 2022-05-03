@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.nc
+output.nc
+*.nc
+*.DS_Store
+.DS_Store
+DS_Store
