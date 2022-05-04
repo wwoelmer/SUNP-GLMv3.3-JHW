@@ -78,7 +78,7 @@
    rad_mode = 1
    albedo_mode = 4
    cloud_mode = 4
-   meteo_fl = 'inputs/met_new.csv'
+   meteo_fl = 'inputs/met_avg_filtered.csv'
    subdaily = .true.
    wind_factor = 1
    sw_factor = 1

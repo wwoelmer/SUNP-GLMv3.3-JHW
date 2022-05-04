@@ -15,16 +15,16 @@ remotes::install_github("CareyLabVT/glmtools", force = T)
 Sys.setenv(TZ = 'America/New_York')
 
 # Load packages, set sim folder, load nml file ####
-if (!require('pacman')) install.packages('pacman'); library('pacman')
+#if (!require('pacman')) install.packages('pacman'); library('pacman')
 pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools)
 
-setwd("~/Dropbox/GLM_V3/FCR/mh")
+setwd("~/Dropbox/ComputerFiles/SCC/FCR-GLMv3.3")
 sim_folder <- getwd()
 
 #look at glm and aed nml files
 nml_file <- paste0(sim_folder,"/glm3.nml")
-aed_file <- paste0(sim_folder,"/aed2/aed2_20220111_2DOCpools.nml")
-aed_phytos_file <- paste0(sim_folder,"/aed2/aed2_phyto_pars_4Jan2022.nml")
+aed_file <- paste0(sim_folder,"/aed2/aed2_3zones.nml")
+aed_phytos_file <- paste0(sim_folder,"/aed2/aed2_phyto_pars_2May2022_RQT.nml")
 nml <- read_nml(nml_file) 
 aed <- read_nml(aed_file) #you may get a warning about an incomplete final line but it doesn't matter
 aed_phytos <- read_nml(aed_phytos_file)
@@ -33,7 +33,7 @@ print(aed)
 print(aed_phytos)
 
 ##### run the model! #######
-sim_folder<-"/Users/cayelan/Dropbox/GLM_V3/FCR/mh"
+sim_folder<-"/Users/cayelan/Dropbox/ComputerFiles/SCC/FCR-GLMv3.3"
 setwd(sim_folder)
 
 system2("/Users/cayelan/Dropbox/GLM_V3/bin/Monterey/glm+.app/Contents/MacOS/glm+", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/cayelan/Dropbox/GLM_V3/bin/Monterey/glm.app/Contents/MacOS")
@@ -1236,7 +1236,7 @@ nc_close(nc)
 
 phytos <- c('cyano','green','diatom')
 limits <- c("fNit","fI","fPho","fSil","fT","fSal")
-all_vars <- expand.grid(phytos,limits) %>% rename(phyto = Var1, limit = Var2)
+vars <- expand.grid(phytos,limits) %>% rename(phyto = Var1, limit = Var2)
 mod <- NULL
 for(i in 1:nrow(vars)){
   var <- paste("PHY",vars[i,1],vars[i,2],sep="_")
