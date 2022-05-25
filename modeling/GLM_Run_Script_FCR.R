@@ -2,9 +2,10 @@
 #* TITLE:   Run GLM-AED for FCR
 #* AUTHORS:  C.C. Carey                    
 #* DATE:   Originally developed by CCC on 16 July 2018; 
-#*         Last modified by CCC in 9 Sept 2021                            
+#*         Last modified by CCC in May 2022 for 4 zones calibration                           
 #* NOTES:  CCC modified the original script in 2019 for FCR modeling, 
-#*        with subsequent tweaks to annotation in summer 2021. 
+#*        with subsequent tweaks to annotation in summer 2021 for Carey 
+#*        et al. 2022 GCB paper & analysis. 
 #*        Code compares modeled output vs. observations for all focal
 #*        variables, and calculates RMSE for each depth.
 #*****************************************************************
@@ -23,7 +24,7 @@ sim_folder <- getwd()
 
 #look at glm and aed nml files
 nml_file <- paste0(sim_folder,"/glm3.nml")
-aed_file <- paste0(sim_folder,"/aed2/aed2_3zones.nml")
+aed_file <- paste0(sim_folder,"/aed2/aed2_4zones.nml")
 aed_phytos_file <- paste0(sim_folder,"/aed2/aed2_phyto_pars_2May2022_RQT.nml")
 nml <- read_nml(nml_file) 
 aed <- read_nml(aed_file) #you may get a warning about an incomplete final line but it doesn't matter
