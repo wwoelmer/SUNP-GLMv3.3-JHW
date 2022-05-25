@@ -2,9 +2,10 @@
 #* TITLE:   Falling Creek Reservoir GLM-AED HOx submerged inflow 
 #*         driver file preparation                               *
 #* AUTHORS:  C.C. Carey                                          *
-#* DATE:   Originally developed 16 July 2018; Last modified 11 Avril 2022                           
+#* DATE:   Originally developed 16 July 2018; Last modified May 2022                           
 #* NOTES:  CCC subsequently edited on 1 June 2020 and made tidy,
-#*         with subsequent tweaks to annotation in summer 2021. 
+#*         with subsequent tweaks to annotation in summer 2021 and then
+#*         spring 2022 to extend file through 2021-12-31
 #*         SSS = side stream supersaturation, another way of describing
 #*         the hypolimnetic oxygenation system (HOx)
 #*****************************************************************
@@ -114,23 +115,23 @@ plot(SSS_inflowALL$time, SSS_inflowALL$TEMP, type = "o")
 #get everything in order
 SSS_inflowALL1<-SSS_inflowALL %>%
   select(time, FLOW, TEMP, SALT, 
-         #TRC_tr1, TRC_age, 
-         #NCS_ss1, 
-         #NCS_ss2, 
+         TRC_tr1, TRC_age, 
+         NCS_ss1, 
+         NCS_ss2, 
          OXY_oxy, CAR_dic, 
-         CAR_pH, CAR_ch4, #CAR_ch4_bub, 
+         CAR_pH, CAR_ch4, 
+         CAR_ch4_bub, 
          SIL_rsi, NIT_amm, NIT_nit, PHS_frp, 
-         #PHS_frp_ads,
+         PHS_frp_ads,
          OGM_doc, OGM_poc, OGM_don, OGM_pon, OGM_dop, OGM_pop, OGM_docr, OGM_donr, 
          OGM_dopr, OGM_cpom, 
          PHY_cyano, PHY_cyano_IN, PHY_cyano_IP, PHY_green, 
-         PHY_green_IN, PHY_green_IP, PHY_diatom, PHY_diatom_IN, PHY_diatom_IP
-         #, BIV_filtfrac
-         ) 
+         PHY_green_IN, PHY_green_IP, PHY_diatom, PHY_diatom_IN, PHY_diatom_IP, 
+         BIV_filtfrac) 
 #get all of the columns in order
 
 SSS_inflowALL1[which(duplicated(SSS_inflowALL1$time)),] #identify if there are repeated dates
 SSS_inflowALL1 <- SSS_inflowALL1[(!duplicated(SSS_inflowALL1$time)),] #remove repeated dates
 
 #et voila! the final observed inflow file for the SSS for 2 pools of DOC
-write.csv(SSS_inflowALL1, "FCR_SSS_inflow_2013_2021_20220413_allfractions_2DOCpools.csv", row.names = FALSE)
+write.csv(SSS_inflowALL1, "FCR_SSS_inflow_2013_2021_20220411_allfractions_2DOCpools.csv", row.names = FALSE)
