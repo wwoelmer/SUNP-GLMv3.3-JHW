@@ -334,7 +334,7 @@ FCRchem <- read.csv("chemistry_2013_2020.csv", header=T) %>%
   filter(OGM_docr<500) %>% #remove high DOC outliers
   distinct(DateTime, Depth, .keep_all=TRUE)
  
-ggplot(FCRchem, aes(DateTime, OGM_docr, colour=Depth)) + 
+ggplot(FCRchem, aes(DateTime, CAR_dic, colour=Depth)) + 
   geom_point()
 
 write.csv(FCRchem, "field_chem_2DOCpools.csv", row.names = F)
@@ -364,7 +364,7 @@ write.csv(FCRchem, "field_chem_2DOCpools.csv", row.names = F)
 # write.csv(FCRchem, "field_chem_1DOCpool.csv", row.names = F)
 # 
 #######now make totals chemistry files
-FCRchem <- read.csv("chem.csv", header=T) %>%
+FCRchem_totals <- read.csv("chemistry_2013_2020.csv", header=T) %>%
   select(Reservoir:DIC_mgL) %>%
   dplyr::filter(Reservoir=="FCR") %>%
   dplyr::filter(Site==50) %>%
@@ -376,10 +376,10 @@ FCRchem <- read.csv("chem.csv", header=T) %>%
   select(DateTime, Depth, TOT_tn, TOT_tp) %>%
   distinct(DateTime, Depth, .keep_all=TRUE)
 
-ggplot(FCRchem, aes(DateTime, TOT_tn, colour=Depth)) + 
+ggplot(FCRchem_totals, aes(DateTime, TOT_tp, colour=Depth)) + 
   geom_point()
 
-write.csv(FCRchem, "totalNP.csv", row.names = F)
+write.csv(FCRchem_totals, "totalNP.csv", row.names = F)
 
 
 ###########################################################
@@ -399,12 +399,12 @@ silica <- read.csv("silica_master_df.csv", header=T) %>%
   mutate(SIL_rsi = SIL_rsi*1000*(1/60.08)) #convert to molar units
 #write.csv(silica, "field_silica.csv", row.names = F)
 
-#read in lab dataset of dissolved methane concentrations, measured in FCR
-inUrl1  <- "https://pasta.lternet.edu/package/data/eml/edi/551/5/38d72673295864956cccd6bbba99a1a3" 
-infile1 <- paste0(getwd(),"/Dissolved_CO2_CH4_Virginia_Reservoirs.csv")
+#read in dataset of dissolved greenhouse gases from EDI
+inUrl1  <- "https://pasta.lternet.edu/package/data/eml/edi/551/6/38d72673295864956cccd6bbba99a1a3"
+infile1 <- paste0(getwd(),"/final_GHG_2015-2021.csv")
 download.file(inUrl1,infile1,method="curl")
 
-ch4 <- read.csv("Dissolved_CO2_CH4_Virginia_Reservoirs.csv", header=T) %>%
+ghg <- read.csv("final_GHG_2015-2021.csv", header=T) %>%
   dplyr::filter(Reservoir=="FCR") %>%
   dplyr::filter(Site == 50) %>% #to remove weir inflow site
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%
@@ -412,8 +412,13 @@ ch4 <- read.csv("Dissolved_CO2_CH4_Virginia_Reservoirs.csv", header=T) %>%
   select(DateTime, Depth, CAR_ch4, CAR_pCO2) %>%
   mutate(CAR_pCO2 = CAR_pCO2*(0.0018/1000000)/0.0005667516) %>% #to convert umol/L to pCO2
   group_by(DateTime, Depth) %>%
+  drop_na() %>% 
   summarise(CAR_pCO2=mean(CAR_pCO2), CAR_ch4=mean(CAR_ch4))
-#write.csv(ch4, "field_gases.csv", row.names=F)
+write.csv(ghg, "field_gases.csv", row.names=F)
+
+ggplot(ghg, aes(DateTime, CAR_ch4, colour=Depth)) + 
+  geom_point()
+
 
 ###########################################################
 ###### SECCHI DATA FROM EDI
