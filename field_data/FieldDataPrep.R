@@ -424,12 +424,12 @@ ggplot(ghg, aes(DateTime, CAR_ch4, colour=Depth)) +
 ###### SECCHI DATA FROM EDI
 
 #first pull in Secchi data from 2013-2019 from EDI
-inUrl1  <- "https://pasta.lternet.edu/package/data/eml/edi/198/7/01c3762d9d2c4069eeb3dc10aa236c47" 
-infile1 <- paste0(getwd(),"/Secchi_depth_2013-2019.csv")
+inUrl1  <- "https://pasta.lternet.edu/package/data/eml/edi/198/10/375f87747001e1681b0e805d00cc1341" 
+infile1 <- paste0(getwd(),"/Secchi_depth_2013-2021.csv")
 download.file(inUrl1,infile1,method="curl")
 #note that something's funky with this file- I had to open it up and re-format dates before it could be used
 
-secchi <- read.csv("Secchi_depth_2013-2019.csv", header=T) %>%
+secchi <- read.csv("Secchi_depth_2013-2021.csv", header=T) %>%
   dplyr::filter(Reservoir=="FCR") %>%
   dplyr::filter(Site==50) %>%
   dplyr::filter(Flag_Secchi==0) %>%
@@ -438,5 +438,30 @@ secchi <- read.csv("Secchi_depth_2013-2019.csv", header=T) %>%
   mutate(extc_coef = Secchi_m/1.7) %>%
   select(DateTime, Depth, Secchi_m, extc_coef)
 write.csv(secchi, "field_secchi.csv", row.names=F)
+
+ggplot(secchi, aes(DateTime, Secchi_m, colour=Depth)) + 
+  geom_point()
   
-  
+
+###########################################################
+###### pH DATA FROM EDI
+
+#now pull in YSI data to get pH observations
+#need to import YSI observations from EDI
+inUrl1  <- "https://pasta.lternet.edu/package/data/eml/edi/198/10/b3bd353312f9e37ca392e2a5315cc9da" 
+infile1 <- paste0(getwd(),"/YSI_PAR_profiles_2013-2021.csv")
+download.file(inUrl1,infile1,method="curl")
+
+pH <- read.csv("YSI_PAR_profiles_2013-2021.csv", header=T) %>% 
+  dplyr::filter(Reservoir == "FCR") %>% 
+  dplyr::filter(Site == 50) %>% 
+  select(DateTime:Depth_m, pH) %>% 
+  rename(time = DateTime, depth = Depth_m) %>% 
+  mutate(time = as.POSIXct(strptime(time, "%Y-%m-%d", tz="EST"))) %>% 
+  drop_na() 
+
+write.csv(pH, "field_pH.csv", row.names=F)
+
+ggplot(pH, aes(time, pH, colour= depth)) + 
+  geom_point()
+
