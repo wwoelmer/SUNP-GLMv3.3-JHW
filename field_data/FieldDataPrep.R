@@ -3,7 +3,7 @@
 #*          quality variables            
 #* AUTHORS: C.C. Carey                                          
 #* DATE:   Originally developed by CCC on 16 July 2018; made tidy and 
-#*         cleaned up on 2 June 2020; last editing on 13 Sep 2021                           
+#*         cleaned up on 2 June 2020; last editing in May 2022                          
 #* NOTES:  This script creates data files that are used for the 
 #*         sensitivity analysis, model calibration, and comparison of
 #*         modeled output vs. observed concentrations.
@@ -21,12 +21,12 @@ depths<- c(0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9.2) #focal depths we are trying to c
 ######TEMPERATURE, DO, AND CHLA FROM CTD
 
 #need to import CTD observations from EDI
-inUrl1  <- "https://pasta.lternet.edu/package/data/eml/edi/200/10/2461524a7da8f1906bfc3806d594f94c" 
-infile1 <- paste0(getwd(),"/CTD_final_2013_2019.csv")
+inUrl1  <- "https://pasta.lternet.edu/package/data/eml/edi/200/12/0a62d1946e8d9a511bc1404e69e59b8c" 
+infile1 <- paste0(getwd(),"/CTD_2013_2021.csv")
 download.file(inUrl1,infile1,method="curl")
 
 #read in CTD temp file from EDI to create field file, but first need to subset CTD data per each day to depths
-ctd<-read.csv('CTD_final_2013_2019.csv') %>% #read in observed CTD data, which has multiple casts on the same day (problematic for comparison)
+ctd<-read.csv('CTD_2013_2021.csv') %>% #read in observed CTD data, which has multiple casts on the same day (problematic for comparison)
   dplyr::filter(Reservoir=="FCR") %>%
   dplyr::filter(Site==50) %>%
   rename(time=Date, depth=Depth_m, temp=Temp_C, DO=DO_mgL, chla = Chla_ugL) %>%
@@ -43,7 +43,7 @@ hist(Zmax$depth)
 
 #Initialize an empty matrix with the correct number of rows and columns 
 temp<-matrix(data=NA, ncol=ncol(ctd), nrow=length(depths)) #of cols in CTD data, and then nrows = # of layers produced
-super_final<-matrix(data=NA, ncol=1, nrow=0)
+super_final<- NULL #matrix(data=NA, ncol=1, nrow=0)
 dates<-unique(ctd$time)
 
 #create a function to chose the matching depth closest to our focal depths
@@ -51,6 +51,8 @@ closest<-function(xv, sv){
   xv[which.min(abs(xv-sv))]}
 
 library(plyr) #only use plyr for this for loop, then detach!
+
+
 
 #For loop to retrieve CTD depth with the closest function and fill in matrix
 for (i in 1:length(dates)){
@@ -74,42 +76,42 @@ for (i in 1:length(dates)){
   colnames(temp)[((ncol(ctd))+1)]<-"new_depth"
   final <- temp
   final <- data.frame(final)
-  super_final <- rbind.fill.matrix(super_final,final)
+  super_final <- rbind(super_final, final)
+  #super_final <- rbind.fill.matrix(super_final,final)
 }
 
 detach(package:plyr)#to prevent issues with dplyr vs plyr not playing well together!
 
 #now need to clean up the data frame and make all factors numeric
-super_final <- as.data.frame(super_final) %>%
-  select(time, new_depth, temp, DO, chla) %>%
-  rename(depth = new_depth) %>%
-  mutate(time = as.POSIXct(strptime(time, "%Y-%m-%d", tz="EST"))) %>%
-  dplyr::filter(time > "2013-05-16") %>% #need to make sure that the CTD data only start after first day of sim
-  mutate(depth = as.numeric(levels(depth))[depth]) %>%
-  mutate(temp = as.numeric(levels(temp))[temp]) %>%
-  mutate(DO = as.numeric(levels(DO))[DO]) %>%
-  mutate(chla = as.numeric(levels(chla))[chla])
+ super_final1 <- super_final %>%
+   select(time, new_depth, temp, DO, chla) %>%
+   rename(depth = new_depth) %>%
+   mutate(time = as.POSIXct(strptime(time, "%Y-%m-%d", tz="EST"))) %>%
+   dplyr::filter(time > "2013-05-16") #%>% #need to make sure that the CTD data only start after first day of sim
+#   mutate(depth = as.numeric(levels(depth))[depth]) %>%
+#   mutate(temp = as.numeric(levels(temp))[temp]) %>%
+#   mutate(DO = as.numeric(levels(DO))[DO]) %>%
+#   mutate(chla = as.numeric(levels(chla))[chla])
 
 
 #now pull in YSI data to fill in missing temp/DO data from CTD dataset
 #need to import YSI observations from EDI
-inUrl1  <- "https://pasta.lternet.edu/package/data/eml/edi/198/7/25b5e8b7f4291614d5c6d959a08148d8" 
-infile1 <- paste0(getwd(),"/YSI_PAR_profiles_2013-2019.csv")
+inUrl1  <- "https://pasta.lternet.edu/package/data/eml/edi/198/10/b3bd353312f9e37ca392e2a5315cc9da" 
+infile1 <- paste0(getwd(),"/YSI_PAR_profiles_2013-2021.csv")
 download.file(inUrl1,infile1,method="curl")
 
-ysi <- read.csv("YSI_PAR_profiles_2013-2019.csv", header=T) %>% 
+ysi <- read.csv("YSI_PAR_profiles_2013-2021.csv", header=T) %>% 
   dplyr::filter(Reservoir == "FCR") %>% 
   dplyr::filter(Site == 50) %>% 
   select(DateTime:DO_mgL) %>% 
   rename(time = DateTime, depth = Depth_m, temp = Temp_C, DO = DO_mgL) %>% 
-  mutate(time = as.POSIXct(strptime(time, "%m/%d/%y %H:%M", tz="EST"))) %>% 
   mutate(time = as.POSIXct(strptime(time, "%Y-%m-%d", tz="EST"))) %>% 
   dplyr::filter(!(is.na(temp) & is.na(DO)))
 
 depths<- c(0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9.2) 
 #Initialize an empty matrix with the correct number of rows and columns 
 temp<-matrix(data=NA, ncol=ncol(ysi), nrow=length(depths)) #of cols in CTD data, and then nrows = # of layers produced
-super_final_ysi<-matrix(data=NA, ncol=1, nrow=0)
+super_final_ysi<- NULL
 dates<-unique(ysi$time)
 
 #create a function to chose the matching depth closest to our focal depths
@@ -140,25 +142,25 @@ for (i in 1:length(dates)){
   colnames(temp)[((ncol(ysi))+1)]<-"new_depth"
   final <- temp
   final <- data.frame(final)
-  super_final_ysi <- rbind.fill.matrix(super_final_ysi,final)
+  super_final_ysi <- rbind(super_final_ysi,final)
 }
 
 detach(package:plyr)#to prevent issues with dplyr vs plyr not playing well together!
 
 #now need to clean up the data frame and make all factors numeric
-super_final_ysi1 <- as.data.frame(super_final_ysi) %>%
+super_final_ysi1 <- super_final_ysi %>%
   mutate(time = as.POSIXct(strptime(time, "%Y-%m-%d", tz="EST"))) %>%
   dplyr::filter(time > "2013-05-16") %>% #need to make sure that the CTD data only start after first day of sim
-  mutate(depth = as.numeric(levels(depth))[depth]) %>%
-  mutate(new_depth = as.numeric(levels(new_depth))[new_depth]) %>%
-  mutate(temp = as.numeric(levels(temp))[temp]) %>%
-  mutate(DO = as.numeric(levels(DO))[DO]) %>%
+ # mutate(depth = as.numeric(levels(depth))[depth]) %>%
+#  mutate(new_depth = as.numeric(levels(new_depth))[new_depth]) %>%
+#  mutate(temp = as.numeric(levels(temp))[temp]) %>%
+ # mutate(DO = as.numeric(levels(DO))[DO]) %>%
   mutate(diff = new_depth - depth) %>% 
   dplyr::filter(abs(diff)<0.4)%>%
   select(time, new_depth, temp, DO) %>%
   rename(depth = new_depth) 
 
-more2 <- merge(super_final, super_final_ysi1, all.x=T, all.y=T, by=c("time", "depth"))
+more2 <- merge(super_final1, super_final_ysi1, all.x=T, all.y=T, by=c("time", "depth"))
 
 #visualize the data
 for(i in 1:length(unique(more2$depth))){
@@ -232,7 +234,7 @@ more1 <- more %>%
 #visualize the DO data
 for(i in 1:length(unique(more1$depth))){
   tempdf<-subset(more1, more1$depth==depths[i])
-  plot(tempdf$time,tempdf$DO, type='l', col='red',
+  plot(tempdf$time,tempdf$DO, type='p', col='red',
        ylab='Oxygen mmol/m3', xlab='time',
        main = paste0("Combined CTD & YSI data,Depth=",depths[i]),ylim=c(0,15))
 }
@@ -240,7 +242,7 @@ for(i in 1:length(unique(more1$depth))){
 #visualize the temp data
 for(i in 1:length(unique(more1$depth))){
   tempdf<-subset(more1, more1$depth==depths[i])
-  plot(tempdf$time,tempdf$temp, type='l', col='red',
+  plot(tempdf$time,tempdf$temp, type='p', col='red',
        ylab='Temp oC', xlab='time',
        main = paste0("Combined CTD & YSI data,Depth=",depths[i]),ylim=c(0,30))
 }
@@ -248,7 +250,7 @@ for(i in 1:length(unique(more1$depth))){
 #visualize the chla data
 for(i in 1:length(unique(more1$depth))){
   tempdf<-subset(more1, more1$depth==depths[i])
-  plot(tempdf$time,tempdf$chla, type='l', col='red',
+  plot(tempdf$time,tempdf$chla, type='p', col='red',
        ylab='Chla ug/L', xlab='time',
        main = paste0("Combined CTD & YSI data,Depth=",depths[i]),ylim=c(0,30))
 }
@@ -308,12 +310,12 @@ chla <- more1 %>%
 ###### WATER CHEM DATA FROM EDI
 
 #now let's build a chemistry field_data file
-#first pull in FCR chem data from 2013-2019 from EDI
-inUrl1  <- "https://pasta.lternet.edu/package/data/eml/edi/199/6/2b3dc84ae6b12d10bd5485f1c300af13" 
-infile1 <- paste0(getwd(),"/chem.csv")
-download.file(inUrl1,infile1,method="curl")
+#first pull in FCR chem data from 2013-2020 from EDI
+inUrl1  <- "https://pasta.lternet.edu/package/data/eml/edi/199/9/fe500aac19d1a0d78bb2cb1d196cdbd7"
+infile1 <- paste0(getwd(),"/chemistry_2013_2020.csv")
+download.file(inUrl1,infile1,method="curl",extra='-k')
 
-FCRchem <- read.csv("chem.csv", header=T) %>%
+FCRchem <- read.csv("chemistry_2013_2020.csv", header=T) %>%
   select(Reservoir:DIC_mgL) %>%
   dplyr::filter(Reservoir=="FCR") %>%
   dplyr::filter(Site==50) %>%
@@ -338,29 +340,29 @@ ggplot(FCRchem, aes(DateTime, OGM_docr, colour=Depth)) +
 write.csv(FCRchem, "field_chem_2DOCpools.csv", row.names = F)
 
 
-#######now make FCR chem dataset with one DOC pool
-FCRchem <- read.csv("chem.csv", header=T) %>%
-  select(Reservoir:DIC_mgL) %>%
-  dplyr::filter(Reservoir=="FCR") %>%
-  dplyr::filter(Site==50) %>%
-  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%
-  select(DateTime, Depth_m, NH4_ugL:DIC_mgL) %>%
-  rename(Depth=Depth_m) %>%
-  mutate(NIT_amm = NH4_ugL*1000*0.001*(1/18.04)) %>% 
-  mutate(NIT_nit = NO3NO2_ugL*1000*0.001*(1/62.00)) %>% #as all NO2 is converted to NO3
-  mutate(PHS_frp = SRP_ugL*1000*0.001*(1/94.9714)) %>% 
-  mutate(OGM_doc = DOC_mgL*1000*(1/12.01)) %>% 
-  mutate(CAR_dic = DIC_mgL*1000*(1/52.515)) %>% #Long-term avg pH of FCR is 6.5, at which point CO2/HCO3 is about 50-50
-  #given this disparity, using a 50-50 weighted molecular weight (44.01 g/mol and 61.02 g/mol, respectively)
-  select(DateTime, Depth, NIT_amm:CAR_dic) %>%
-  drop_na(NIT_amm) %>%
-  distinct(DateTime, Depth, .keep_all=TRUE)
-
-ggplot(FCRchem, aes(DateTime, OGM_doc, colour=Depth)) + 
-  geom_point()
-
-write.csv(FCRchem, "field_chem_1DOCpool.csv", row.names = F)
-
+# #######now make FCR chem dataset with one DOC pool
+# FCRchem <- read.csv("chem.csv", header=T) %>%
+#   select(Reservoir:DIC_mgL) %>%
+#   dplyr::filter(Reservoir=="FCR") %>%
+#   dplyr::filter(Site==50) %>%
+#   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%
+#   select(DateTime, Depth_m, NH4_ugL:DIC_mgL) %>%
+#   rename(Depth=Depth_m) %>%
+#   mutate(NIT_amm = NH4_ugL*1000*0.001*(1/18.04)) %>% 
+#   mutate(NIT_nit = NO3NO2_ugL*1000*0.001*(1/62.00)) %>% #as all NO2 is converted to NO3
+#   mutate(PHS_frp = SRP_ugL*1000*0.001*(1/94.9714)) %>% 
+#   mutate(OGM_doc = DOC_mgL*1000*(1/12.01)) %>% 
+#   mutate(CAR_dic = DIC_mgL*1000*(1/52.515)) %>% #Long-term avg pH of FCR is 6.5, at which point CO2/HCO3 is about 50-50
+#   #given this disparity, using a 50-50 weighted molecular weight (44.01 g/mol and 61.02 g/mol, respectively)
+#   select(DateTime, Depth, NIT_amm:CAR_dic) %>%
+#   drop_na(NIT_amm) %>%
+#   distinct(DateTime, Depth, .keep_all=TRUE)
+# 
+# ggplot(FCRchem, aes(DateTime, OGM_doc, colour=Depth)) + 
+#   geom_point()
+# 
+# write.csv(FCRchem, "field_chem_1DOCpool.csv", row.names = F)
+# 
 #######now make totals chemistry files
 FCRchem <- read.csv("chem.csv", header=T) %>%
   select(Reservoir:DIC_mgL) %>%
