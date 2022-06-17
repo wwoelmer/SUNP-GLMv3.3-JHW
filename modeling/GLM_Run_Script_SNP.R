@@ -10,7 +10,8 @@
 #*        variables, and calculates RMSE for each depth.
 #*****************************************************************
 
-remotes::install_github("CareyLabVT/GLMr", force = T)
+# changing to glm3r
+remotes::install_github("CareyLabVT/GLM3r", force = T)
 remotes::install_github("CareyLabVT/glmtools", force = T)
 
 Sys.setenv(TZ = 'America/New_York')
@@ -23,9 +24,9 @@ setwd("~/Dropbox/SUNP-GLMv3.3-JHW/")
 sim_folder <- getwd()
 
 #look at glm and aed nml files
-nml_file <- paste0(sim_folder,"/glm3.nml")
-aed_file <- paste0(sim_folder,"/aed2/aed2_4zones.nml")
-aed_phytos_file <- paste0(sim_folder,"/aed2/aed2_phyto_pars_2May2022_RQT.nml")
+nml_file <- paste0(sim_folder,"/glm3_woAED.nml")
+aed_file <- paste0(sim_folder,"/aed/aed.nml")
+aed_phytos_file <- paste0(sim_folder,"/aed/aed2_phyto_pars_2May2022_RQT.nml")
 nml <- read_nml(nml_file) 
 aed <- read_nml(aed_file) #you may get a warning about an incomplete final line but it doesn't matter
 aed_phytos <- read_nml(aed_phytos_file)
@@ -34,17 +35,22 @@ print(aed)
 print(aed_phytos)
 
 ##### run the model! #######
-sim_folder<-"/Users/cayelan/Dropbox/ComputerFiles/SCC/FCR-GLMv3.3"
+sim_folder<-"~/Dropbox/SUNP-GLMv3.3-JHW"
 setwd(sim_folder)
 
-system2("/Users/cayelan/Dropbox/GLM_V3/bin/Monterey/glm+.app/Contents/MacOS/glm+", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/cayelan/Dropbox/GLM_V3/bin/Monterey/glm.app/Contents/MacOS")
+# GLM3r::run_glm(sim_folder, nml_file = 'glm3.nml', verbose = T)
+
+
+
+system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
+#system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm+.app/Contents/MacOS/glm+", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm+.app/Contents/MacOS")
 #system2(paste0(sim_folder, "/", "glm"), stdout = TRUE, stderr = TRUE, env = paste0("DYLD_LIBRARY_PATH=",sim_folder))
 #sometimes, you'll get an error that says "Error in file, 'Time(Date)' is not first column!
 #in this case, open the input file in Excel, set the column in Custom ("YYYY-MM-DD") format, resave, and close the file
 nc_file <- file.path(sim_folder, 'output/output.nc') #defines the output.nc file 
 
-#reality check of temp heat map
-plot_temp(nc_file, col_lim = c(0,30))
+
+#glm_version()
 
 #get water level
 water_level<-get_surface_height(nc_file, ice.rm = TRUE, snow.rm = TRUE)
@@ -93,7 +99,7 @@ lines(ice$DateTime, icesnow$hsnow, col="red", type="l")
 legend("topleft", legend=c("white ice", "blue ice", "snow ice"), col=c("black", "blue", "red"), pch=1)
 
 avgsurftemp<- get_var(nc_file,"avg_surf_temp")
-plot(avgsurftemp$DateTime, avgsurftemp$avg_surf_temp, ylim=c(-1,2))
+plot(avgsurftemp$DateTime, avgsurftemp$avg_surf_temp, ylim=c(-1,30))
 
 
 ############## temperature data #######
@@ -176,12 +182,17 @@ obs_oxy<-read.csv('field_data/CleanedObsOxy.csv') %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST")))
 field_file <- file.path(sim_folder,'/field_data/CleanedObsOxy.csv') 
 depths<- c(0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9.2) 
-plot_var_compare(nc_file,field_file,var_name = var, precision="days",col_lim = c(0,600)) #compare obs vs modeled
+plot_var(nc_file,var_name = var, precision="days",col_lim = c(0,600)) #compare obs vs modeled
 
 #get modeled oxygen concentrations for focal depths
-mod_oxy <- get_var(nc_file, "OXY_oxy", reference="surface", z_out=depths) %>%
-  pivot_longer(cols=starts_with("OXY_oxy_"), names_to="Depth", names_prefix="OXY_oxy_", values_to = "OXY_oxy") %>%
+mod_oxy <- get_var(nc_file, "OXY_sat", reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with("OXY_sat"), names_to="Depth", names_prefix="OXY_sat", values_to = "OXY_sat") %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) 
+
+
+
+plot_var(nc_file,var_name = 'OXY_sat', precision="days",col_lim = c(0,150)) #compare obs vs modeled
+
 
 #lets do depth by depth comparisons of modeled vs. observed oxygen
 oxy_compare <- merge(mod_oxy, obs_oxy, by=c("DateTime","Depth")) %>%

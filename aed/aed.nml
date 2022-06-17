@@ -41,7 +41,20 @@
 !
 !-------------------------------------------------------------------------------
 &aed_models
-   models = 'aed2_tracer','aed2_noncohesive','aed2_oxygen','aed2_carbon','aed2_silica','aed2_nitrogen','aed2_phosphorus','aed2_organic_matter','aed2_phytoplankton'
+   models = 'aed_sedflux',
+            'aed_tracer',
+            'aed_noncohesive',
+            'aed_oxygen',
+            'aed_carbon',
+            'aed_silica',
+            'aed_nitrogen',
+            'aed_phosphorus',
+            'aed_organic_matter',
+            'aed_phytoplankton',
+            'aed_totals'
+          ! 'aed_seddiagenesis'
+          !  'aed_zooplankton'
+          !  'aed_bivalve'
 /
 
 !###############################################################################
@@ -110,8 +123,8 @@
 !-------------------------------------------------------------------------------
 &aed_oxygen
   oxy_initial       = 225.0
-  Fsed_oxy          = -94.97333
-  Ksed_oxy          =  63.83591
+  Fsed_oxy          = -10.0
+  Ksed_oxy          =  25.0
   theta_sed_oxy     =   1.08
   Fsed_oxy_variable = 'SDF_Fsed_oxy'
   oxy_min           = 0
