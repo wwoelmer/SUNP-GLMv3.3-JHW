@@ -19,7 +19,7 @@ Sys.setenv(TZ = 'America/New_York')
 #if (!require('pacman')) install.packages('pacman'); library('pacman')
 pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools)
 
-setwd("~/Dropbox/ComputerFiles/SCC/FCR-GLMv3.3")
+setwd("~/Dropbox/SUNP-GLMv3.3-JHW/")
 sim_folder <- getwd()
 
 #look at glm and aed nml files

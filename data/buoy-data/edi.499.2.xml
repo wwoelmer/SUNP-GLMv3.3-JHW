@@ -1,0 +1,2527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml packageId="edi.499.2" system="https://pasta.edirepository.org"
+  xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0"
+  xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0  https://nis.lternet.edu/schemas/EML/eml-2.2.0/xsd/eml.xsd">
+  <access
+    authSystem="https://pasta.edirepository.org/authentication"
+    order="allowFirst" scope="document"
+      system="https://pasta.edirepository.org">
+    <allow><principal>uid=EDI,o=EDI,dc=edirepository,dc=org</principal><permission>all</permission></allow><allow>
+      <principal>uid=steeleb,o=EDI,dc=edirepository,dc=org</principal>
+      <permission>all</permission>
+    </allow>
+    <allow>
+      <principal>public</principal>
+      <permission>read</permission>
+    </allow>
+  </access>
+  <dataset>
+    <alternateIdentifier
+        system="https://doi.org">doi:10.6073/pasta/0c5298c55a128be56ba57449c795df63</alternateIdentifier><title>Lake Sunapee Instrumented Buoy: High Frequency Water Temperature and Dissolved Oxygen Data - 2007-2020</title>
+    <creator>
+      <individualName>
+        <surName>LSPA</surName>
+      </individualName>
+      <organizationName>Lake Sunapee Protective Association</organizationName>
+      <electronicMailAddress>lspa@lakesunapee.org</electronicMailAddress>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Kathleen</givenName>
+        <givenName>C</givenName>
+        <surName>Weathers</surName>
+      </individualName>
+      <organizationName>Cary Institute of Ecosystem Studies</organizationName>
+      <electronicMailAddress>weathersk@caryinstitute.org</electronicMailAddress>
+      <userId
+        directory="https://orcid.org">https://orcid.org/0000-0002-3575-6508</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Bethel</givenName>
+        <givenName>G</givenName>
+        <surName>Steele</surName>
+      </individualName>
+      <organizationName>Cary Institute of Ecosystem Studies</organizationName>
+      <electronicMailAddress>steeleb@caryinstitute.org</electronicMailAddress>
+      <userId
+            directory="https://orcid.org">https://orcid.org/0000-0003-4365-4103</userId>
+    </creator>
+    <associatedParty>
+      <individualName>
+        <givenName>June</givenName>
+        <surName>Fichter</surName>
+      </individualName>
+      <organizationName>Lake Sunapee Protective Association</organizationName>
+      <electronicMailAddress>junef@lakesunapee.org</electronicMailAddress>
+      <role>Data Collection</role>
+    </associatedParty>
+    <associatedParty>
+      <individualName>
+        <givenName>Geoff</givenName>
+        <surName>Lizotte</surName>
+      </individualName>
+      <organizationName>Lake Sunapee Protective Association</organizationName>
+      <role>Data Collection</role>
+    </associatedParty>
+    <associatedParty>
+      <individualName>
+        <givenName>John</givenName>
+        <surName>Merriman</surName>
+      </individualName>
+      <organizationName>Lake Sunapee Protective Association</organizationName>
+      <role>Buoy Technical Programming</role>
+    </associatedParty>
+    <pubDate>2021-03-02</pubDate>
+    <abstract>
+      <para>The Lake Sunapee instrumented buoy is equipped with a thermistor chain comprised of ten integrated Nexsens TS210 units (July 2017 - current) and two Ponsel Digisens Optical probes suspended at approximately 1.5 meters and 10.5 meters depth. Note that the below-surface depth of the thermistors have fluctuated throughout the years.</para>
+      <para>
+Lake Sunapee buoy is located near Loon Island Lighthouse during the summer months and in the Lake Sunapee Harbor during the winter months (2010-current) except for the first few years of data collection (2007-2010), when the buoy was located near Loon Island year-round. The buoy was moved to the harbor during the winters after suffering ice damage, sensor failures, and general data transmission errors during the winter of 2009-2010.</para>
+      <para>
+In two instances, HOBO units were deployed at the buoy's location when sensors failed mid-season (thermistor line mid-2015, HOBO temp/lumen pendants deployed in place) or if sensors were unavailable for the season (2018, a HOBO U26 dissolved oxygen sensor was deployed when DO probes were not functioning).</para>
+      <para>
+All datasets have been QAQC'd to remove obviously errant readings, highly suspicious readings, and artifacts of buoy maintenance.
+</para>
+    </abstract>
+    <keywordSet>
+      <keyword>Lake Sunapee Protective Association</keyword>
+      <keyword>LSPA</keyword>
+      <keyword>Lake Sunapee</keyword>
+      <keyword>Global Lake Ecological Observatory Network</keyword>
+      <keyword>GLEON</keyword>
+      <keyword>high-frequency data</keyword>
+      <keyword>buoy data</keyword>
+      <keyword>oligotrophic</keyword>
+    </keywordSet>
+    <keywordSet>
+      <keyword>water temperature</keyword>
+      <keyword>dissolved oxygen</keyword>
+      <keyword>freshwater</keyword>
+      <keyword>lakes</keyword>
+      <keyword>limnology</keyword>
+      <keywordThesaurus>LTER Controlled Vocabulary</keywordThesaurus>
+    </keywordSet>
+    <additionalInfo>
+      <para>Associated datasets: high-frequency meteorological data from the Lake Sunapee instrumented buoy (edi.234) and under-ice temperature data at the summer location of the buoy (edi.500).
+</para>
+    </additionalInfo>
+    <intellectualRights>
+      <para>This information is released under the Creative Commons license - Attribution - CC BY (https://creativecommons.org/licenses/by/4.0/). The consumer of these data ("Data User" herein) is required to cite it appropriately in any publication that results from its use. The Data User should realize that these data may be actively used by others for ongoing research and that coordination may be necessary to prevent duplicate publication. The Data User is urged to contact the authors of these data if any questions about methodology or results occur. Where appropriate, the Data User is encouraged to consider collaboration or co-authorship with the authors. The Data User should realize that misinterpretation of data may occur if used out of context of the original study. While substantial efforts are made to ensure the accuracy of data and associated documentation, complete accuracy of data sets cannot be guaranteed. All data are made available "as is." The Data User should be aware, however, that data are updated periodically and it is the responsibility of the Data User to check for new versions of the data. The data authors and the repository where these data were obtained shall not be liable for damages resulting from any use or misinterpretation of the data. Thank you.
+</para>
+    </intellectualRights>
+    <coverage>
+      <geographicCoverage>
+        <geographicDescription>Lake Sunapee is located in the Sugar River watershed within Sullivan and Merrimack Counties, NH, USA. It is a drainage lake with predominantly muck substrate. It has a surface area of 1667 hectares, 53 kilometers of developed shoreline and a maximum depth of 33.7 meters. The location of the buoy is 43.3913, -72.0576.  The ice-on harbor position for winters starting in 2010 forward: 43.3857, -72.0812. Verbal description of summer buoy location: SSE of Loon Island, water depth 10.5-12m, water fluctuations seasonally 0.75 to 1 meter. The following bounding coordinates are for Lake Sunapee as defined by the polygon contained in the New Hampshire Hydrography Dataset (NHHD) as downloaded from GRANIT (http://www.granit.sr.unh.edu/data/search?dset=nhhd&amp;#).</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-72.0831</westBoundingCoordinate>
+          <eastBoundingCoordinate>-72.0304</eastBoundingCoordinate>
+          <northBoundingCoordinate>43.4307</northBoundingCoordinate>
+          <southBoundingCoordinate>43.3217</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+      <geographicCoverage>
+        <geographicDescription>loon</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-72.0576</westBoundingCoordinate>
+          <eastBoundingCoordinate>-72.0576</eastBoundingCoordinate>
+          <northBoundingCoordinate>43.3913</northBoundingCoordinate>
+          <southBoundingCoordinate>43.3913</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+      <geographicCoverage>
+        <geographicDescription>harbor</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-72.0812</westBoundingCoordinate>
+          <eastBoundingCoordinate>-72.0812</eastBoundingCoordinate>
+          <northBoundingCoordinate>43.3857</northBoundingCoordinate>
+          <southBoundingCoordinate>43.3857</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+      <temporalCoverage>
+        <rangeOfDates>
+          <beginDate>
+            <calendarDate>2007-08-27</calendarDate>
+          </beginDate>
+          <endDate>
+            <calendarDate>2020-12-31</calendarDate>
+          </endDate>
+        </rangeOfDates>
+      </temporalCoverage>
+    </coverage>
+    <maintenance>
+      <description>ongoing</description>
+    </maintenance>
+    <contact>
+      <individualName>
+        <surName>LSPA</surName>
+      </individualName>
+      <organizationName>Lake Sunapee Protective Association</organizationName>
+      <electronicMailAddress>lspa@lakesunapee.org</electronicMailAddress>
+    </contact>
+    <publisher><organizationName>Environmental Data Initiative</organizationName><electronicMailAddress>info@environmentaldatainitiative.org</electronicMailAddress><onlineUrl>https://environmentaldatainitiative.org</onlineUrl></publisher><pubPlace>Environmental Data Initiative</pubPlace><methods>
+      <methodStep>
+        <description>
+          <para>The Lake Sunapee instrumented buoy is equipped with a thermistor chain comprised of ten integrated Nexsens TS210 units (July 2017 - current). Previously, the thermistor chain was comprised of Nexsens T500 Node thermistors (December 2010-July 2017) and before December 2010, it was instrumented with TempLine thermistors from Apprise Technology. During the summer of 2015 (August-September), a HOBO temperature string was deployed on the buoy in place of the thermistors while the thermistors were being serviced. Prior to July 2017, the reported depths of the thermistor line are best approximations and are likely correct within 0.25 meters. Depths of thermistors, which have fluctuated over the years, are indicated by the column headings in the included temperature file (2007-2020_tempstring_L1.csv).</para>
+          <para>
+Dissolved oxygen is currently monitored at two depths (approximately 1.5 meters and 10.5 meters) by Ponsel Digisens Optical probes at the 1.5 meter depth (since June 2015) and the 10.5 meter depth (since September 2013). Prior to September 2013, DO was only measured at 1.5 meters depth. Prior to June 2015, dissolved oxygen at 1.5 meter depth was measured by a D-Opto SDI 12 dissolved oxygen probe. A HOBO U26 dissolved oxygen unit was deployed at 0.25 meters depth in May 2018 because the Ponsel probe had failed.</para>
+          <para>
+Data from the thermistor chain and dissolved oxygen probes were collated and cleaned using R Studio (v. 1.2.504), R version 4.0.3 by B. Steele of K.C. Weathers' Laboratory (R code for QAQC included in this data package). QAQC consisted of renaming columns from the raw data to common headings for consistency between data years, as well as recoding obviously errant readings, highly suspicious readings and artifacts of buoy maintenance to 'NA' from the raw data.  Data from HOBO sensors in 2015 (9 HOBO temp/lumen pendants at 0.5 meters to 8.5 meters depth) and HOBO U26 during 2018 (1 HOBO U26 dissolved oxygen probe) were QAQC'd in the same manner as the data from the buoy. </para>
+          <para>
+The underwater temperature data are broken into two records: (1) the dataset from the thermistors attached to the buoy only (2007-2020_tempstring_L1.csv), and (2) the dataset from the summer 2015 deployment of the HOBO sensors in place of the thermistors (2015_summerhobo_L1.csv). Dissolved oxygen data are also broken into two records: (1) the dataset from the dissolved oxygen probes connected to the buoy data logger (2007-2020_do_L1.csv), and (2) the dataset from 2018 where a HOBO U26 dissolved oxygen probe was deployed at 0.25 meters in place of the failed Ponsel DO units.
+</para>
+        </description>
+      </methodStep>
+    </methods>
+    <project>
+      <title>No project title to report</title>
+      <personnel>
+        <individualName>
+          <givenName>June</givenName>
+          <surName>Fichter</surName>
+        </individualName>
+        <organizationName>Lake Sunapee Protective Association</organizationName>
+        <electronicMailAddress>junef@lakesunapee.org</electronicMailAddress>
+        <role>Principal Investigator</role>
+      </personnel>
+      <funding>Frey Foundation</funding>
+      <relatedProject>
+        <title>Collaborative Research: CI-Team Demonstration: Developing a Model for Engagement of Citizen Scientists: Lake Associations</title>
+        <personnel>
+          <individualName>
+            <givenName>Kathleen</givenName>
+            <givenName>C</givenName>
+            <surName>Weathers</surName>
+          </individualName>
+          <organizationName>Cary Institute of Ecosystem Studies</organizationName>
+          <electronicMailAddress>weathersk@caryinstitute.org</electronicMailAddress>
+          <userId
+            directory="https://orcid.org">https://orcid.org/0000-0002-3575-6508</userId>
+          <role>Principal Investigator</role>
+        </personnel>
+        <funding>National Science Foundation 0936174</funding>
+      </relatedProject>
+      <relatedProject>
+        <title>Collaborative Research: Building Analytical, Synthesis, and Human Network Skills Needed for Macrosystem Science: a Next Generation Graduate Student Training Model Based on GLEON</title>
+        <personnel>
+          <individualName>
+            <givenName>Kathleen</givenName>
+            <givenName>C</givenName>
+            <surName>Weathers</surName>
+          </individualName>
+          <organizationName>Cary Institute of Ecosystem Studies</organizationName>
+          <electronicMailAddress>weathersk@caryinstitute.org</electronicMailAddress>
+          <userId
+          directory="https://orcid.org">https://orcid.org/0000-0002-3575-6508</userId>
+          <role>Principal Investigator</role>
+        </personnel>
+        <funding>National Science Foundation 1137327</funding>
+      </relatedProject>
+      <relatedProject>
+        <title>Development of Real-Time Environmental Sensor Technology and Applications for the Northeast: A Proposal from the NERC Northeastern Environmental Sensor Working Group (NESN)</title>
+        <personnel>
+          <individualName>
+            <givenName>Lindsey</givenName>
+            <surName>Rustad</surName>
+          </individualName>
+          <role>Principal Investigator</role>
+        </personnel>
+        <funding>NSRC</funding>
+      </relatedProject>
+    </project>
+    <dataTable>
+      <entityName>2007-2020_buoy_templine_v26Feb2021</entityName>
+      <entityDescription>data table for buoy thermistor data 2007-2020</entityDescription>
+      <physical>
+        <objectName>2007-2020_buoy_templine_v26Feb2021.csv</objectName>
+        <size
+          unit="bytes">117852308</size>
+        <authentication
+                    method="MD5">281ba052ff112778c0a0caf6dadbbf3a</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/1f903796efc8d79e263a549f8b5aa8a6</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>datetime</attributeName>
+          <attributeDefinition>date and time (UTC -4) of buoy record - no daylight savings observed</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY-MM-DD hh:mm:ss</formatString>
+              <dateTimeDomain/>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>location</attributeName>
+          <attributeDefinition>location of buoy</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>harbor</code>
+                    <definition>buoy is located in harbor</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>in transit</code>
+                    <definition>buoy is moving between harbor and loon island</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>loon</code>
+                    <definition>buoy is located near loon island</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>offline</code>
+                    <definition>buoy is offline, no data acquired</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_0p5m</attributeName>
+          <attributeDefinition>water temperature approximately 0.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">-0.35</minimum>
+                  <maximum
+                    exclusive="false">27.06</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_0p75m</attributeName>
+          <attributeDefinition>water temperature approximately 0.75 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">1.765</minimum>
+                  <maximum
+                    exclusive="false">16.19</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_0p85m</attributeName>
+          <attributeDefinition>water temperature approximately 0.85 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">12.46</minimum>
+                  <maximum
+                    exclusive="false">27.55</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_1m</attributeName>
+          <attributeDefinition>water temperature approximately 1 meter below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">-0.12</minimum>
+                  <maximum
+                    exclusive="false">27.9</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_1p5m</attributeName>
+          <attributeDefinition>water temperature approximately 1.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">-0.21</minimum>
+                  <maximum
+                    exclusive="false">26.84</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_1p75m</attributeName>
+          <attributeDefinition>water temperature approximately 1.75 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">7.16</minimum>
+                  <maximum
+                    exclusive="false">26.51</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_1p85m</attributeName>
+          <attributeDefinition>water temperature approximately 1.85 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">10.23</minimum>
+                  <maximum
+                    exclusive="false">26.74</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_2m</attributeName>
+          <attributeDefinition>water temperature approximately 2 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">-0.15</minimum>
+                  <maximum
+                    exclusive="false">25.93</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_2p5m</attributeName>
+          <attributeDefinition>water temperature approximately 2.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">-0.5</minimum>
+                  <maximum
+                    exclusive="false">26.59</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_2p75m</attributeName>
+          <attributeDefinition>water temperature approximately 2.75 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">7.08</minimum>
+                  <maximum
+                    exclusive="false">26.38</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_2p85m</attributeName>
+          <attributeDefinition>water temperature approximately 2.85 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">10.08</minimum>
+                  <maximum
+                    exclusive="false">24.32</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_3m</attributeName>
+          <attributeDefinition>water temperature approximately 3 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">-0.26</minimum>
+                  <maximum
+                    exclusive="false">25.89</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_3p5m</attributeName>
+          <attributeDefinition>water temperature approximately 3.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">0.07</minimum>
+                  <maximum
+                    exclusive="false">26.42</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_3p75m</attributeName>
+          <attributeDefinition>water temperature approximately 3.75 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">6.949</minimum>
+                  <maximum
+                    exclusive="false">26.14</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_3p85m</attributeName>
+          <attributeDefinition>water temperature approximately 3.85 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">9.89</minimum>
+                  <maximum
+                    exclusive="false">26.34</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_4p5m</attributeName>
+          <attributeDefinition>water temperature approximately 4.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">0.01</minimum>
+                  <maximum
+                    exclusive="false">26.07</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_4p75m</attributeName>
+          <attributeDefinition>water temperature approximately 4.75 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">6.882</minimum>
+                  <maximum
+                    exclusive="false">25.97</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_4p85m</attributeName>
+          <attributeDefinition>water temperature approximately 4.85 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">9.87</minimum>
+                  <maximum
+                    exclusive="false">26.14</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_5p5m</attributeName>
+          <attributeDefinition>water temperature approximately 5.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">-0.05</minimum>
+                  <maximum
+                    exclusive="false">25.18</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_5p75m</attributeName>
+          <attributeDefinition>water temperature approximately 5.75 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">6.881</minimum>
+                  <maximum
+                    exclusive="false">25.78</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_5p85m</attributeName>
+          <attributeDefinition>water temperature approximately 5.85 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">9.77</minimum>
+                  <maximum
+                    exclusive="false">25.9</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_6p5m</attributeName>
+          <attributeDefinition>water temperature approximately 6.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">0.07</minimum>
+                  <maximum
+                    exclusive="false">25.26</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_6p75m</attributeName>
+          <attributeDefinition>water temperature approximately 6.75 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">6.839</minimum>
+                  <maximum
+                    exclusive="false">25.54</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_6p85m</attributeName>
+          <attributeDefinition>water temperature approximately 6.85 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">9.23</minimum>
+                  <maximum
+                    exclusive="false">25.53</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_7p5m</attributeName>
+          <attributeDefinition>water temperature approximately 7.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">0.07</minimum>
+                  <maximum
+                    exclusive="false">24.51</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_7p75m</attributeName>
+          <attributeDefinition>water temperature approximately 7.75 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">6.797</minimum>
+                  <maximum
+                    exclusive="false">24.87</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_7p85m</attributeName>
+          <attributeDefinition>water temperature approximately 7.85 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">8.41</minimum>
+                  <maximum
+                    exclusive="false">24.24</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_8p5m</attributeName>
+          <attributeDefinition>water temperature approximately 8.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">-0.04</minimum>
+                  <maximum
+                    exclusive="false">24.26</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_8p75m</attributeName>
+          <attributeDefinition>water temperature approximately 8.75 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">6.799</minimum>
+                  <maximum
+                    exclusive="false">24.73</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_8p85m</attributeName>
+          <attributeDefinition>water temperature approximately 8.85 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">7.85</minimum>
+                  <maximum
+                    exclusive="false">23.4</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_9p5m</attributeName>
+          <attributeDefinition>water temperature approximately 9.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">0.26</minimum>
+                  <maximum
+                    exclusive="false">24.4</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_9p75m</attributeName>
+          <attributeDefinition>water temperature approximately 9.75 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">6.781</minimum>
+                  <maximum
+                    exclusive="false">21.99</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_9p85m</attributeName>
+          <attributeDefinition>water temperature approximately 9.85 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">7.44</minimum>
+                  <maximum
+                    exclusive="false">21.55</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_10p5m</attributeName>
+          <attributeDefinition>water temperature approximately 10.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">0.21</minimum>
+                  <maximum
+                    exclusive="false">23.63</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_11p5m</attributeName>
+          <attributeDefinition>water temperature approximately 11.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">-0.02</minimum>
+                  <maximum
+                    exclusive="false">23.13</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_13p5m</attributeName>
+          <attributeDefinition>water temperature approximately 13.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">0.26</minimum>
+                  <maximum
+          exclusive="false">23.07</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>temp_flag</attributeName>
+          <attributeDefinition>flag for water temperature value</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>0.85a</code>
+                    <definition>0.85 thermistor reporting in 20 minute intervals</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>10.5dn</code>
+                    <definition>10.5 thermistor hung up on mooring line, depth not correct; 10.5m thermistor displaying noise in data stream</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>11.5b; 13.5b</code>
+                    <definition>11.5 and 13.5 thermistors may be in sediment</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>9.5d; 10.5d; 11.5d; 13.5d; 11.5b; 13.5b</code>
+                    <definition>9.5, 105., 11.5, 13.5 thermistors hung up on mooring line, depth not correct; 11.5 and 13.5 thermistors may be in sediment</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>i</code>
+                    <definition>all thermistor data intermittent</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>i; 11.5b; 13.5b</code>
+                    <definition>all thermistor data intermittent; 11.5 and 13.5 thermistors may be in sediment</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>i; 9.5d; 10.5d; 11.5d; 13.5d; 11.5b; 13.5b</code>
+                    <definition>all thermistor data intermittent; 9.5, 105., 11.5, 13.5 thermistors hung up on mooring line, depth not correct; 11.5 and 13.5 thermistors may be in sediment</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>s; x; 11.5b; 13.5b</code>
+                    <definition>thermistors reporting suspect data (flatline and intermittent erroneous values); thermistors may be damaged; 11.5 and 13.5 thermistors may be in sediment</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>702025</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>2007-2020_do_L1_v26Feb2021</entityName>
+      <entityDescription>data table for buoy DO sensors 2007-2020</entityDescription>
+      <physical>
+        <objectName>2007-2020_do_L1_v26Feb2021.csv</objectName>
+        <size
+          unit="bytes">39295194</size>
+        <authentication
+                    method="MD5">799f97a09ff31d87aa138ae5a7e7137e</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/f4d3535cebd96715c872a7d3ca45c196</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>datetime</attributeName>
+          <attributeDefinition>date and time (UTC -4) of buoy record - no daylight savings observed</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY-MM-DD hh:mm:ss</formatString>
+              <dateTimeDomain/>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>location</attributeName>
+          <attributeDefinition>location of buoy</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>harbor</code>
+                    <definition>buoy is located in harbor</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>in transit</code>
+                    <definition>buoy is moving between harbor and loon island</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>loon</code>
+                    <definition>buoy is located near loon island</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>offline</code>
+                    <definition>buoy is offline, no data acquired</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>DOSat</attributeName>
+          <attributeDefinition>dissolved oxygen saturation at upper DO sensor</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>percentSaturation</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">55.96</minimum>
+                  <maximum
+                    exclusive="false">143.6</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>DOppm</attributeName>
+          <attributeDefinition>dissolved oxygen concentration at upper DO sensor</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>partsPerMillion</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">5.515</minimum>
+                  <maximum
+                    exclusive="false">20.61</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>DOTempC</attributeName>
+          <attributeDefinition>water temperature at upper DO sensor</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">0.18</minimum>
+                  <maximum
+                    exclusive="false">27.23</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>upper_do_flag</attributeName>
+          <attributeDefinition>flag for upper DO sensor values</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>c</code>
+                    <definition>do sensor calibrated</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>cp</code>
+                    <definition>do sensor calibrated (presumed, not documented)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>i</code>
+                    <definition>do sensor reporting intermittent data</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>iw</code>
+                    <definition>do sensor reporting intermittent data; do sensor cleaned</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>ix</code>
+                    <definition>do sensor reporting intermittent data; do sensor may be uncalibrated (no documentation of calibration)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>m</code>
+                    <definition>do sensor miscalibrated, do not use data without correction</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>mcep</code>
+                    <definition>do sensor miscalibrated, do not use data without correction; calibration presumed (no documentation of calibration)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>w</code>
+                    <definition>do sensor cleaned</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>wp</code>
+                    <definition>do sensor cleaned (presumed, not documented)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>wx</code>
+                    <definition>do sensor cleaned, but may be uncalibrated (no documentation of calibration)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>x</code>
+                    <definition>do sensor may be uncalibrated (no documentation of calibration)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>xwp</code>
+                    <definition>do sensor cleaned (presumed, not documented), but may be uncalibrated (no documentation of calibration)</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>DOLowSat</attributeName>
+          <attributeDefinition>dissolved oxygen saturation at lower DO sensor</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>percentSaturation</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">60.77</minimum>
+                  <maximum
+                    exclusive="false">148.9</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>DOLowPPM</attributeName>
+          <attributeDefinition>dissolved oxygen concentration at lower DO sensor</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>partsPerMillion</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">6.269</minimum>
+                  <maximum
+                    exclusive="false">14.54</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>DOLowTempC</attributeName>
+          <attributeDefinition>water temperature at lower DO sensor</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">6.579</minimum>
+                  <maximum
+          exclusive="false">22.24</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>lower_do_flag</attributeName>
+          <attributeDefinition>flag for lower DO sensor values</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>c</code>
+                    <definition>do sensor calibrated</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>cp</code>
+                    <definition>do sensor calibrated (presumed, not documented)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>d</code>
+                    <definition>sensor hung up on mooring line, depth likely incorrect</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>dcp</code>
+                    <definition>sensor hung up on mooring line, depth likely incorrect; do sensor calibrated (presumed, not documented)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>i</code>
+                    <definition>do sensor reporting intermittent data</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>iw</code>
+                    <definition>do sensor reporting intermittent data; do sensor cleaned</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>re</code>
+                    <definition>do sensor cap replaced, calibration errant; do sensor may be uncalibrated (no documentation of calibration)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>w</code>
+                    <definition>do sensor cleaned</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>wp</code>
+                    <definition>do sensor cleaned (presumed, not documented)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>x</code>
+                    <definition>do sensor may be uncalibrated (no documentation of calibration)</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>702025</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>2015_hobotempstring_L1</entityName>
+      <entityDescription>data table for summer 2015 HOBO temperature string</entityDescription>
+      <physical>
+        <objectName>2015_hobotempstring_L1.csv</objectName>
+        <size
+          unit="bytes">548443</size>
+        <authentication
+                    method="MD5">eed724570fbe027a256a3795551ffb5c</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/14340fa6419a6b4bc82cfe4713c25ea6</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>datetime</attributeName>
+          <attributeDefinition>date and time (UTC -4) of buoy record - no daylight savings observed</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY-MM-DD hh:mm:ss</formatString>
+              <dateTimeDomain/>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_0p5m</attributeName>
+          <attributeDefinition>water temperature approximately 0.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">19.662</minimum>
+                  <maximum
+                    exclusive="false">26.585</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_1p5m</attributeName>
+          <attributeDefinition>water temperature approximately 1.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_2p5m</attributeName>
+          <attributeDefinition>water temperature approximately 2.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">19.567</minimum>
+                  <maximum
+                    exclusive="false">25.902</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_3p5m</attributeName>
+          <attributeDefinition>water temperature approximately 3.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">19.567</minimum>
+                  <maximum
+                    exclusive="false">25.61</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_4p5m</attributeName>
+          <attributeDefinition>water temperature approximately 4.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">19.662</minimum>
+                  <maximum
+                    exclusive="false">25.513</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_5p5m</attributeName>
+          <attributeDefinition>water temperature approximately 5.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_6p5m</attributeName>
+          <attributeDefinition>water temperature approximately 6.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">19.662</minimum>
+                  <maximum
+                    exclusive="false">25.028</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_7p5m</attributeName>
+          <attributeDefinition>water temperature approximately 7.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">17.76</minimum>
+                  <maximum
+                    exclusive="false">24.062</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>TempC_8p5m</attributeName>
+          <attributeDefinition>water temperature approximately 8.5 meters below surface</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">14.421</minimum>
+                  <maximum
+          exclusive="false">21.855</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>location</attributeName>
+          <attributeDefinition>location of buoy</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>location of buoy</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>4993</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>2018_hobodo_L1</entityName>
+      <entityDescription>data table for summer 2018 HOBO dissolved oxygen sensor</entityDescription>
+      <physical>
+        <objectName>2018_hobodo_L1.csv</objectName>
+        <size
+          unit="bytes">578145</size>
+        <authentication
+                    method="MD5">7ae027b3eb1133f891a5e71c315180c4</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/938a361cbd4f373ba13dec92b6a66caa</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>datetime</attributeName>
+          <attributeDefinition>date and time (UTC -4) of buoy record - no daylight savings observed</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY-MM-DD hh:mm:ss</formatString>
+              <dateTimeDomain/>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>do_mgl</attributeName>
+          <attributeDefinition>dissolved oxygen concentration at HOBO DO sensor</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>milligramsPerLiter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">7.85</minimum>
+                  <maximum
+                    exclusive="false">10.83</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>temp_degC</attributeName>
+          <attributeDefinition>water temperature at HOBO DO sensor</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>celsius</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">13.88</minimum>
+                  <maximum
+          exclusive="false">27.46</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>hobodo_flag</attributeName>
+          <attributeDefinition>flag for HOBO DO sensor values</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>c</code>
+                    <definition>do sensor calibrated</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>location</attributeName>
+          <attributeDefinition>location of buoy</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>loon</code>
+                    <definition>buoy is located near loon island</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>13644</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>buoylocation_datapub</entityName>
+      <entityDescription>table of buoy location details</entityDescription>
+      <physical>
+        <objectName>buoylocation_datapub.csv</objectName>
+        <size
+          unit="bytes">73</size>
+        <authentication
+                    method="MD5">04d2fac53eabe63c8cde09366d04bdbe</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\r\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/9cd342fb70af70d79bc3a258aedeed26</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>location</attributeName>
+          <attributeDefinition>location of buoy</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>harbor</code>
+                    <definition>buoy is located in harbor</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>loon</code>
+                    <definition>buoy is located near loon island</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>lat_dd</attributeName>
+          <attributeDefinition>latitude of buoy location - WGS84</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>decimalDegree</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">43.3857</minimum>
+                  <maximum
+                    exclusive="false">43.3913</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>long_dd</attributeName>
+          <attributeDefinition>longitude of buoy location - WGS84</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>decimalDegree</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum
+                    exclusive="false">-72.0812</minimum>
+                  <maximum
+          exclusive="false">-72.0576</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>2</numberOfRecords>
+    </dataTable>
+    <otherEntity>
+      <entityName>Sunapee_buoy_2007</entityName>
+      <entityDescription>R code to QAQC 2007 buoy data</entityDescription>
+      <physical>
+        <objectName>Sunapee_buoy_2007.R</objectName>
+        <size
+          unit="bytes">29410</size>
+        <authentication
+          method="MD5">019368d971fe3cfc3c79d3e4448a22cb</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/d6444f1ab70f325d82bdfef1a0d19a63</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Sunapee_buoy_2008</entityName>
+      <entityDescription>R code to QAQC 2008 buoy data</entityDescription>
+      <physical>
+        <objectName>Sunapee_buoy_2008.R</objectName>
+        <size
+          unit="bytes">72113</size>
+        <authentication
+          method="MD5">ffc0e3b55d7b6c3ecb62262709c06567</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/d40cd681ee2f9ff9ae65be67965c44f4</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Sunapee_buoy_2009</entityName>
+      <entityDescription>R code to QAQC 2009 buoy data</entityDescription>
+      <physical>
+        <objectName>Sunapee_buoy_2009.R</objectName>
+        <size
+          unit="bytes">67207</size>
+        <authentication
+          method="MD5">a9f0bfce439fcc4f745efaa4752dcae5</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/bfc131a00042bd5b996f482bf1c453b4</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Sunapee_buoy_2010</entityName>
+      <entityDescription>R code to QAQC 2010 buoy data</entityDescription>
+      <physical>
+        <objectName>Sunapee_buoy_2010.R</objectName>
+        <size
+          unit="bytes">123200</size>
+        <authentication
+          method="MD5">88a83187bada193b8d143a3316eb14b4</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/bf02ab34e78697b4ea4baffafa4854f6</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Sunapee_buoy_2011</entityName>
+      <entityDescription>R code to QAQC 2011 buoy data</entityDescription>
+      <physical>
+        <objectName>Sunapee_buoy_2011.R</objectName>
+        <size
+          unit="bytes">51749</size>
+        <authentication
+          method="MD5">8edb0ab80592a208547ab4e10bb2a12f</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/64d60b30273127bf15bb091a697175ae</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Sunapee_buoy_2012</entityName>
+      <entityDescription>R code to QAQC 2012 buoy data</entityDescription>
+      <physical>
+        <objectName>Sunapee_buoy_2012.R</objectName>
+        <size
+          unit="bytes">50529</size>
+        <authentication
+          method="MD5">c4f85617b7a6facabd9627685f05d5d4</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/284c3e073854bde3ecaf4c2bf3e5f7db</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Sunapee_buoy_2013</entityName>
+      <entityDescription>R code to QAQC 2013 buoy data</entityDescription>
+      <physical>
+        <objectName>Sunapee_buoy_2013.R</objectName>
+        <size
+          unit="bytes">53969</size>
+        <authentication
+          method="MD5">f69ef9f7d7cef5cc18ed6cad545853ee</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/b1b90daae8146fbac3e370d554ca9d54</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Sunapee_buoy_2014</entityName>
+      <entityDescription>R code to QAQC 2014 buoy data</entityDescription>
+      <physical>
+        <objectName>Sunapee_buoy_2014.R</objectName>
+        <size
+          unit="bytes">55636</size>
+        <authentication
+          method="MD5">5c8fdb115cace5dd883aa0fb2c9a1b5b</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/7c5d0c9fea0fe69291416ce5a186c409</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Sunapee_buoy_2015</entityName>
+      <entityDescription>R code to QAQC 2015 buoy data</entityDescription>
+      <physical>
+        <objectName>Sunapee_buoy_2015.R</objectName>
+        <size
+          unit="bytes">58870</size>
+        <authentication
+          method="MD5">9792f99ce744018d8fa0e92d0f0a2b96</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/94c885587a47d3cff8a859d063cc8da1</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Sunapee_buoy_2016</entityName>
+      <entityDescription>R code to QAQC 2016 buoy data</entityDescription>
+      <physical>
+        <objectName>Sunapee_buoy_2016.R</objectName>
+        <size
+          unit="bytes">72785</size>
+        <authentication
+          method="MD5">1ef2e9ab92066f2a1238045346d7a5e4</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/80fa17837eab9b821a3b6e084af3a9ba</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Sunapee_buoy_2017</entityName>
+      <entityDescription>R code to QAQC 2017 buoy data</entityDescription>
+      <physical>
+        <objectName>Sunapee_buoy_2017.R</objectName>
+        <size
+          unit="bytes">73622</size>
+        <authentication
+          method="MD5">c4135ef03c96971d0b85d953350b03e9</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/fef8ea43ee3a4a199913d2350f62c8bc</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Sunapee_buoy_2018</entityName>
+      <entityDescription>R code to QAQC 2018 buoy data</entityDescription>
+      <physical>
+        <objectName>Sunapee_buoy_2018.R</objectName>
+        <size
+          unit="bytes">52002</size>
+        <authentication
+          method="MD5">b201d73b71f806cb1e3cce1b731a5c55</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/3f2f3704a4b9af13c5362d383a4d4e62</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Sunapee_buoy_2019</entityName>
+      <entityDescription>R code to QAQC 2019 buoy data</entityDescription>
+      <physical>
+        <objectName>Sunapee_buoy_2019.R</objectName>
+        <size
+          unit="bytes">47953</size>
+        <authentication
+          method="MD5">d17382b4f6d89a63d215db897f1d1a47</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/2b9345630330ab64d9563a54df413a40</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Sunapee_buoy_2020</entityName>
+      <entityDescription>R code to QAQC 2020 buoy data</entityDescription>
+      <physical>
+        <objectName>Sunapee_buoy_2020.R</objectName>
+        <size
+          unit="bytes">57428</size>
+        <authentication
+          method="MD5">a16f0e5c91f4be363afe83f293e2aab1</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/ab1995cf26cfa473e989e85bc93883b7</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Sunapee_hobo_2015</entityName>
+      <entityDescription>R code to QAQC 2015 HOBO temperature line data</entityDescription>
+      <physical>
+        <objectName>Sunapee_hobo_2015.R</objectName>
+        <size
+          unit="bytes">3767</size>
+        <authentication
+          method="MD5">6609eacf61b9d8f86ce2cde4197d5ee9</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/b1458efae9ef7aa2938867c615c6cb44</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>sunapee_hobodo_2018</entityName>
+      <entityDescription>R code to QAQC 2018 HOBO dissolved oxygen sensor data</entityDescription>
+      <physical>
+        <objectName>sunapee_hobodo_2018.R</objectName>
+        <size
+          unit="bytes">2772</size>
+        <authentication
+          method="MD5">8a27905b2ab2136679d98bce8e4f1d08</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/8b14096c3201fd1036700f23c5254b44</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>buoy_do_collation</entityName>
+      <entityDescription>R code to collate dissolved oxygen data</entityDescription>
+      <physical>
+        <objectName>buoy_do_collation.R</objectName>
+        <size
+          unit="bytes">7313</size>
+        <authentication
+          method="MD5">4c478e9e748266c75f1f99ac32d82300</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/3b8829784d635920f3696689b2d6f1ec</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>buoy_temp_collation</entityName>
+      <entityDescription>R code to collate thermistor data</entityDescription>
+      <physical>
+        <objectName>buoy_temp_collation.R</objectName>
+        <size
+          unit="bytes">4954</size>
+        <authentication
+          method="MD5">94da3234869eaef9e2ede0dc3609589f</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/201ed8ee676e3a6de8e6c9a5f92e48ec</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>library_func_lists</entityName>
+      <entityDescription>R code for libraries, functions, and lists used in all R code</entityDescription>
+      <physical>
+        <objectName>library_func_lists.R</objectName>
+        <size
+          unit="bytes">3024</size>
+        <authentication
+          method="MD5">1c1be3fb36f72b76c6fa84ad3df06e15</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/7fdf8f393481f473bd975ef31a7aed22</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>sunapee_buoytempdo_eml_v22April2020</entityName>
+      <entityDescription>R code to generate buoy weather EML</entityDescription>
+      <physical>
+        <objectName>sunapee_buoytempdo_eml_v26Feb2021.Rmd</objectName>
+        <size
+          unit="bytes">47395</size>
+        <authentication
+          method="MD5">6fbefafd1b902577f9150d446d26d82b</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/x-markdown</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/499/2/430ec4465d05ff1874bdb6f5dbf4c88f</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+  </dataset>
+  <additionalMetadata>
+    <metadata>
+      <unitList>
+        <unit
+          id="decimalDegree" multiplierToSI="" name="decimalDegree"
+          parentSI="degree"
+          unitType="angle">
+          <description>expression of latitude and longitude geographic coordinates as decimal fractions of a degree</description>
+        </unit>
+        <unit
+          id="percentSaturation" multiplierToSI=""
+          name="percentSaturation" parentSI=""
+          unitType="">
+          <description>percentage of dissolved oxygen concentration relative to that when completely saturated at the temperature of the measurement depth</description>
+        </unit>
+        <unit
+          id="partsPerMillion" multiplierToSI="1" name="partsPerMillion"
+          parentSI="milligramsPerLiter" unitType="concentration">
+          <description>parts per million</description>
+        </unit>
+      </unitList>
+    </metadata>
+  </additionalMetadata>
+</eml:eml>

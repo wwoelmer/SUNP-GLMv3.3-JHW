@@ -1,0 +1,1036 @@
+---
+title: "Sunapee Buoy temp/do to EDI"
+author: "B. Steele"
+date: \today
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(devtools)
+library(EML)
+install_github('EDIorg/EMLassemblyline')
+library(EMLassemblyline)
+
+library(tidyverse)
+library(readxl)
+library(kableExtra)
+
+dir = 'C:/Users/steeleb/Dropbox/EDI_submissions/sunapee_buoy_tempdo_2007-2020_v26Feb2021/'
+
+```
+
+
+## Create core templates
+
+First step is to tell EML Assemblyline where to put the metadata templates, then create the core metadata templates:
+```{r}
+#basic metadata
+template_core_metadata(
+  path = dir,
+  license = "CCBY"
+)
+```
+
+## Table Attributes
+
+Now to create the table attributes files for the data files (.csv's):
+```{r}
+template_table_attributes(
+  path = dir,
+  data.path = paste0(dir, 'data/'), #folder where the data tables are located
+  data.table = c('2007-2020_buoy_templine_v26Feb2021.csv', 
+                 '2007-2020_do_L1_v26Feb2021.csv', 
+                 '2015_hobotempstring_L1.csv', 
+                 '2018_hobodo_L1.csv',
+                 'buoylocation_datapub.csv')
+)
+
+```
+
+### Edit table attributes
+
+#### attributes_2007-2020_buoy_templine_v26Feb2021.txt
+
+First, read into R, and make sure it looks okay
+```{r}
+attr_templine <- read.table(
+  file = paste0(dir, 'attributes_2007-2020_buoy_templine_v26Feb2021.txt'),
+  header = TRUE,
+  sep = '\t',
+  quote = "\"",
+  as.is = TRUE,
+  comment.char = "",
+  fill = T,
+  colClasses = rep("character", 7)
+)
+attr_templine
+```
+
+Now update information in the attribute table:
+```{r}
+attr_templine <- attr_templine %>% 
+  mutate(class = case_when(grepl('TempC', attributeName, ignore.case = T) ~ 'numeric',
+                           TRUE ~ class),
+         unit = case_when(grepl('TempC', attributeName, ignore.case = T) ~ 'celsius',
+                          TRUE ~ ''),
+         attributeDefinition = case_when(attributeName == 'datetime' ~ 'date and time (UTC -4) of buoy record - no daylight savings observed',
+                                         attributeName == 'location' ~ 'location of buoy',
+                                         attributeName == 'TempC_0p5m' ~ 'water temperature approximately 0.5 meters below surface',
+                                         attributeName == 'TempC_0p75m' ~ 'water temperature approximately 0.75 meters below surface',
+                                         attributeName == 'TempC_0p85m' ~ 'water temperature approximately 0.85 meters below surface',
+                                         attributeName == 'TempC_1m' ~ 'water temperature approximately 1 meter below surface',
+                                         attributeName == 'TempC_1p5m' ~ 'water temperature approximately 1.5 meters below surface',
+                                         attributeName == 'TempC_1p75m' ~ 'water temperature approximately 1.75 meters below surface',
+                                         attributeName == 'TempC_1p85m' ~ 'water temperature approximately 1.85 meters below surface',
+                                         attributeName == 'TempC_2m' ~ 'water temperature approximately 2 meters below surface',
+                                         attributeName == 'TempC_2p5m' ~ 'water temperature approximately 2.5 meters below surface',
+                                         attributeName == 'TempC_2p75m' ~ 'water temperature approximately 2.75 meters below surface',
+                                         attributeName == 'TempC_2p85m' ~ 'water temperature approximately 2.85 meters below surface',
+                                         attributeName == 'TempC_3m' ~ 'water temperature approximately 3 meters below surface',
+                                         attributeName == 'TempC_3p5m' ~ 'water temperature approximately 3.5 meters below surface',
+                                         attributeName == 'TempC_3p75m' ~ 'water temperature approximately 3.75 meters below surface',
+                                         attributeName == 'TempC_3p85m' ~ 'water temperature approximately 3.85 meters below surface',
+                                         attributeName == 'TempC_4p5m' ~ 'water temperature approximately 4.5 meters below surface',
+                                         attributeName == 'TempC_4p75m' ~ 'water temperature approximately 4.75 meters below surface',
+                                         attributeName == 'TempC_4p85m' ~ 'water temperature approximately 4.85 meters below surface',
+                                         attributeName == 'TempC_5p5m' ~ 'water temperature approximately 5.5 meters below surface',
+                                         attributeName == 'TempC_5p75m' ~ 'water temperature approximately 5.75 meters below surface',
+                                         attributeName == 'TempC_5p85m' ~ 'water temperature approximately 5.85 meters below surface',
+                                         attributeName == 'TempC_6p5m' ~ 'water temperature approximately 6.5 meters below surface',
+                                         attributeName == 'TempC_6p75m' ~ 'water temperature approximately 6.75 meters below surface',
+                                         attributeName == 'TempC_6p85m' ~ 'water temperature approximately 6.85 meters below surface',
+                                         attributeName == 'TempC_7p5m' ~ 'water temperature approximately 7.5 meters below surface',
+                                         attributeName == 'TempC_7p75m' ~ 'water temperature approximately 7.75 meters below surface',
+                                         attributeName == 'TempC_7p85m' ~ 'water temperature approximately 7.85 meters below surface',
+                                         attributeName == 'TempC_8p5m' ~ 'water temperature approximately 8.5 meters below surface',
+                                         attributeName == 'TempC_8p75m' ~ 'water temperature approximately 8.75 meters below surface',
+                                         attributeName == 'TempC_8p85m' ~ 'water temperature approximately 8.85 meters below surface',
+                                         attributeName == 'TempC_9p5m' ~ 'water temperature approximately 9.5 meters below surface',
+                                         attributeName == 'TempC_9p75m' ~ 'water temperature approximately 9.75 meters below surface',
+                                         attributeName == 'TempC_9p85m' ~ 'water temperature approximately 9.85 meters below surface',
+                                         attributeName == 'TempC_10p5m' ~ 'water temperature approximately 10.5 meters below surface',
+                                         attributeName == 'TempC_11p5m' ~ 'water temperature approximately 11.5 meters below surface',
+                                         attributeName == 'TempC_13p5m' ~ 'water temperature approximately 13.5 meters below surface',
+                                         attributeName == 'temp_flag' ~ 'flag for water temperature value',
+                                         TRUE ~ attributeDefinition),
+         dateTimeFormatString = case_when(attributeName == 'datetime' ~ 'YYYY-MM-DD hh:mm:ss',
+                                          TRUE ~ ''),
+         missingValueCode = case_when(grepl('TempC', attributeName, ignore.case = T) ~ 'NA',
+                                      TRUE ~ missingValueCode),
+         missingValueCodeExplanation = case_when(grepl('NA', missingValueCode, ignore.case = T) ~ 'not available',
+                                                 TRUE ~ missingValueCodeExplanation))
+attr_templine
+```
+
+Re-write the table with updates:
+```{r}
+write.table(
+  x = attr_templine,
+  file = paste0(dir,'attributes_2007-2020_buoy_templine_v26Feb2021.txt'), 
+  sep = '\t',
+  row.names = FALSE,
+  quote = FALSE
+)
+```
+
+#### attributes_2007-2020_do_L1_v26Feb2021.txt
+
+First, read into R, and make sure it looks okay
+```{r}
+attr_do <- read.table(
+  file = paste0(dir, 'attributes_2007-2020_do_L1_v26Feb2021.txt'),
+  header = TRUE,
+  sep = '\t',
+  quote = "\"",
+  as.is = TRUE,
+  comment.char = "",
+  fill = T,
+  colClasses = rep("character", 7)
+)
+attr_do
+```
+
+Now update information in the attribute table:
+```{r}
+attr_do <- attr_do %>% 
+  mutate(unit = case_when(grepl('sat', attributeName, ignore.case = T) ~ 'percentSaturation',
+                          grepl('ppm', attributeName, ignore.case = T) ~ 'partsPerMillion',
+                          grepl('TempC', attributeName, ignore.case = T) ~ 'celsius',
+                          TRUE ~ ''),
+         attributeDefinition = case_when(attributeName == 'datetime' ~ 'date and time (UTC -4) of buoy record - no daylight savings observed',
+                                         attributeName == 'location' ~ 'location of buoy',
+                                         attributeName == 'DOSat' ~ 'dissolved oxygen saturation at upper DO sensor',
+                                         attributeName == 'DOppm' ~ 'dissolved oxygen concentration at upper DO sensor',
+                                         attributeName == 'DOTempC' ~ 'water temperature at upper DO sensor',
+                                         attributeName == 'DOLowSat' ~ 'dissolved oxygen saturation at lower DO sensor',
+                                         attributeName == 'DOLowPPM' ~ 'dissolved oxygen concentration at lower DO sensor',
+                                         attributeName == 'DOLowTempC' ~ 'water temperature at lower DO sensor',
+                                         attributeName == 'upper_do_flag' ~ 'flag for upper DO sensor values',
+                                         attributeName == 'lower_do_flag' ~ 'flag for lower DO sensor values',
+                                         TRUE ~ attributeDefinition),
+         dateTimeFormatString = case_when(attributeName == 'datetime' ~ 'YYYY-MM-DD hh:mm:ss',
+                                          TRUE ~ ''),
+         missingValueCode = case_when(grepl('TempC', attributeName, ignore.case = T) ~ 'NA',
+                                      grepl('sat', attributeName, ignore.case = T) ~ 'NA',
+                                      grepl('ppm', attributeName, ignore.case = T) ~ 'NA',
+                                      TRUE ~ missingValueCode),
+         missingValueCodeExplanation = case_when(grepl('NA', missingValueCode, ignore.case = T) ~ 'not available',
+                                                 TRUE ~ missingValueCodeExplanation))
+attr_do
+```
+
+Re-write the table with updates:
+```{r}
+write.table(
+  x = attr_do,
+  file = paste0(dir,'attributes_2007-2020_do_L1_v26Feb2021.txt'), 
+  sep = '\t',
+  row.names = FALSE,
+  quote = FALSE
+)
+```
+
+#### attributes_2015_hobotempstring_L1.txt
+
+First, read into R, and make sure it looks okay
+```{r}
+attr_hobo2015 <- read.table(
+  file = paste0(dir, 'attributes_2015_hobotempstring_L1.txt'),
+  header = TRUE,
+  sep = '\t',
+  quote = "\"",
+  as.is = TRUE,
+  comment.char = "",
+  fill = T,
+  colClasses = rep("character", 7)
+)
+attr_hobo2015
+```
+
+Now update information in the attribute table:
+```{r}
+attr_hobo2015 <- attr_hobo2015 %>% 
+  mutate(class = case_when(grepl('TempC', attributeName, ignore.case = T) ~ 'numeric',
+                           TRUE ~ class),
+         unit = case_when(grepl('TempC', attributeName, ignore.case = T) ~ 'celsius',
+                          TRUE ~ ''),
+         attributeDefinition = case_when(attributeName == 'datetime' ~ 'date and time (UTC -4) of buoy record - no daylight savings observed',
+                                         attributeName == 'location' ~ 'location of buoy',
+                                         attributeName == 'TempC_0p5m' ~ 'water temperature approximately 0.5 meters below surface',
+                                         attributeName == 'TempC_1p5m' ~ 'water temperature approximately 1.5 meters below surface',
+                                         attributeName == 'TempC_2p5m' ~ 'water temperature approximately 2.5 meters below surface',
+                                         attributeName == 'TempC_3p5m' ~ 'water temperature approximately 3.5 meters below surface',
+                                         attributeName == 'TempC_4p5m' ~ 'water temperature approximately 4.5 meters below surface',
+                                         attributeName == 'TempC_5p5m' ~ 'water temperature approximately 5.5 meters below surface',
+                                         attributeName == 'TempC_6p5m' ~ 'water temperature approximately 6.5 meters below surface',
+                                         attributeName == 'TempC_7p5m' ~ 'water temperature approximately 7.5 meters below surface',
+                                         attributeName == 'TempC_8p5m' ~ 'water temperature approximately 8.5 meters below surface',
+                                         TRUE ~ attributeDefinition),
+         dateTimeFormatString = case_when(attributeName == 'datetime' ~ 'YYYY-MM-DD hh:mm:ss',
+                                          TRUE ~ ''),
+         missingValueCode = case_when(grepl('TempC', attributeName, ignore.case = T) ~ 'NA',
+                                      TRUE ~ missingValueCode),
+         missingValueCodeExplanation = case_when(grepl('NA', missingValueCode, ignore.case = T) ~ 'not available',
+                                                 TRUE ~ missingValueCodeExplanation))
+attr_hobo2015
+```
+
+Re-write the table with updates:
+```{r}
+write.table(
+  x = attr_hobo2015,
+  file = paste0(dir,'attributes_2015_hobotempstring_L1.txt'), 
+  sep = '\t',
+  row.names = FALSE,
+  quote = FALSE
+)
+```
+
+
+#### attributes_2018_hobodo_L1.txt
+
+First, read into R, and make sure it looks okay
+```{r}
+attr_hobodo <- read.table(
+  file = paste0(dir, 'attributes_2018_hobodo_L1.txt'),
+  header = TRUE,
+  sep = '\t',
+  quote = "\"",
+  as.is = TRUE,
+  comment.char = "",
+  fill = T,
+  colClasses = rep("character", 7)
+)
+attr_hobodo
+```
+
+Now update information in the attribute table:
+```{r}
+attr_hobodo <-attr_hobodo %>% 
+  mutate(unit = case_when(grepl('mgl', attributeName, ignore.case = T) ~ 'milligramsPerLiter',
+                          grepl('degC', attributeName, ignore.case = T) ~ 'celsius',
+                          TRUE ~ ''),
+         attributeDefinition = case_when(attributeName == 'datetime' ~ 'date and time (UTC -4) of buoy record - no daylight savings observed',
+                                         attributeName == 'location' ~ 'location of buoy',
+                                         attributeName == 'do_mgl' ~ 'dissolved oxygen concentration at HOBO DO sensor',
+                                         attributeName == 'temp_degC' ~ 'water temperature at HOBO DO sensor',
+                                         attributeName == 'hobodo_flag' ~ 'flag for HOBO DO sensor values',
+                                         TRUE ~ attributeDefinition),
+         dateTimeFormatString = case_when(attributeName == 'datetime' ~ 'YYYY-MM-DD hh:mm:ss',
+                                          TRUE ~ ''),
+         missingValueCode = case_when(grepl('degC', attributeName, ignore.case = T) ~ 'NA',
+                                      grepl('mgl', attributeName, ignore.case = T) ~ 'NA',
+                                      TRUE ~ missingValueCode),
+         missingValueCodeExplanation = case_when(grepl('NA', missingValueCode, ignore.case = T) ~ 'not available',
+                                                 TRUE ~ missingValueCodeExplanation))
+attr_hobodo
+```
+
+Re-write the table with updates:
+```{r}
+write.table(
+  x = attr_hobodo,
+  file = paste0(dir,'attributes_2018_hobodo_L1.txt'), 
+  sep = '\t',
+  row.names = FALSE,
+  quote = FALSE
+)
+```
+
+#### attributes_buoylocation_datapub.txt
+
+First, read into R, and make sure it looks okay
+```{r}
+attr_buoyloc <- read.table(
+  file = paste0(dir, 'attributes_buoylocation_datapub.txt'),
+  header = TRUE,
+  sep = '\t',
+  quote = "\"",
+  as.is = TRUE,
+  comment.char = "",
+  fill = T,
+  colClasses = rep("character", 7)
+)
+attr_buoyloc
+```
+
+Now update information in the attribute table:
+```{r}
+attr_buoyloc <- attr_buoyloc %>% 
+  mutate(unit = case_when(grepl('dd', attributeName, ignore.case = T) ~ 'decimalDegree',
+                          TRUE ~ ''),
+         class = case_when(attributeName == 'location' ~ 'categorical',
+                           TRUE ~ class),
+         attributeDefinition = case_when(attributeName == 'location' ~ 'location of buoy',
+                                         attributeName == 'lat_dd' ~ 'latitude of buoy location - WGS84',
+                                         attributeName == 'long_dd' ~ 'longitude of buoy location - WGS84'))
+attr_buoyloc
+```
+
+Re-write the table with updates:
+```{r}
+write.table(
+  x = attr_buoyloc,
+  file = paste0(dir,'attributes_buoylocation_datapub.txt'), 
+  sep = '\t',
+  row.names = FALSE,
+  quote = FALSE
+)
+```
+
+### Now, need to define units for 'custom units'
+
+Load the custom units file
+```{r}
+custom_units <- read.table(
+  file = paste0(dir, 'custom_units.txt'),
+  header = TRUE,
+  sep = '\t',
+  quote = "\"",
+  as.is = TRUE,
+  comment.char = "",
+  fill = T,
+  colClasses = rep("character", 5)
+)
+```
+
+
+Four units need to be defined (discovered when you go to define the categorical variables):
+
+* decimalDegree
+* percentSaturation
+* partPerMillion
+
+
+```{r}
+custom_units <- custom_units %>% 
+  add_row(id = 'decimalDegree',
+            unitType = 'angle',
+            parentSI = 'degree',
+            multiplierToSI = '',
+            description = 'expression of latitude and longitude geographic coordinates as decimal fractions of a degree') %>% 
+  add_row(id = 'percentSaturation',
+            unitType = '',
+            parentSI = '',
+            multiplierToSI = '',
+            description = 'percentage of dissolved oxygen concentration relative to that when completely saturated at the temperature of the measurement depth') %>% 
+  add_row(id = 'partsPerMillion',
+            unitType = 'concentration',
+            parentSI = 'milligramsPerLiter',
+            multiplierToSI = '1',
+            description = 'parts per million') 
+
+```
+
+Re-write the table with updates:
+```{r}
+write.table(
+  x = custom_units,
+  file = paste0(dir, 'custom_units.txt'), 
+  sep = '\t',
+  row.names = FALSE,
+  quote = FALSE
+)
+```
+
+
+## Define categorical values
+
+First, create categorical variables metadata:
+```{r}
+template_categorical_variables(
+  path = dir,
+  data.path = paste0(dir, 'data/'),
+)
+
+```
+
+#### catvars_2007-2020_buoy_templine_v26Feb2021.txt
+
+Read in table:
+```{r}
+catvars_templine <- read.table(
+  file = paste0(dir, 'catvars_2007-2020_buoy_templine_v26Feb2021.txt'),
+  header = TRUE,
+  sep = '\t',
+  quote = "\"",
+  as.is = TRUE,
+  comment.char = "",
+  fill = T
+  )
+catvars_templine
+unique(catvars_templine$code)
+```
+
+
+```{r}
+catvars_templine <- catvars_templine %>% 
+  mutate(definition = case_when(attributeName == 'location' & code == 'loon' ~ 'buoy is located near loon island',
+                                attributeName == 'location' & code == 'harbor' ~ 'buoy is located in harbor',
+                                attributeName == 'location' & code == 'offline' ~ 'buoy is offline, no data acquired',
+                                attributeName == 'location' & code == 'in transit' ~ 'buoy is moving between harbor and loon island',
+                                attributeName == 'temp_flag' & code == '11.5b; 13.5b' ~ '11.5 and 13.5 thermistors may be in sediment',
+                                attributeName == 'temp_flag' & code == '9.5d; 10.5d; 11.5d; 13.5d; 11.5b; 13.5b' ~ '9.5, 105., 11.5, 13.5 thermistors hung up on mooring line, depth not correct; 11.5 and 13.5 thermistors may be in sediment',
+                                attributeName == 'temp_flag' & code == 'i; 9.5d; 10.5d; 11.5d; 13.5d; 11.5b; 13.5b' ~ 'all thermistor data intermittent; 9.5, 105., 11.5, 13.5 thermistors hung up on mooring line, depth not correct; 11.5 and 13.5 thermistors may be in sediment',
+                                attributeName == 'temp_flag' & code == 'i; 11.5b; 13.5b' ~ 'all thermistor data intermittent; 11.5 and 13.5 thermistors may be in sediment',
+                                attributeName == 'temp_flag' & code == 's; x; 11.5b; 13.5b' ~ 'thermistors reporting suspect data (flatline and intermittent erroneous values); thermistors may be damaged; 11.5 and 13.5 thermistors may be in sediment',
+                                attributeName == 'temp_flag' & code == 'i' ~ 'all thermistor data intermittent',
+                                attributeName == 'temp_flag' & code == '10.5dn' ~ '10.5 thermistor hung up on mooring line, depth not correct; 10.5m thermistor displaying noise in data stream',
+                                attributeName == 'temp_flag' & code == '0.85a' ~ '0.85 thermistor reporting in 20 minute intervals',
+                                TRUE ~ NA_character_))
+catvars_templine
+```
+
+Write the new data table
+```{r}
+write.table(
+  x = catvars_templine,
+  file = paste0(dir, 'catvars_2007-2020_buoy_templine_v26Feb2021.txt'), 
+  sep = '\t',
+  row.names = FALSE,
+  quote = FALSE
+)
+
+```
+
+#### catvars_2007-2020_do_L1_v26Feb2021.txt
+
+Read in table:
+```{r}
+catvars_do <- read.table(
+  file = paste0(dir, 'catvars_2007-2020_do_L1_v26Feb2021.txt'),
+  header = TRUE,
+  sep = '\t',
+  quote = "\"",
+  as.is = TRUE,
+  comment.char = "",
+  fill = T
+  )
+catvars_do
+unique(catvars_do$code)
+```
+
+
+```{r}
+catvars_do <- catvars_do %>% 
+  mutate(definition = case_when(attributeName == 'location' & code == 'loon' ~ 'buoy is located near loon island',
+                                attributeName == 'location' & code == 'harbor' ~ 'buoy is located in harbor',
+                                attributeName == 'location' & code == 'offline' ~ 'buoy is offline, no data acquired',
+                                attributeName == 'location' & code == 'in transit' ~ 'buoy is moving between harbor and loon island',
+                                attributeName == 'upper_do_flag' & code == 'x' ~ 'do sensor may be uncalibrated (no documentation of calibration)',
+                                attributeName == 'upper_do_flag' & code == 'wx' ~ 'do sensor cleaned, but may be uncalibrated (no documentation of calibration)',
+                                attributeName == 'upper_do_flag' & code == 'ix' ~ 'do sensor reporting intermittent data; do sensor may be uncalibrated (no documentation of calibration)',
+                                attributeName == 'upper_do_flag' & code == 'xwp' ~ 'do sensor cleaned (presumed, not documented), but may be uncalibrated (no documentation of calibration)',
+                                attributeName == 'upper_do_flag' & code == 'cp' ~ 'do sensor calibrated (presumed, not documented)',
+                                attributeName == 'upper_do_flag' & code == 'wp' ~ 'do sensor cleaned (presumed, not documented)',
+                                attributeName == 'upper_do_flag' & code == 'm' ~ 'do sensor miscalibrated, do not use data without correction',
+                                attributeName == 'upper_do_flag' & code == 'mcep' ~ 'do sensor miscalibrated, do not use data without correction; calibration presumed (no documentation of calibration)',
+                                attributeName == 'upper_do_flag' & code == 'w' ~ 'do sensor cleaned',
+                                attributeName == 'upper_do_flag' & code == 'c' ~ 'do sensor calibrated',
+                                attributeName == 'upper_do_flag' & code == 'i' ~ 'do sensor reporting intermittent data',
+                                attributeName == 'upper_do_flag' & code == 'iw' ~ 'do sensor reporting intermittent data; do sensor cleaned',
+                                attributeName == 'lower_do_flag' & code == 'x' ~ 'do sensor may be uncalibrated (no documentation of calibration)',
+                                attributeName == 'lower_do_flag' & code == 'wx' ~ 'do sensor cleaned, but may be uncalibrated (no documentation of calibration)',
+                                attributeName == 'lower_do_flag' & code == 'ix' ~ 'do sensor reporting intermittent data; do sensor may be uncalibrated (no documentation of calibration)',
+                                attributeName == 'lower_do_flag' & code == 'xwp' ~ 'do sensor cleaned (presumed, not documented), but may be uncalibrated (no documentation of calibration)',
+                                attributeName == 'lower_do_flag' & code == 'cp' ~ 'do sensor calibrated (presumed, not documented)',
+                                attributeName == 'lower_do_flag' & code == 'wp' ~ 'do sensor cleaned (presumed, not documented)',
+                                attributeName == 'lower_do_flag' & code == 'm' ~ 'do sensor miscalibrated, do not use data without correction',
+                                attributeName == 'lower_do_flag' & code == 'mcep' ~ 'do sensor miscalibrated, do not use data without correction; calibration presumed (no documentation of calibration)',
+                                attributeName == 'lower_do_flag' & code == 'w' ~ 'do sensor cleaned',
+                                attributeName == 'lower_do_flag' & code == 'c' ~ 'do sensor calibrated',
+                                attributeName == 'lower_do_flag' & code == 'i' ~ 'do sensor reporting intermittent data',
+                                attributeName == 'lower_do_flag' & code == 'iw' ~ 'do sensor reporting intermittent data; do sensor cleaned',
+                                attributeName == 'lower_do_flag' & code == 'dcp' ~ 'sensor hung up on mooring line, depth likely incorrect; do sensor calibrated (presumed, not documented)',
+                                attributeName == 'lower_do_flag' & code == 'd' ~ 'sensor hung up on mooring line, depth likely incorrect',
+                               attributeName == 'lower_do_flag' & code == 're' ~ 'do sensor cap replaced, calibration errant; do sensor may be uncalibrated (no documentation of calibration)',
+                                TRUE ~ NA_character_))
+catvars_do
+
+```
+
+Write the new data table
+```{r}
+write.table(
+  x = catvars_do,
+  file = paste0(dir, 'catvars_2007-2020_do_L1_v26Feb2021.txt'), 
+  sep = '\t',
+  row.names = FALSE,
+  quote = FALSE
+)
+
+```
+
+#### catvars_2018_hobodo_L1.txt
+
+Read in table:
+```{r}
+catvars_hobodo <- read.table(
+  file = paste0(dir, 'catvars_2018_hobodo_L1.txt'),
+  header = TRUE,
+  sep = '\t',
+  quote = "\"",
+  as.is = TRUE,
+  comment.char = "",
+  fill = T
+  )
+catvars_hobodo
+unique(catvars_hobodo$code)
+```
+
+
+```{r}
+catvars_hobodo <- catvars_hobodo %>% 
+  mutate(definition = case_when(attributeName == 'location' & code == 'loon' ~ 'buoy is located near loon island',
+                                attributeName == 'hobodo_flag' & code == 'c' ~ 'do sensor calibrated',
+                                TRUE ~ NA_character_))
+catvars_hobodo
+```
+
+Write the new data table
+```{r}
+write.table(
+  x = catvars_hobodo,
+  file = paste0(dir, 'catvars_2018_hobodo_L1.txt'), 
+  sep = '\t',
+  row.names = FALSE,
+  quote = FALSE
+)
+
+```
+
+#### catvars_buoylocation_datapub.txt
+
+Read in table:
+```{r}
+catvars_buoyloc <- read.table(
+  file = paste0(dir, 'catvars_buoylocation_datapub.txt'),
+  header = TRUE,
+  sep = '\t',
+  quote = "\"",
+  as.is = TRUE,
+  comment.char = "",
+  fill = T
+  )
+catvars_buoyloc
+unique(catvars_buoyloc$code)
+```
+
+
+```{r}
+catvars_buoyloc <- catvars_buoyloc %>% 
+  mutate(definition = case_when(attributeName == 'location' & code == 'loon' ~ 'buoy is located near loon island',
+                                attributeName == 'location' & code == 'harbor' ~ 'buoy is located in harbor',
+                                TRUE ~ NA_character_))
+catvars_buoyloc
+```
+
+Write the new data table
+```{r}
+write.table(
+  x = catvars_buoyloc,
+  file = paste0(dir, 'catvars_buoylocation_datapub.txt'), 
+  sep = '\t',
+  row.names = FALSE,
+  quote = FALSE
+)
+
+```
+
+
+## GEOGRAPHIC COVERAGE
+
+Set the geographic coverage from the site location data
+```{r}
+template_geographic_coverage(
+  path = dir,
+  data.path = paste0(dir, 'data/'),
+  data.table = 'buoylocation_datapub.csv',
+  site.col = 'location',
+  lat.col = 'lat_dd',
+  lon.col = 'long_dd'
+)
+```
+
+## TAXONOMIC COVERAGE
+
+Not applicable for this dataset
+
+## OTHER TEXT ENTRIES
+
+Here, we add text to the other templates.
+
+#### Abstract
+
+Read in the template:
+```{r}
+abstract <- suppressWarnings(
+  readLines(paste0(dir, 'abstract.txt'))
+)
+```
+
+Edit the template and check:
+```{r}
+abstract <-   'The Lake Sunapee instrumented buoy is equipped with a thermistor chain comprised of ten integrated Nexsens TS210 units (July 2017 - current) and two Ponsel Digisens Optical probes suspended at approximately 1.5 meters and 10.5 meters depth. Note that the below-surface depth of the thermistors have fluctuated throughout the years.
+\n
+Lake Sunapee buoy is located near Loon Island Lighthouse during the summer months and in the Lake Sunapee Harbor during the winter months (2010-current) except for the first few years of data collection (2007-2010), when the buoy was located near Loon Island year-round. The buoy was moved to the harbor during the winters after suffering ice damage, sensor failures, and general data transmission errors during the winter of 2009-2010.
+\n
+In two instances, HOBO units were deployed at the buoy\'s location when sensors failed mid-season (thermistor line mid-2015, HOBO temp/lumen pendants deployed in place) or if sensors were unavailable for the season (2018, a HOBO U26 dissolved oxygen sensor was deployed when DO probes were not functioning).
+\n
+All datasets have been QAQC\'d to remove obviously errant readings, highly suspicious readings, and artifacts of buoy maintenance.'
+
+knitr::kable(
+  row.names = FALSE, 
+  col.names = '', 
+  abstract, caption = 'abstract.txt') %>%
+  kableExtra::kable_styling('bordered', font_size = 12) %>%
+  kableExtra::scroll_box(width = '100%', height = '200px')
+```
+
+Export the file:
+```{r}
+write_lines(abstract, paste0(dir, 'abstract.txt'))
+
+```
+
+#### Methods
+
+Read in the template:
+```{r}
+methods <- suppressWarnings(
+  readLines(paste0(dir, 'methods.txt'))
+)
+```
+
+
+Edit the template and preview:
+```{r}
+methods <- 'The Lake Sunapee instrumented buoy is equipped with a thermistor chain comprised of ten integrated Nexsens TS210 units (July 2017 - current). Previously, the thermistor chain was comprised of Nexsens T500 Node thermistors (December 2010-July 2017) and before December 2010, it was instrumented with TempLine thermistors from Apprise Technology. During the summer of 2015 (August-September), a HOBO temperature string was deployed on the buoy in place of the thermistors while the thermistors were being serviced. Prior to July 2017, the reported depths of the thermistor line are best approximations and are likely correct within 0.25 meters. Depths of thermistors, which have fluctuated over the years, are indicated by the column headings in the included temperature file (2007-2020_tempstring_L1.csv).
+\n
+Dissolved oxygen is currently monitored at two depths (approximately 1.5 meters and 10.5 meters) by Ponsel Digisens Optical probes at the 1.5 meter depth (since June 2015) and the 10.5 meter depth (since September 2013). Prior to September 2013, DO was only measured at 1.5 meters depth. Prior to June 2015, dissolved oxygen at 1.5 meter depth was measured by a D-Opto SDI 12 dissolved oxygen probe. A HOBO U26 dissolved oxygen unit was deployed at 0.25 meters depth in May 2018 because the Ponsel probe had failed.
+\n
+Data from the thermistor chain and dissolved oxygen probes were collated and cleaned using R Studio (v. 1.2.504), R version 4.0.3 by B. Steele of K.C. Weathers\' Laboratory (R code for QAQC included in this data package). QAQC consisted of renaming columns from the raw data to common headings for consistency between data years, as well as recoding obviously errant readings, highly suspicious readings and artifacts of buoy maintenance to \'NA\' from the raw data.  Data from HOBO sensors in 2015 (9 HOBO temp/lumen pendants at 0.5 meters to 8.5 meters depth) and HOBO U26 during 2018 (1 HOBO U26 dissolved oxygen probe) were QAQC\'d in the same manner as the data from the buoy. 
+\n
+The underwater temperature data are broken into two records: (1) the dataset from the thermistors attached to the buoy only (2007-2020_tempstring_L1.csv), and (2) the dataset from the summer 2015 deployment of the HOBO sensors in place of the thermistors (2015_summerhobo_L1.csv). Dissolved oxygen data are also broken into two records: (1) the dataset from the dissolved oxygen probes connected to the buoy data logger (2007-2020_do_L1.csv), and (2) the dataset from 2018 where a HOBO U26 dissolved oxygen probe was deployed at 0.25 meters in place of the failed Ponsel DO units.'
+
+
+knitr::kable(
+  row.names = FALSE, 
+  col.names = '', 
+  methods, caption = 'methods.txt') %>%
+  kableExtra::kable_styling('bordered', font_size = 12) %>%
+  kableExtra::scroll_box(width = '100%', height = '200px')
+```
+
+
+Export the template:
+```{r}
+write_lines(methods, paste0(dir, 'methods.txt'))
+```
+
+
+#### Keywords
+
+Load template:
+```{r}
+keywords <- read.table(
+  file = paste0(dir, 'keywords.txt'),
+  header = TRUE,
+  sep = '\t',
+  quote = "\"",
+  as.is = TRUE,
+  comment.char = "",
+  fill = T,
+  colClasses = rep("character", 2)
+)
+```
+
+Edit template:
+```{r}
+keywords <- keywords %>% 
+  add_row(keyword = c('Lake Sunapee Protective Association', 
+                      'LSPA',
+                      'Lake Sunapee',
+                      'Global Lake Ecological Observatory Network',
+                      'GLEON',
+                      'high-frequency data', 
+                      'buoy data', 
+                      'water temperature',
+                      'dissolved oxygen',
+                      'oligotrophic', 
+                      'freshwater', 
+                      'lakes', 
+                      'limnology'),
+          keywordThesaurus = c('',
+                               '', 
+                               '',
+                               '',
+                               '',
+                               '',
+                               '',
+                               'LTER Controlled Vocabulary',
+                               'LTER Controlled Vocabulary',
+                               '', 
+                               'LTER Controlled Vocabulary',
+                               'LTER Controlled Vocabulary',
+                               'LTER Controlled Vocabulary')
+          )
+knitr::kable(
+  row.names = FALSE, 
+  x = keywords, caption = 'keywords.txt') %>%
+  kableExtra::kable_styling('bordered', font_size = 12) %>%
+  kableExtra::scroll_box(width = '60%', height = '300px')
+```
+
+Export template:
+```{r}
+write.table(
+  x = keywords,
+  file = paste0(dir, 'keywords.txt'), 
+  sep = '\t',
+  row.names = FALSE,
+  quote = FALSE
+)
+```
+
+
+#### Personnel
+
+Read in template:
+```{r}
+personnel <- read.table(
+  file = paste0(dir, 'personnel.txt'),
+  header = TRUE,
+  sep = '\t',
+  quote = "\"",
+  as.is = TRUE,
+  comment.char = "",
+  fill = T,
+  colClasses = rep("character", 10)
+)
+
+colnames(personnel)
+```
+
+Edit template. Must have a 'contact'. use 'PI' as role to report grants. 'other personel' can be any 'role'. authorship will show up in same order listed for roles: pi and creator
+
+Use the format: 
+  add_row(givenName = '',
+         middleInitial = '',
+         surName = '',
+         organizationName = '',
+         electronicMailAddress = '',
+         userId = '',
+         role = '',
+         projectTitle = '',
+         fundingAgency = '',
+         fundingNumber = '')
+   
+```{r}
+personnel <- personnel %>% 
+  add_row(givenName = c('',
+                       'Kathleen', 
+                       'Bethel',
+                       'June',
+                       '',
+                       'Kathleen', 
+                       'Kathleen', 
+                       'Lindsey',
+                       'June',
+                       'Geoff',
+                       'John'),
+         middleInitial = c('',
+                           'C',
+                           'G',
+                           '', 
+                           '',
+                           'C',
+                           'C',
+                           '',
+                           '',
+                           '',
+                           ''),
+         surName = c('LSPA',
+                     'Weathers',
+                     'Steele', 
+                     'Fichter',
+                     'LSPA',
+                     'Weathers',
+                     'Weathers',
+                     'Rustad',
+                     'Fichter',
+                     'Lizotte',
+                     'Merriman'),
+         organizationName = c('Lake Sunapee Protective Association',
+                              'Cary Institute of Ecosystem Studies',
+                              'Cary Institute of Ecosystem Studies',
+                              'Lake Sunapee Protective Association',
+                              'Lake Sunapee Protective Association',
+                              'Cary Institute of Ecosystem Studies',
+                              'Cary Institute of Ecosystem Studies',
+                              '',
+                              'Lake Sunapee Protective Association',
+                              'Lake Sunapee Protective Association',
+                              'Lake Sunapee Protective Association'),
+         electronicMailAddress = c('lspa@lakesunapee.org',
+                                   'weathersk@caryinstitute.org',
+                                   'steeleb@caryinstitute.org',
+                                   'junef@lakesunapee.org',
+                                   'lspa@lakesunapee.org',
+                                   'weathersk@caryinstitute.org',
+                                   'weathersk@caryinstitute.org',
+                                   '',
+                                   'junef@lakesunapee.org',
+                                   '',
+                                   ''),
+         userId = c('',
+                    '0000-0002-3575-6508',
+                    '0000-0003-4365-4103',
+                    '',
+                    '',
+                    '0000-0002-3575-6508',
+                    '0000-0002-3575-6508',
+                    '',
+                    '',
+                    '',
+                    ''),
+         role = c('creator',
+                  'creator',
+                  'creator',
+                  'PI',
+                  'contact',
+                  'PI',
+                  'PI', 
+                  'PI',
+                  'data collection',
+                  'data collection',
+                  'buoy technical programming'),
+         projectTitle = c('',
+                          '',
+                          '',
+                          '',
+                          '',
+                          'Collaborative Research: CI-Team Demonstration: Developing a Model for Engagement of Citizen Scientists: Lake Associations',
+                          'Collaborative Research: Building Analytical, Synthesis, and Human Network Skills Needed for Macrosystem Science: a Next Generation Graduate Student Training Model Based on GLEON',
+                          'Development of Real-Time Environmental Sensor Technology and Applications for the Northeast: A Proposal from the NERC Northeastern Environmental Sensor Working Group (NESN)',
+                          '',
+                          '',
+                          ''),
+         fundingAgency = c('',
+                           '',
+                           '',
+                           'Frey Foundation',
+                           '',
+                           'National Science Foundation',
+                           'National Science Foundation',
+                           'NSRC',
+                           '',
+                           '',
+                           ''),
+         fundingNumber = c('',
+                           '',
+                           '',
+                           '',
+                           '',
+                           '0936174',
+                           '1137327',
+                           '',
+                           '',
+                           '',
+                           '')
+  )
+
+knitr::kable(
+  row.names = FALSE, 
+  x = personnel, caption = 'personnel.txt') %>%
+  kableExtra::kable_styling('bordered', font_size = 12) %>%
+  kableExtra::scroll_box(width = '100%', height = '400px')
+```
+
+
+And now export the table:
+```{r}
+write.table(
+  x = personnel,
+  file = paste0(dir, 'personnel.txt'), 
+  sep = '\t',
+  row.names = FALSE,
+  quote = FALSE
+)
+
+```
+
+#### additional information
+
+Read in template:
+```{r}
+additional_info <- suppressWarnings(
+  readLines(paste0(dir, 'additional_info.txt'))
+)
+```
+
+Edit template:
+```{r}
+additional_info <-  'Associated datasets: high-frequency meteorological data from the Lake Sunapee instrumented buoy (edi.234) and under-ice temperature data at the summer location of the buoy (edi.500).'
+
+knitr::kable(
+  row.names = FALSE, 
+  col.names = '', 
+  additional_info, caption = 'additional_info.txt') %>%
+  kableExtra::kable_styling('bordered', font_size = 12) %>%
+  kableExtra::scroll_box(width = '50%', height = '100px')
+```
+
+Export template:
+```{r}
+write_lines(additional_info, paste0(dir, 'additional_info.txt'))
+
+```
+
+
+
+## CREATE EML 
+
+And now for the shining moment! Make the EML!
+```{r}
+make_eml(
+  path = dir,
+  data.path = paste0(dir, 'data/'),
+  eml.path = dir,
+  dataset.title = 'Lake Sunapee Instrumented Buoy: High Frequency Water Temperature and Dissolved Oxygen Data - 2007-2020',
+  geographic.description = 'Lake Sunapee is located in the Sugar River watershed within Sullivan and Merrimack Counties, NH, USA. It is a drainage lake with predominantly muck substrate. It has a surface area of 1667 hectares, 53 kilometers of developed shoreline and a maximum depth of 33.7 meters. The location of the buoy is 43.3913, -72.0576.  The ice-on harbor position for winters starting in 2010 forward: 43.3857, -72.0812. Verbal description of summer buoy location: SSE of Loon Island, water depth 10.5-12m, water fluctuations seasonally 0.75 to 1 meter. The following bounding coordinates are for Lake Sunapee as defined by the polygon contained in the New Hampshire Hydrography Dataset (NHHD) as downloaded from GRANIT (http://www.granit.sr.unh.edu/data/search?dset=nhhd&#).',
+  geographic.coordinates = c(43.4307, -72.0304, 43.3217, -72.0831),
+  temporal.coverage = c('2007-08-27', '2020-12-31'),
+  maintenance.description = 'ongoing',
+  data.table = c('2007-2020_buoy_templine_v26Feb2021.csv', '2007-2020_do_L1_v26Feb2021.csv', '2015_hobotempstring_L1.csv', '2018_hobodo_L1.csv', 'buoylocation_datapub.csv'),
+  data.table.name = c('2007-2020_buoy_templine_v26Feb2021', '2007-2020_do_L1_v26Feb2021', '2015_hobotempstring_L1', '2018_hobodo_L1', 'buoylocation_datapub'),
+  data.table.description = c('data table for buoy thermistor data 2007-2020', 'data table for buoy DO sensors 2007-2020', 'data table for summer 2015 HOBO temperature string', 'data table for summer 2018 HOBO dissolved oxygen sensor', 'table of buoy location details'),
+  other.entity = c('Sunapee_buoy_2007.R',
+                   'Sunapee_buoy_2008.R',
+                   'Sunapee_buoy_2009.R',
+                   'Sunapee_buoy_2010.R',
+                   'Sunapee_buoy_2011.R',
+                   'Sunapee_buoy_2012.R',
+                   'Sunapee_buoy_2013.R',
+                   'Sunapee_buoy_2014.R',
+                   'Sunapee_buoy_2015.R',
+                   'Sunapee_buoy_2016.R',
+                   'Sunapee_buoy_2017.R',
+                   'Sunapee_buoy_2018.R',
+                   'Sunapee_buoy_2019.R',
+                   'Sunapee_buoy_2020.R',
+                   'Sunapee_hobo_2015.R',
+                   'sunapee_hobodo_2018.R',
+                   'buoy_do_collation.R',
+                   'buoy_temp_collation.R',
+                   'library_func_lists.R',
+                   'sunapee_buoytempdo_eml_v26Feb2021.Rmd'),
+  other.entity.name = c('Sunapee_buoy_2007',
+                        'Sunapee_buoy_2008',
+                        'Sunapee_buoy_2009',
+                        'Sunapee_buoy_2010',
+                        'Sunapee_buoy_2011',
+                        'Sunapee_buoy_2012',
+                        'Sunapee_buoy_2013',
+                        'Sunapee_buoy_2014',
+                        'Sunapee_buoy_2015',
+                        'Sunapee_buoy_2016',
+                        'Sunapee_buoy_2017',
+                        'Sunapee_buoy_2018',
+                        'Sunapee_buoy_2019',
+                        'Sunapee_buoy_2020',
+                        'Sunapee_hobo_2015',
+                        'sunapee_hobodo_2018',
+                        'buoy_do_collation',
+                        'buoy_temp_collation',
+                        'library_func_lists',
+                        'sunapee_buoytempdo_eml_v22April2020'),
+  other.entity.description = c('R code to QAQC 2007 buoy data',
+                               'R code to QAQC 2008 buoy data',
+                               'R code to QAQC 2009 buoy data',
+                               'R code to QAQC 2010 buoy data',
+                               'R code to QAQC 2011 buoy data',
+                               'R code to QAQC 2012 buoy data',
+                               'R code to QAQC 2013 buoy data',
+                               'R code to QAQC 2014 buoy data',
+                               'R code to QAQC 2015 buoy data',
+                               'R code to QAQC 2016 buoy data',
+                               'R code to QAQC 2017 buoy data',
+                               'R code to QAQC 2018 buoy data',
+                               'R code to QAQC 2019 buoy data',
+                               'R code to QAQC 2020 buoy data',
+                               'R code to QAQC 2015 HOBO temperature line data',
+                               'R code to QAQC 2018 HOBO dissolved oxygen sensor data',
+                               'R code to collate dissolved oxygen data',
+                               'R code to collate thermistor data',
+                               'R code for libraries, functions, and lists used in all R code',
+                               'R code to generate buoy weather EML'),
+  user.id = 'steeleb',
+  user.domain = 'EDI',
+  package.id = 'edi.499.2'
+)
+
+
+```

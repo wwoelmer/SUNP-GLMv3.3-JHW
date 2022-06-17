@@ -1,0 +1,473 @@
+date,station,weather,source
+1993-05-30,210,"CLEAR, COLD",DO/Temperature record
+1993-05-30,200,"CLEAR, COLD",DO/Temperature record
+1993-06-12,230,"CLEAR, BREEZY",DO/Temperature record
+1993-06-12,220,"BREEZY,CLEAR,SM.WVS",DO/Temperature record
+1993-06-13,210,"CLEAR, BREEZY",DO/Temperature record
+1993-06-13,200,"CLEAR, BREEZY",DO/Temperature record
+1993-06-25,220,"BREEZY,CLEAR,SM.WVS",DO/Temperature record
+1993-06-25,220,"BREEZY,CLEAR,SM,WVS",DO/Temperature record
+1993-06-25,230,"CLEAR, BREEZY",DO/Temperature record
+1993-06-27,210,"CLEAR, CALM",DO/Temperature record
+1993-06-27,200,"CLEAR, BREEZY",DO/Temperature record
+1993-07-25,220,"CLEAR, BREEZY",DO/Temperature record
+1993-07-25,210,"CLOUDY, BREEZY",DO/Temperature record
+1993-07-25,200,"CLOUDY, BREEZY",DO/Temperature record
+1993-07-31,230,"OVERCAST, BREEZY",DO/Temperature record
+1993-08-07,220,"HAZY, CALM",DO/Temperature record
+1993-08-08,210,"CLOUDY, BREEZY",DO/Temperature record
+1993-08-08,200,"CLOUDY, RAINY, BREEZY",DO/Temperature record
+1993-08-22,220,"CLEAR, CALM",DO/Temperature record
+1993-08-22,210,"CLEAR, BREEZY",DO/Temperature record
+1993-08-22,200,"HAZY, BREEZY",DO/Temperature record
+1993-08-24,230,"HAZY, CALM",DO/Temperature record
+1993-09-05,220,WAVES,DO/Temperature record
+1993-09-05,210,SMALL WAVES,DO/Temperature record
+1993-09-08,230,"OVERCAST, CALM",DO/Temperature record
+1993-09-26,230,"CLEAR, BREEZY, SMALL WAVES",DO/Temperature record
+1993-10-17,230,"FOGGY, SHORE NOT VISIBLE",DO/Temperature record
+1993-10-17,220,"FOGGY, SHORE NOT VISIBLE",DO/Temperature record
+1993-10-17,210,"FOGGY, SHORE NOT VISIBLE",DO/Temperature record
+1993-10-17,200,"FOGGY, SHORE NOT VISIBLE",DO/Temperature record
+1994-06-14,200,"CLOUDY,LIGHT BREEZE",DO/Temperature record
+1994-06-15,230,"SUNNY, OCCASIONAL CLOUDS",DO/Temperature record
+1994-07-06,230,HAZY AND BREEZY,DO/Temperature record
+1994-07-07,210,"CLOUDY, HOT AND HUMID",DO/Temperature record
+1994-07-24,220,CLOUDY AND CALM,DO/Temperature record
+1994-07-25,230,HAZY AND CALM,DO/Temperature record
+1994-07-29,210,CLEAR AND BREEZY,DO/Temperature record
+1994-08-03,200,HAZY WITH LIGHT BREEZE,DO/Temperature record
+1994-08-17,230,overcast & hazy,DO/Temperature record
+1994-08-19,230,MOSTLY CLOUDY,DO/Temperature record
+1994-08-19,220,MOSTLY CLOUDY,DO/Temperature record
+1994-08-19,200,MOSTLY CLOUDY,DO/Temperature record
+1994-08-19,210,MOSTLY CLOUDY,DO/Temperature record
+1994-09-14,220,OVERCAST,DO/Temperature record
+1994-09-14,230,OVERCAST,DO/Temperature record
+1994-09-14,210,OVERCAST,DO/Temperature record
+1994-09-14,200,overcast,DO/Temperature record
+1995-05-24,220,"OVERCAST,BREEZY-N.W.,SMALL W.",DO/Temperature record
+1995-05-26,210,"CLOUDY,BREEZY-S.E.,RIPPLE W.",DO/Temperature record
+1995-05-26,200,"CLOUDY,BREEZY-S.E.,RIPPLE W.",DO/Temperature record
+1995-06-01,230,"HAZY,BREEZY-N.,SMALL WAVES",DO/Temperature record
+1995-06-14,220,"OVERCAST,BREEZY-N.,RIPPLE W.",DO/Temperature record
+1995-06-14,230,"CLOUDY,BREEZY-N.,CALM",DO/Temperature record
+1995-06-14,230,"CLOUDY,BRREZY-N.,CALM",DO/Temperature record
+1995-06-16,200,"CLEAR,BREEZY-N.W.,SMALL W.",DO/Temperature record
+1995-06-16,210,"CLEAR,BREEZY-N.W.,RIPPLE W.",DO/Temperature record
+1995-06-16,210,"CLEAR,RIPPLE-N.W.,RIPPLE W.",DO/Temperature record
+1995-07-13,230,"BREEZY-SW,SUNNY-HOT,RIPPLE WVS",DO/Temperature record
+1995-07-13,220,"WINDY-SW,SUNNY-HOT,CHOPPY WVS",DO/Temperature record
+1995-07-13,210,"BREEZY,WIND-SW,SUNNY,RIPPLE W",DO/Temperature record
+1995-07-13,200,"GUSTY,WIND-SW,SUNNY W/FEW CLD",DO/Temperature record
+1995-08-09,230,"BREEZY-N,CLEAR,RIP.WVS,",DO/Temperature record
+1995-08-09,220,"BREEZY-N,CLEAR,RIP.WVS,",DO/Temperature record
+1995-08-10,210,"BREEZY-W,CLEAR,RIP.WVS,",DO/Temperature record
+1995-08-10,200,"BREEZY-SW,CLEAR,RIP.WVS,",DO/Temperature record
+1995-09-05,200,"CLEAR, CALM",DO/Temperature record
+1995-09-05,230,"CLEAR, BREEZY-NW",DO/Temperature record
+1995-09-05,220,"CLEAR, BREEZY-NW",DO/Temperature record
+1995-09-05,210,"CALM-W,CLEAR,RIP.WVS",DO/Temperature record
+1995-09-05,210,"CALM-W,CLEAR,RIP.WVS,",DO/Temperature record
+1995-09-30,230,"BREEZY-SO,CLEAR,RP.WVS,SM.WVS",DO/Temperature record
+1995-09-30,220,"BREEZY-SO,CLEAR,RP.WVS",DO/Temperature record
+1995-09-30,210,"CLEAR, CALM",DO/Temperature record
+1995-09-30,200,"CLEAR, CALM",DO/Temperature record
+1996-05-22,230,"BREZZY-NO,CLEAR,SM.WVS.,ABN",DO/Temperature record
+1996-05-22,220,"CALM-NO,CLEAR,RP.WVS,LEVEL-ABN",DO/Temperature record
+1996-05-22,210,"BREEZY-WE,CLEAR,RP.WVS,ABN",DO/Temperature record
+1996-05-22,210,"0REEZY-WE,CLEAR,RP.WVS,ABN",DO/Temperature record
+1996-05-22,200,"BREEZY-WE,CLEAR,SM.WVS",DO/Temperature record
+1996-05-22,200,"BREEZY-WE,CLEAR,SM.WVS,ABN",DO/Temperature record
+1996-06-12,230,"BREEZY-NW,CLOUDY,.RIP.WVS.,NOR",DO/Temperature record
+1996-06-12,220,"BREEZY-SW,CLOUDY.RIP.WVS.,NOR.",DO/Temperature record
+1996-06-12,210,"BREEZY-W,CLOUDY,RIP.WVS.,NORM.",DO/Temperature record
+1996-06-14,200,"GUSTY-W,CLOUDY,MOD.WVS.",DO/Temperature record
+1996-07-02,230,CALM;CLEAR;RAIN-W.W.;CALM,DO/Temperature record
+1996-07-02,220,CALM;CLEAR;RAIN-W.W.;CALM,DO/Temperature record
+1996-07-02,210,CALM;HAZY;RAIN-W.W.;CALM,DO/Temperature record
+1996-07-02,200,CALM;HAZY;RAIN-W.W.;RIP.WVS.,DO/Temperature record
+1996-07-24,230,BREEZY;OVERCAST;RAIN-P.D.;RIPP,DO/Temperature record
+1996-07-24,220,CALM;CLEAR;RAIN-P.D.;CALM,DO/Temperature record
+1996-07-24,210,CALM;CLEAR;RAIN-P.D.;CALM,DO/Temperature record
+1996-07-24,200,CALM;CLEAR;RAIN-P.D.;CALM,DO/Temperature record
+1996-08-14,230,BREEZY-N;CLEAR;RAIN-W.W.;SMALL,DO/Temperature record
+1996-08-14,220,BREEZY-N;CLEAR;RAIN-W.W.;SMALL,DO/Temperature record
+1996-08-14,210,GUSTY-N;CLEAR;RAIN-W.W.;MOD,DO/Temperature record
+1996-08-14,200,GUSTY-N;CLEAR;RAIN-W.W.;MOD,DO/Temperature record
+1996-09-04,230,BREZZY-S;OVERC;RIPP;B.NORMAL,DO/Temperature record
+1996-09-04,220,CALM;OVERCAST;CALM;B.NORMAL,DO/Temperature record
+1996-09-04,210,BREEZY-N;SLT.CLOUD;RIPP;B.NORM,DO/Temperature record
+1996-09-04,200,BREEZY-N;Slt Cloud;Calmn;B.Nom,DO/Temperature record
+1996-10-02,210,BREEZY-S.W.;SMALL.WVS.,DO/Temperature record
+1996-10-08,200,GUSTY-E.; CLOUDY; RIPP.WVS.,DO/Temperature record
+1996-10-16,230,BREEZY-W.;SMALL.WVS.,DO/Temperature record
+1996-10-16,220,CALM-W.;OVERCAST;RIPP.WVS.,DO/Temperature record
+1997-05-20,200,cloudy & breezy,DO/Temperature record
+1997-06-02,230,breezy & overcast,DO/Temperature record
+1997-06-02,220,cloudy & overcast,DO/Temperature record
+1997-06-02,200,overcast & breezy,DO/Temperature record
+1997-06-03,210,clearing & breezy,DO/Temperature record
+1997-06-03,225,clearing & breezy,DO/Temperature record
+1997-07-07,220,clear & breezy,DO/Temperature record
+1997-07-07,225,clear & calm,DO/Temperature record
+1997-07-07,210,hazy & hot storm last week,DO/Temperature record
+1997-07-08,200,clear & breezy,DO/Temperature record
+1997-07-22,200,clear & breezy & cold,DO/Temperature record
+1997-07-22,225,clear & breezy & cold,DO/Temperature record
+1997-07-22,220,clear & breezy & cold,DO/Temperature record
+1997-07-22,210,clear & breezy & cold,DO/Temperature record
+1997-07-22,230,clear & breezy & cold,DO/Temperature record
+1997-08-11,200,Hazy & Breezy,DO/Temperature record
+1997-08-11,220,clear & breezy,DO/Temperature record
+1997-08-11,230,clear & breezy,DO/Temperature record
+1997-08-11,225,clear & breezy,DO/Temperature record
+1997-09-10,230,Overcast & Breezy,DO/Temperature record
+1997-09-10,225,Overcast & Breezy,DO/Temperature record
+1997-09-10,220,Overcast & Breezy,DO/Temperature record
+1997-09-10,210,Overcast & Breezy,DO/Temperature record
+1997-09-10,200,Overcast & Breezy,DO/Temperature record
+1997-10-06,210,Clear & Breezy,DO/Temperature record
+1997-10-06,220,Clear & Breezy,DO/Temperature record
+1997-10-06,225,Clear & Breezy,DO/Temperature record
+1997-10-06,230,Clear & Windy,DO/Temperature record
+1998-05-27,200,Clear & Breezy,DO/Temperature record
+1998-05-27,225,Clear & Breezy,DO/Temperature record
+1998-05-27,230,Clear & Breezy,DO/Temperature record
+1998-05-27,210,Clear & Breezy,DO/Temperature record
+1998-05-27,220,Clear & Breezy,DO/Temperature record
+1998-06-16,230,Cloudy & Breezy,DO/Temperature record
+1998-06-16,225,Cloudy & Breezy,DO/Temperature record
+1998-06-16,220,Cloudy & Breezy,DO/Temperature record
+1998-06-16,210,Cloudy & Breezy,DO/Temperature record
+1998-06-16,200,Cloudy & Breezy,DO/Temperature record
+1998-07-06,230,SUNNY,DO/Temperature record
+1998-07-06,225,SUNNY,DO/Temperature record
+1998-07-06,220,sunny,DO/Temperature record
+1998-07-06,210,sunny,DO/Temperature record
+1998-07-06,200,sunny,DO/Temperature record
+1998-07-20,230,SUNNY,DO/Temperature record
+1998-07-20,200,sunny,DO/Temperature record
+1998-07-28,220,sunny,DO/Temperature record
+1998-07-28,210,sunny,DO/Temperature record
+1998-08-18,230,SUNNY,DO/Temperature record
+1998-08-18,220,RAINING,DO/Temperature record
+1998-08-18,210,sunny,DO/Temperature record
+1998-08-18,200,sunny,DO/Temperature record
+1998-08-18,200,qsunny,DO/Temperature record
+1998-09-27,210,extremely windy,DO/Temperature record
+1998-09-27,200,very windy,DO/Temperature record
+1999-05-26,200,SUNNY,DO/Temperature record
+1999-06-07,200,"warm, hazy",DO/Temperature record
+1999-06-07,210,SUNNY,DO/Temperature record
+1999-07-01,220,"cloudy, breezy",DO/Temperature record
+1999-07-01,220,"overcast,gusty",DO/Temperature record
+1999-07-01,230,"overcast,gusty",DO/Temperature record
+1999-07-01,200,7981,DO/Temperature record
+1999-07-01,200,81,DO/Temperature record
+1999-07-20,230,"clear, breezy",DO/Temperature record
+1999-07-20,220,"clear, breezy",DO/Temperature record
+1999-07-20,210,"clear, breezy",DO/Temperature record
+1999-07-20,200,"clear, breezy",DO/Temperature record
+1999-07-20,200,"93clear, breezy",DO/Temperature record
+1999-08-10,230,"clear, breezy",DO/Temperature record
+1999-08-10,220,"clear, breezy",DO/Temperature record
+1999-08-10,210,"clear, breezy",DO/Temperature record
+1999-08-10,200,"clear, breezy",DO/Temperature record
+1999-09-02,230,"clear, breezy",DO/Temperature record
+1999-09-02,220,"clear, breezy",DO/Temperature record
+1999-09-02,210,"clear, breezy",DO/Temperature record
+1999-09-02,200,"clear, breezy",DO/Temperature record
+1999-09-20,230,"cloudy, gusty",DO/Temperature record
+1999-09-20,220,"cloudy, gusty",DO/Temperature record
+1999-09-20,200,"cloudy, gusty",DO/Temperature record
+1999-09-21,210,raining,DO/Temperature record
+1999-10-12,200,"clear, breezy",DO/Temperature record
+1999-10-12,210,"clear, breezy",DO/Temperature record
+2000-05-27,220,"gusty, small waves, breezy",DO/Temperature record
+2000-05-27,200,"cloudy, windy, small waves",DO/Temperature record
+2000-07-06,230,"cloudy, gusty, white caps",DO/Temperature record
+2000-07-06,220,"cloudy, windy, small waves",DO/Temperature record
+2000-07-06,210,"clear, breezy, waves",DO/Temperature record
+2000-07-06,200,"clear, calm, ripple waves",DO/Temperature record
+2000-07-24,230,"cloudy, calm, ripple waves",DO/Temperature record
+2000-07-24,220,"partly cloudy, calm, ripple wa",DO/Temperature record
+2000-07-24,210,"partly cloudy, calm, ripple wa",DO/Temperature record
+2000-07-24,200,"partly cloudy, calm, ripple wa",DO/Temperature record
+2000-08-13,210,"calm, cloudy, rain lately",DO/Temperature record
+2000-08-13,230,"calm, cloudy, rain lately",DO/Temperature record
+2000-08-13,220,"calm, cloudy, rain lately",DO/Temperature record
+2000-08-13,200,"calm, cloudy, rain lately",DO/Temperature record
+2000-09-06,230,"calm sunny, rain/week",DO/Temperature record
+2000-09-06,220,"calm sunny, rain/week",DO/Temperature record
+2000-09-06,210,"calm sunny, rain/week",DO/Temperature record
+2000-09-06,200,"calm sunny, rain/week",DO/Temperature record
+2000-09-06,200,"calm, sunny, rain/week",DO/Temperature record
+2000-10-03,230,"gusty, ripple waves ptly cloud",DO/Temperature record
+2000-10-03,220,"windy, ripple waves,ptly cloud",DO/Temperature record
+2000-10-03,210,"GUSTY, white caps, ptly cloudy",DO/Temperature record
+2000-10-03,200,"gusty, white caps, ptly cloudy",DO/Temperature record
+2001-05-30,220,cloudy windy and choppy,DO/Temperature record
+2001-05-30,210,"Partly Cloudy, Windy",DO/Temperature record
+2001-05-30,200,cloudy breezy and small,DO/Temperature record
+2001-06-25,230,"Clear, Breezy, Rain/Wk",DO/Temperature record
+2001-06-25,220,"Clear, Breezy,Rain/Wk.",DO/Temperature record
+2001-06-25,210,"Clear, Breezy,Rain/Wk",DO/Temperature record
+2001-06-25,200,"Clear, Breezy, Rain/Wk.",DO/Temperature record
+2001-07-23,230,"Sunny, hot",DO/Temperature record
+2001-07-23,220,"Sunny, hot",DO/Temperature record
+2001-07-23,210,"Sunny, clear, lt. Breeze",DO/Temperature record
+2001-08-21,100,Overcast,DO/Temperature record
+2001-08-21,230,Overcast,DO/Temperature record
+2001-08-21,220,Overcast,DO/Temperature record
+2001-08-21,210,Overcast,DO/Temperature record
+2001-08-21,200,Overcast,DO/Temperature record
+2001-09-17,200,"Clear,Sunny",DO/Temperature record
+2001-09-17,100,"Clear, Sunny",DO/Temperature record
+2001-09-17,230,"Clear, Sunny",DO/Temperature record
+2001-09-17,220,"Clear, Sunny",DO/Temperature record
+2001-09-17,210,"Clear, Sunny",DO/Temperature record
+2002-06-17,230,Partly cloudy/ windy,DO/Temperature record
+2002-06-17,220,Partly cloudy/ windy,DO/Temperature record
+2002-06-17,210,Partly cloudy/ windy,DO/Temperature record
+2002-06-17,200,Partly cloudy/ windy,DO/Temperature record
+2002-07-29,230,"Partly Cloudy, Windy",DO/Temperature record
+2002-07-29,220,"Partly Cloudy, Windy",DO/Temperature record
+2002-07-29,210,"Partly Cloudy, Windy",DO/Temperature record
+2002-07-29,200,"Partly Cloudy, Windy",DO/Temperature record
+2002-08-19,230,"Clear, Calm",DO/Temperature record
+2002-08-19,220,"Clear, Calm",DO/Temperature record
+2002-08-19,210,"Clear, Calm",DO/Temperature record
+2002-08-19,200,"Clear, Windy",DO/Temperature record
+2002-09-23,220,"Cloudy, Sl. Breeze",DO/Temperature record
+2002-09-30,230,"Cloudy, Breezy",DO/Temperature record
+2002-09-30,220,"Cloudy, Sl. Breeze",DO/Temperature record
+2002-09-30,210,"Cloudy, Breezy",DO/Temperature record
+2002-09-30,200,"Cloudy, Breezy",DO/Temperature record
+2003-06-23,230,"Clear, Calm",DO/Temperature record
+2003-06-23,220,"Partly Cloudy, Calm",DO/Temperature record
+2003-06-23,210,"Partly Cloudy, Calm",DO/Temperature record
+2003-06-23,200,"Partly Cloudy, Calm",DO/Temperature record
+2003-08-18,230,"Partly Cloudy, breezy",DO/Temperature record
+2003-08-18,220,"Partly Cloudy, breezy",DO/Temperature record
+2003-08-18,210,"Partly Cloudy, breezy",DO/Temperature record
+2003-08-18,200,"Partly Cloudy, Calm",DO/Temperature record
+2003-09-22,230,"Partly Cloudy, Windy",DO/Temperature record
+2003-09-22,220,"Partly Cloudy, Windy",DO/Temperature record
+2003-09-22,210,"Clear, calm, warm",DO/Temperature record
+2003-09-22,200,"Partly cloudy, calm, cool",DO/Temperature record
+2004-05-25,220,"Overcast, Breezy",DO/Temperature record
+2004-05-25,210,"Overcast, Breezy",DO/Temperature record
+2004-05-25,200,"Overcast, breezy",DO/Temperature record
+2004-06-21,220,"Clear, Breezy",DO/Temperature record
+2004-06-21,210,"Clear, Breezy",DO/Temperature record
+2004-06-21,200,"Clear, Breezy",DO/Temperature record
+2004-06-24,230,"Clear, Breezy",DO/Temperature record
+2004-07-26,230,"Partly Cloudy, Warm, Calm",DO/Temperature record
+2004-07-26,220,"Partly Cloudy, Warm, Ripples",DO/Temperature record
+2004-07-26,210,"Partly Cloudy, Warm,Calm",DO/Temperature record
+2004-07-26,200,"Partly Cloudy, Warm Calm",DO/Temperature record
+2004-08-23,230,"Clear, Breezy",DO/Temperature record
+2004-08-23,220,"Hazy,Breezy",DO/Temperature record
+2004-08-23,210,"Partly Cloudy, Breezy",DO/Temperature record
+2004-08-23,200,"Partly Cloudy, Calm",DO/Temperature record
+2004-08-24,200,"Partly Cloudy, Calm",DO/Temperature record
+2004-09-20,230,"Clear, Breezy",DO/Temperature record
+2004-09-20,210,"Clear, Breezy",DO/Temperature record
+2004-09-20,220,"Clear, Breezy",DO/Temperature record
+2004-09-20,200,"Clear, Breezy",DO/Temperature record
+2005-06-27,230,"Partly Cloudy, Hazy",DO/Temperature record
+2005-06-27,220,"Partly Cloudy, Hazy",DO/Temperature record
+2005-06-27,210,"Partly Cloudy, Hazy",DO/Temperature record
+2005-06-27,200,"Partly Cloudy, Hazy",DO/Temperature record
+2005-07-02,230,"Overcast, Breezy, Lake At Norm",DO/Temperature record
+2005-07-02,220,"Overcast, Breezy, Lake At Norm",DO/Temperature record
+2005-07-25,230,"Overcast, Breezy, Lake At Norm",DO/Temperature record
+2005-07-25,220,"Overcast, Breezy, Lake At Norm",DO/Temperature record
+2005-07-25,210,"Overcast, Breezy, Lake At Norm",DO/Temperature record
+2005-07-25,200,"Overcast, Breezy, Lake Level N",DO/Temperature record
+2005-08-22,230,"Clear, Breezy, Warm",DO/Temperature record
+2005-08-22,220,"Clear, Breezy, Warm",DO/Temperature record
+2005-08-22,210,"Clear, Breezy, Warm",DO/Temperature record
+2005-08-22,200,"Clear, Breezy, Warm",DO/Temperature record
+2006-05-31,230,"Partly Cloudy, Calm",DO/Temperature record
+2006-05-31,220,"Partly Cloudy, Windy",DO/Temperature record
+2006-05-31,210,"Partly Cloudy, Calm",DO/Temperature record
+2006-05-31,200,"Overcast, calm",DO/Temperature record
+2006-07-05,230,"Partly Cloudy, Breezy",DO/Temperature record
+2006-07-05,220,"Partly Cloudy, Breezy",DO/Temperature record
+2006-07-05,210,"Partly Cloudy, Breezy",DO/Temperature record
+2006-07-05,200,"Partly Cloudy, Breezy",DO/Temperature record
+2006-07-24,230,"Partly Cloudy, breezy",DO/Temperature record
+2006-07-24,220,"Partly Cloudy, breezy",DO/Temperature record
+2006-07-24,210,"Partly Cloudy, breezy",DO/Temperature record
+2006-07-24,200,"Partly Cloudy, breezy",DO/Temperature record
+2006-08-15,230,"Overcast, breezy",DO/Temperature record
+2006-08-15,220,"Overcast, breezy",DO/Temperature record
+2006-08-15,210,"Overcast, breezy",DO/Temperature record
+2006-08-15,200,"Overcast, breezy",DO/Temperature record
+2006-09-11,230,"Clear, light breeze",DO/Temperature record
+2006-09-11,220,"Clear, light breeze",DO/Temperature record
+2006-09-11,210,"Partly Cloudy, Breezy",DO/Temperature record
+2006-09-11,200,"Partly Cloudy, Breezy",DO/Temperature record
+2006-10-09,220,"Clear, breezy",DO/Temperature record
+2006-10-09,200,"Clear, calm",DO/Temperature record
+2007-06-11,230,"Mostly Cloudy, Breezy",DO/Temperature record
+2007-06-11,220,"Mostly Cloudy, Breezy",DO/Temperature record
+2007-06-11,210,"Moslty Cloudy, Breezy",DO/Temperature record
+2007-06-11,200,"Mostly Cloudy, Calm",DO/Temperature record
+2007-07-16,230,Partly Cloudy,DO/Temperature record
+2007-07-16,220,Clear,DO/Temperature record
+2007-07-16,210,Clear,DO/Temperature record
+2007-07-16,200,Clear,DO/Temperature record
+2007-08-14,230,"Clear, Windy",DO/Temperature record
+2007-08-14,220,"Clear, Windy",DO/Temperature record
+2007-08-14,210,"Clear, Windy",DO/Temperature record
+2007-08-14,200,"Partly Cloudy, Breezy",DO/Temperature record
+2007-09-11,220,"Heavy, wind driven rain",DO/Temperature record
+2007-09-11,210,"Heavy, wind driven rain",DO/Temperature record
+2007-09-11,200,"Heavy, wind driven rain",DO/Temperature record
+2007-10-15,200,"Partly Cloudy, Windy",DO/Temperature record
+2008-06-03,230,"Overcast,Breezy, Small Waves",DO/Temperature record
+2008-06-03,220,"Overcast, Breezy, Small Waves",DO/Temperature record
+2008-06-03,210,"Overcast, Breezy",DO/Temperature record
+2008-06-03,200,Partly,DO/Temperature record
+2008-07-01,230,Partly Cloudy,DO/Temperature record
+2008-07-01,220,"Partly Cloudy, Breezy",DO/Temperature record
+2008-07-01,210,Partly Cloudy,DO/Temperature record
+2008-07-01,200,Partly Cloudy,DO/Temperature record
+2008-07-29,230,Partly Cloudy,DO/Temperature record
+2008-07-29,220,Partly Cloudy,DO/Temperature record
+2008-07-29,210,Clear and Calm,DO/Temperature record
+2008-07-29,200,Clear and Calm,DO/Temperature record
+2008-09-02,230,Clear,DO/Temperature record
+2008-09-02,220,Partly Cloudy,DO/Temperature record
+2008-09-02,210,Partly Cloudy,DO/Temperature record
+2008-09-02,200,Partly Cloudy,DO/Temperature record
+2009-05-26,200,"Clear, Breezy, Ripples",DO/Temperature record
+2009-05-26,200,Clear and Breezy,DO/Temperature record
+2009-05-26,220,Clear and Breezy,DO/Temperature record
+2009-05-26,230,Clear and Breezy,DO/Temperature record
+2009-05-26,210,Clear and Breezy,DO/Temperature record
+2009-06-22,230,overcast & breezy,DO/Temperature record
+2009-06-22,220,overcast & breezy,DO/Temperature record
+2009-06-22,210,overcast & breezy,DO/Temperature record
+2009-06-22,200,overcast & breezy,DO/Temperature record
+2009-07-13,230,"Partly Cloudy, Ripples",DO/Temperature record
+2009-07-13,220,"Partly Cloudy, Ripples",DO/Temperature record
+2009-07-13,210,"Clear, Calm",DO/Temperature record
+2009-07-13,200,"Clear, Calm",DO/Temperature record
+2009-08-12,230,"Prtly Cldy, Calm",DO/Temperature record
+2009-08-12,220,"Prtly Cldy, Breezy",DO/Temperature record
+2009-08-12,210,"Overcast, Calm",DO/Temperature record
+2009-08-12,200,"Prtly Cldy, Calm",DO/Temperature record
+2009-09-01,230,"Clear, breezy, ripples.",DO/Temperature record
+2009-09-01,220,"Clear, breezy, ripples.",DO/Temperature record
+2009-09-01,210,"Clear, breezy, ripples.",DO/Temperature record
+2009-09-01,200,"Clear, breezy, ripples.",DO/Temperature record
+2009-10-05,210,"Ptly cldy, breezy, ripples.",DO/Temperature record
+2010-06-02,230,"Partly Cloudy, Calm",DO/Temperature record
+2010-06-02,220,"Partly Cloudy, Calm",DO/Temperature record
+2010-06-02,210,"Partly Cloudy, Calm",DO/Temperature record
+2010-06-02,200,"Partly Cloudy, Calm",DO/Temperature record
+2010-07-12,200,"Clear, Calm, and ripples",DO/Temperature record
+2010-08-17,200,"Clear, Calm, and ripples",DO/Temperature record
+2010-09-13,200,"Overcast, Calm, and ripples",DO/Temperature record
+2010-10-05,200,"Overcast, breezy, and ripples",DO/Temperature record
+2011-05-31,230,"Overcast, calm, few ripples",DO/Temperature record
+2011-05-31,210,"Overcast, calm, few ripples",DO/Temperature record
+2011-05-31,200,"Overcast, calm, few ripples",DO/Temperature record
+2011-05-31,220,"Overcast, calm, few ripples",DO/Temperature record
+2011-06-21,230,"Overcast, calm, few ripples",DO/Temperature record
+2011-06-21,210,"Overcast, calm, few ripples",DO/Temperature record
+2011-06-21,200,"Overcast, calm, few ripples",DO/Temperature record
+2011-06-21,220,"Overcast, calm, few ripples",DO/Temperature record
+2011-07-19,230,"Clear, breezy, ripples",DO/Temperature record
+2011-07-19,220,"Clear, breezy, ripples",DO/Temperature record
+2011-07-19,210,"Clear, breezy, ripples",DO/Temperature record
+2011-07-19,200,"Clear, breezy, ripples",DO/Temperature record
+2011-08-17,230,"Clear, warm, and calm.",DO/Temperature record
+2011-08-17,220,"Clear, warm, and calm.",DO/Temperature record
+2011-08-17,210,"Clear, warm, and calm.",DO/Temperature record
+2011-08-17,200,"Clear, warm, and calm.",DO/Temperature record
+2012-05-23,210,"Sunny, Calm",DO/Temperature record
+2012-05-23,200,"Sunny, Calm",DO/Temperature record
+2012-06-19,230,Breezy with Ripples,DO/Temperature record
+2012-06-19,220,Breezy with Ripples,DO/Temperature record
+2012-06-19,210,Breezy with Ripples,DO/Temperature record
+2012-06-19,200,Breezy with Ripples,DO/Temperature record
+2012-07-23,230,"Calm, ripples",DO/Temperature record
+2012-07-23,220,"Calm, ripples",DO/Temperature record
+2012-07-23,210,"Calm, ripples",DO/Temperature record
+2012-07-23,200,"Calm, ripples",DO/Temperature record
+2012-08-20,230,"Sunny, small ripples",DO/Temperature record
+2012-08-20,220,"Sunny, small ripples",DO/Temperature record
+2012-08-20,210,"Sunny, small ripples",DO/Temperature record
+2012-08-20,200,"Sunny, small ripples",DO/Temperature record
+2012-09-17,230,"Clear, Ripples",DO/Temperature record
+2012-09-17,220,"Clear, Ripples",DO/Temperature record
+2012-09-17,210,"Clear, Ripples",DO/Temperature record
+2012-09-17,200,"Clear, Ripples",DO/Temperature record
+2013-06-17,230,"calm/breezy, small waves",DO/Temperature record
+2013-06-17,220,"calm/breezy, small waves",DO/Temperature record
+2013-06-17,210,"calm/breezy, small waves",DO/Temperature record
+2013-06-17,200,"calm/breezy, small waves",DO/Temperature record
+2013-06-17,200,"Clear, breezy-windy",DO/Temperature record
+2013-07-15,230,"Calm, ripples",DO/Temperature record
+2013-07-15,220,"Calm, ripples",DO/Temperature record
+2013-07-15,210,"Calm, ripples",DO/Temperature record
+2013-07-15,200,"Calm, ripples",DO/Temperature record
+2013-08-19,230,"breezy wind, small waves",DO/Temperature record
+2013-08-19,220,"breezy wind, ripples",DO/Temperature record
+2013-08-19,210,"breezy wind, ripples",DO/Temperature record
+2013-08-19,200,"calm wind, ripples",DO/Temperature record
+2013-09-17,230,"Breezy, small waves",DO/Temperature record
+2013-09-17,220,"Breezy, small waves",DO/Temperature record
+2013-09-17,210,"Breezy, small waves",DO/Temperature record
+2013-09-17,200,"Breezy, small waves",DO/Temperature record
+2014-05-27,230,"Overcast, warm, calm",DO/Temperature record
+2014-05-27,220,"Overcast, warm, calm",DO/Temperature record
+2014-05-27,210,"Partly cloudy, warm, calm",DO/Temperature record
+2014-06-09,230,"Overcast, breezy",DO/Temperature record
+2014-06-09,220,"Overcast, calm",DO/Temperature record
+2014-06-09,210,"Overcast, breezy",DO/Temperature record
+2014-06-09,200,"Overcast, warm, calm",DO/Temperature record
+2014-07-22,230,"partly cloudy, warm, breezy",DO/Temperature record
+2014-07-22,220,"partly cloudy, warm, breezy",DO/Temperature record
+2014-07-22,210,"partly cloudy, warm, breezy",DO/Temperature record
+2014-07-22,200,"clear, warm, calm",DO/Temperature record
+2014-08-19,210,"partly cloudy, warm, breezy",DO/Temperature record
+2014-08-19,230,"partly cloudy, warm, breezy",DO/Temperature record
+2014-08-19,220,"partly cloudy, warm, breezy",DO/Temperature record
+2014-08-19,210,"clear, warm, breezy",DO/Temperature record
+2014-08-19,200,"clear, warm, breezy",DO/Temperature record
+2014-09-15,230,"Partly cloudy, cool, breezy",DO/Temperature record
+2014-09-15,220,"Partly cloudy, cool, breezy",DO/Temperature record
+2014-09-15,210,"Partly cloudy, cool, breezy",DO/Temperature record
+2014-09-15,200,"Partly cloudy, cool, breezy",DO/Temperature record
+2015-06-22,200,"breezy, ripples",DO/Temperature record
+2015-06-22,230,"Cloudy, warm, breezy, ripples.",DO/Temperature record
+2015-06-22,220,"Cloudy, warm, breezy, ripples.",DO/Temperature record
+2015-06-22,210,"Cloudy, warm, breezy, ripples.",DO/Temperature record
+2015-07-20,230,"Windy, Mod. waves",DO/Temperature record
+2015-07-20,220,"Breezy, small waves",DO/Temperature record
+2015-07-20,210,"Clear, calm, ripples",DO/Temperature record
+2015-07-20,200,"Clear, calm, ripples",DO/Temperature record
+2015-08-10,230,partly cloudy warm and calm,DO/Temperature record
+2015-08-10,220,partly cloudy warm and calm,DO/Temperature record
+2015-08-10,210,partly cloudy warm and calm,DO/Temperature record
+2015-08-10,200,"warm, calm, ripples, normal",DO/Temperature record
+2020-06-03,200,"partly cloudy, warm, calm, rip",DO/Temperature record
+2020-06-03,210,"partly cloudy, warm, calm, rip",DO/Temperature record
+2020-06-22,220,"hazy, warm, breezy, ripples",DO/Temperature record
+2020-06-22,210,"overcast, warm, breezy, ripple",DO/Temperature record
+2020-07-15,230,"overcast, warm, calm, ripples",DO/Temperature record
+2020-07-15,210,"overcast, warm, calm, ripples",DO/Temperature record
+2020-08-11,202,"clear, warm, calm, ripples",DO/Temperature record
+2020-08-11,210,"clear, warm, calm, ripples",DO/Temperature record
+2020-08-11,230,"clear, warm, calm, ripples",DO/Temperature record
+2020-09-15,216,"clear, cool, breezy, ripples",DO/Temperature record
+2020-09-15,210,"clear, cold calm, ripples",DO/Temperature record
+2020-09-29,207,"clear, warm, calm",DO/Temperature record
+2020-09-29,219,"clear, warm, calm",DO/Temperature record
+2020-09-29,210,"clear, warm, calm",DO/Temperature record

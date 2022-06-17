@@ -1,0 +1,2314 @@
+
+  
+    uid=EDI,o=EDI,dc=edirepository,dc=orgall
+      uid=steeleb,o=EDI,dc=edirepository,dc=org
+      all
+    
+    
+      public
+      read
+    
+  
+  
+    doi:10.6073/pasta/0c5298c55a128be56ba57449c795df63Lake Sunapee Instrumented Buoy: High Frequency Water Temperature and Dissolved Oxygen Data - 2007-2020
+    
+       LSPA
+      Lake Sunapee Protective Association
+      lspa@lakesunapee.org
+    
+    
+      Kathleen Weathers
+      Cary Institute of Ecosystem Studies
+      weathersk@caryinstitute.org
+      https://orcid.org/0000-0002-3575-6508
+    
+    
+      Bethel Steele
+      Cary Institute of Ecosystem Studies
+      steeleb@caryinstitute.org
+      https://orcid.org/0000-0003-4365-4103
+    
+    
+      June Fichter
+      Lake Sunapee Protective Association
+      junef@lakesunapee.org
+      Data Collection
+    
+    
+      Geoff Lizotte
+      Lake Sunapee Protective Association
+      Data Collection
+    
+    
+      John Merriman
+      Lake Sunapee Protective Association
+      Buoy Technical Programming
+    
+    2021-03-02
+    
+      The Lake Sunapee instrumented buoy is equipped with a thermistor chain comprised of ten integrated Nexsens TS210 units (July 2017 - current) and two Ponsel Digisens Optical probes suspended at approximately 1.5 meters and 10.5 meters depth. Note that the below-surface depth of the thermistors have fluctuated throughout the years.
+      
+Lake Sunapee buoy is located near Loon Island Lighthouse during the summer months and in the Lake Sunapee Harbor during the winter months (2010-current) except for the first few years of data collection (2007-2010), when the buoy was located near Loon Island year-round. The buoy was moved to the harbor during the winters after suffering ice damage, sensor failures, and general data transmission errors during the winter of 2009-2010.
+      
+In two instances, HOBO units were deployed at the buoy's location when sensors failed mid-season (thermistor line mid-2015, HOBO temp/lumen pendants deployed in place) or if sensors were unavailable for the season (2018, a HOBO U26 dissolved oxygen sensor was deployed when DO probes were not functioning).
+      
+All datasets have been QAQC'd to remove obviously errant readings, highly suspicious readings, and artifacts of buoy maintenance.
+
+    
+    
+      Lake Sunapee Protective Association
+      LSPA
+      Lake Sunapee
+      Global Lake Ecological Observatory Network
+      GLEON
+      high-frequency data
+      buoy data
+      oligotrophic
+    
+    
+      water temperature
+      dissolved oxygen
+      freshwater
+      lakes
+      limnology
+      LTER Controlled Vocabulary
+    
+    
+      Associated datasets: high-frequency meteorological data from the Lake Sunapee instrumented buoy (edi.234) and under-ice temperature data at the summer location of the buoy (edi.500).
+
+    
+    
+      This information is released under the Creative Commons license - Attribution - CC BY (https://creativecommons.org/licenses/by/4.0/). The consumer of these data ("Data User" herein) is required to cite it appropriately in any publication that results from its use. The Data User should realize that these data may be actively used by others for ongoing research and that coordination may be necessary to prevent duplicate publication. The Data User is urged to contact the authors of these data if any questions about methodology or results occur. Where appropriate, the Data User is encouraged to consider collaboration or co-authorship with the authors. The Data User should realize that misinterpretation of data may occur if used out of context of the original study. While substantial efforts are made to ensure the accuracy of data and associated documentation, complete accuracy of data sets cannot be guaranteed. All data are made available "as is." The Data User should be aware, however, that data are updated periodically and it is the responsibility of the Data User to check for new versions of the data. The data authors and the repository where these data were obtained shall not be liable for damages resulting from any use or misinterpretation of the data. Thank you.
+
+    
+    
+      
+        Lake Sunapee is located in the Sugar River watershed within Sullivan and Merrimack Counties, NH, USA. It is a drainage lake with predominantly muck substrate. It has a surface area of 1667 hectares, 53 kilometers of developed shoreline and a maximum depth of 33.7 meters. The location of the buoy is 43.3913, -72.0576.  The ice-on harbor position for winters starting in 2010 forward: 43.3857, -72.0812. Verbal description of summer buoy location: SSE of Loon Island, water depth 10.5-12m, water fluctuations seasonally 0.75 to 1 meter. The following bounding coordinates are for Lake Sunapee as defined by the polygon contained in the New Hampshire Hydrography Dataset (NHHD) as downloaded from GRANIT (http://www.granit.sr.unh.edu/data/search?dset=nhhd&#).
+        
+          -72.0831
+          -72.0304
+          43.4307
+          43.3217
+        
+      
+      
+        loon
+        
+          -72.0576
+          -72.0576
+          43.3913
+          43.3913
+        
+      
+      
+        harbor
+        
+          -72.0812
+          -72.0812
+          43.3857
+          43.3857
+        
+      
+      
+        
+          
+            2007-08-27
+          
+          
+            2020-12-31
+          
+        
+      
+    
+    
+      ongoing
+    
+    
+       LSPA
+      Lake Sunapee Protective Association
+      lspa@lakesunapee.org
+    
+    Environmental Data Initiativeinfo@environmentaldatainitiative.orghttps://environmentaldatainitiative.orgEnvironmental Data Initiative
+      
+        
+          The Lake Sunapee instrumented buoy is equipped with a thermistor chain comprised of ten integrated Nexsens TS210 units (July 2017 - current). Previously, the thermistor chain was comprised of Nexsens T500 Node thermistors (December 2010-July 2017) and before December 2010, it was instrumented with TempLine thermistors from Apprise Technology. During the summer of 2015 (August-September), a HOBO temperature string was deployed on the buoy in place of the thermistors while the thermistors were being serviced. Prior to July 2017, the reported depths of the thermistor line are best approximations and are likely correct within 0.25 meters. Depths of thermistors, which have fluctuated over the years, are indicated by the column headings in the included temperature file (2007-2020_tempstring_L1.csv).
+          
+Dissolved oxygen is currently monitored at two depths (approximately 1.5 meters and 10.5 meters) by Ponsel Digisens Optical probes at the 1.5 meter depth (since June 2015) and the 10.5 meter depth (since September 2013). Prior to September 2013, DO was only measured at 1.5 meters depth. Prior to June 2015, dissolved oxygen at 1.5 meter depth was measured by a D-Opto SDI 12 dissolved oxygen probe. A HOBO U26 dissolved oxygen unit was deployed at 0.25 meters depth in May 2018 because the Ponsel probe had failed.
+          
+Data from the thermistor chain and dissolved oxygen probes were collated and cleaned using R Studio (v. 1.2.504), R version 4.0.3 by B. Steele of K.C. Weathers' Laboratory (R code for QAQC included in this data package). QAQC consisted of renaming columns from the raw data to common headings for consistency between data years, as well as recoding obviously errant readings, highly suspicious readings and artifacts of buoy maintenance to 'NA' from the raw data.  Data from HOBO sensors in 2015 (9 HOBO temp/lumen pendants at 0.5 meters to 8.5 meters depth) and HOBO U26 during 2018 (1 HOBO U26 dissolved oxygen probe) were QAQC'd in the same manner as the data from the buoy. 
+          
+The underwater temperature data are broken into two records: (1) the dataset from the thermistors attached to the buoy only (2007-2020_tempstring_L1.csv), and (2) the dataset from the summer 2015 deployment of the HOBO sensors in place of the thermistors (2015_summerhobo_L1.csv). Dissolved oxygen data are also broken into two records: (1) the dataset from the dissolved oxygen probes connected to the buoy data logger (2007-2020_do_L1.csv), and (2) the dataset from 2018 where a HOBO U26 dissolved oxygen probe was deployed at 0.25 meters in place of the failed Ponsel DO units.
+
+        
+      
+    
+    
+      No project title to report
+      
+        June Fichter
+        Lake Sunapee Protective Association
+        junef@lakesunapee.org
+        Principal Investigator
+      
+      Frey Foundation
+      
+        Collaborative Research: CI-Team Demonstration: Developing a Model for Engagement of Citizen Scientists: Lake Associations
+        
+          Kathleen Weathers
+          Cary Institute of Ecosystem Studies
+          weathersk@caryinstitute.org
+          https://orcid.org/0000-0002-3575-6508
+          Principal Investigator
+        
+        National Science Foundation 0936174
+      
+      
+        Collaborative Research: Building Analytical, Synthesis, and Human Network Skills Needed for Macrosystem Science: a Next Generation Graduate Student Training Model Based on GLEON
+        
+          Kathleen Weathers
+          Cary Institute of Ecosystem Studies
+          weathersk@caryinstitute.org
+          https://orcid.org/0000-0002-3575-6508
+          Principal Investigator
+        
+        National Science Foundation 1137327
+      
+      
+        Development of Real-Time Environmental Sensor Technology and Applications for the Northeast: A Proposal from the NERC Northeastern Environmental Sensor Working Group (NESN)
+        
+          Lindsey Rustad
+          Principal Investigator
+        
+        NSRC
+      
+    
+    
+      2007-2020_buoy_templine_v26Feb2021
+      data table for buoy thermistor data 2007-2020
+      
+        2007-2020_buoy_templine_v26Feb2021.csv
+        117852308
+        281ba052ff112778c0a0caf6dadbbf3a
+        
+          
+            1
+            \n
+            column
+            
+              ,
+            
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/1f903796efc8d79e263a549f8b5aa8a6
+          
+        
+      
+      
+        
+          datetime
+          date and time (UTC -4) of buoy record - no daylight savings observed
+          date
+          
+            
+              YYYY-MM-DD hh:mm:ss
+              
+            
+          
+        
+        
+          location
+          location of buoy
+          string
+          
+            
+              
+                
+                  
+                    harbor
+                    buoy is located in harbor
+                  
+                  
+                    in transit
+                    buoy is moving between harbor and loon island
+                  
+                  
+                    loon
+                    buoy is located near loon island
+                  
+                  
+                    offline
+                    buoy is offline, no data acquired
+                  
+                
+              
+            
+          
+        
+        
+          TempC_0p5m
+          water temperature approximately 0.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  -0.35
+                  27.06
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_0p75m
+          water temperature approximately 0.75 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  1.765
+                  16.19
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_0p85m
+          water temperature approximately 0.85 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  12.46
+                  27.55
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_1m
+          water temperature approximately 1 meter below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  -0.12
+                  27.9
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_1p5m
+          water temperature approximately 1.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  -0.21
+                  26.84
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_1p75m
+          water temperature approximately 1.75 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  7.16
+                  26.51
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_1p85m
+          water temperature approximately 1.85 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  10.23
+                  26.74
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_2m
+          water temperature approximately 2 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  -0.15
+                  25.93
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_2p5m
+          water temperature approximately 2.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  -0.5
+                  26.59
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_2p75m
+          water temperature approximately 2.75 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  7.08
+                  26.38
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_2p85m
+          water temperature approximately 2.85 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  10.08
+                  24.32
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_3m
+          water temperature approximately 3 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  -0.26
+                  25.89
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_3p5m
+          water temperature approximately 3.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  0.07
+                  26.42
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_3p75m
+          water temperature approximately 3.75 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  6.949
+                  26.14
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_3p85m
+          water temperature approximately 3.85 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  9.89
+                  26.34
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_4p5m
+          water temperature approximately 4.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  0.01
+                  26.07
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_4p75m
+          water temperature approximately 4.75 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  6.882
+                  25.97
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_4p85m
+          water temperature approximately 4.85 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  9.87
+                  26.14
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_5p5m
+          water temperature approximately 5.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  -0.05
+                  25.18
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_5p75m
+          water temperature approximately 5.75 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  6.881
+                  25.78
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_5p85m
+          water temperature approximately 5.85 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  9.77
+                  25.9
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_6p5m
+          water temperature approximately 6.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  0.07
+                  25.26
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_6p75m
+          water temperature approximately 6.75 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  6.839
+                  25.54
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_6p85m
+          water temperature approximately 6.85 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  9.23
+                  25.53
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_7p5m
+          water temperature approximately 7.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  0.07
+                  24.51
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_7p75m
+          water temperature approximately 7.75 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  6.797
+                  24.87
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_7p85m
+          water temperature approximately 7.85 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  8.41
+                  24.24
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_8p5m
+          water temperature approximately 8.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  -0.04
+                  24.26
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_8p75m
+          water temperature approximately 8.75 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  6.799
+                  24.73
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_8p85m
+          water temperature approximately 8.85 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  7.85
+                  23.4
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_9p5m
+          water temperature approximately 9.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  0.26
+                  24.4
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_9p75m
+          water temperature approximately 9.75 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  6.781
+                  21.99
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_9p85m
+          water temperature approximately 9.85 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  7.44
+                  21.55
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_10p5m
+          water temperature approximately 10.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  0.21
+                  23.63
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_11p5m
+          water temperature approximately 11.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  -0.02
+                  23.13
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_13p5m
+          water temperature approximately 13.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  0.26
+                  23.07
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          temp_flag
+          flag for water temperature value
+          string
+          
+            
+              
+                
+                  
+                    0.85a
+                    0.85 thermistor reporting in 20 minute intervals
+                  
+                  
+                    10.5dn
+                    10.5 thermistor hung up on mooring line, depth not correct; 10.5m thermistor displaying noise in data stream
+                  
+                  
+                    11.5b; 13.5b
+                    11.5 and 13.5 thermistors may be in sediment
+                  
+                  
+                    9.5d; 10.5d; 11.5d; 13.5d; 11.5b; 13.5b
+                    9.5, 105., 11.5, 13.5 thermistors hung up on mooring line, depth not correct; 11.5 and 13.5 thermistors may be in sediment
+                  
+                  
+                    i
+                    all thermistor data intermittent
+                  
+                  
+                    i; 11.5b; 13.5b
+                    all thermistor data intermittent; 11.5 and 13.5 thermistors may be in sediment
+                  
+                  
+                    i; 9.5d; 10.5d; 11.5d; 13.5d; 11.5b; 13.5b
+                    all thermistor data intermittent; 9.5, 105., 11.5, 13.5 thermistors hung up on mooring line, depth not correct; 11.5 and 13.5 thermistors may be in sediment
+                  
+                  
+                    s; x; 11.5b; 13.5b
+                    thermistors reporting suspect data (flatline and intermittent erroneous values); thermistors may be damaged; 11.5 and 13.5 thermistors may be in sediment
+                  
+                
+              
+            
+          
+        
+      
+      702025
+    
+    
+      2007-2020_do_L1_v26Feb2021
+      data table for buoy DO sensors 2007-2020
+      
+        2007-2020_do_L1_v26Feb2021.csv
+        39295194
+        799f97a09ff31d87aa138ae5a7e7137e
+        
+          
+            1
+            \n
+            column
+            
+              ,
+            
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/f4d3535cebd96715c872a7d3ca45c196
+          
+        
+      
+      
+        
+          datetime
+          date and time (UTC -4) of buoy record - no daylight savings observed
+          date
+          
+            
+              YYYY-MM-DD hh:mm:ss
+              
+            
+          
+        
+        
+          location
+          location of buoy
+          string
+          
+            
+              
+                
+                  
+                    harbor
+                    buoy is located in harbor
+                  
+                  
+                    in transit
+                    buoy is moving between harbor and loon island
+                  
+                  
+                    loon
+                    buoy is located near loon island
+                  
+                  
+                    offline
+                    buoy is offline, no data acquired
+                  
+                
+              
+            
+          
+        
+        
+          DOSat
+          dissolved oxygen saturation at upper DO sensor
+          float
+          
+            
+              
+                percentSaturation
+              
+              
+                real
+                
+                  55.96
+                  143.6
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          DOppm
+          dissolved oxygen concentration at upper DO sensor
+          float
+          
+            
+              
+                partsPerMillion
+              
+              
+                real
+                
+                  5.515
+                  20.61
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          DOTempC
+          water temperature at upper DO sensor
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  0.18
+                  27.23
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          upper_do_flag
+          flag for upper DO sensor values
+          string
+          
+            
+              
+                
+                  
+                    c
+                    do sensor calibrated
+                  
+                  
+                    cp
+                    do sensor calibrated (presumed, not documented)
+                  
+                  
+                    i
+                    do sensor reporting intermittent data
+                  
+                  
+                    iw
+                    do sensor reporting intermittent data; do sensor cleaned
+                  
+                  
+                    ix
+                    do sensor reporting intermittent data; do sensor may be uncalibrated (no documentation of calibration)
+                  
+                  
+                    m
+                    do sensor miscalibrated, do not use data without correction
+                  
+                  
+                    mcep
+                    do sensor miscalibrated, do not use data without correction; calibration presumed (no documentation of calibration)
+                  
+                  
+                    w
+                    do sensor cleaned
+                  
+                  
+                    wp
+                    do sensor cleaned (presumed, not documented)
+                  
+                  
+                    wx
+                    do sensor cleaned, but may be uncalibrated (no documentation of calibration)
+                  
+                  
+                    x
+                    do sensor may be uncalibrated (no documentation of calibration)
+                  
+                  
+                    xwp
+                    do sensor cleaned (presumed, not documented), but may be uncalibrated (no documentation of calibration)
+                  
+                
+              
+            
+          
+        
+        
+          DOLowSat
+          dissolved oxygen saturation at lower DO sensor
+          float
+          
+            
+              
+                percentSaturation
+              
+              
+                real
+                
+                  60.77
+                  148.9
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          DOLowPPM
+          dissolved oxygen concentration at lower DO sensor
+          float
+          
+            
+              
+                partsPerMillion
+              
+              
+                real
+                
+                  6.269
+                  14.54
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          DOLowTempC
+          water temperature at lower DO sensor
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  6.579
+                  22.24
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          lower_do_flag
+          flag for lower DO sensor values
+          string
+          
+            
+              
+                
+                  
+                    c
+                    do sensor calibrated
+                  
+                  
+                    cp
+                    do sensor calibrated (presumed, not documented)
+                  
+                  
+                    d
+                    sensor hung up on mooring line, depth likely incorrect
+                  
+                  
+                    dcp
+                    sensor hung up on mooring line, depth likely incorrect; do sensor calibrated (presumed, not documented)
+                  
+                  
+                    i
+                    do sensor reporting intermittent data
+                  
+                  
+                    iw
+                    do sensor reporting intermittent data; do sensor cleaned
+                  
+                  
+                    re
+                    do sensor cap replaced, calibration errant; do sensor may be uncalibrated (no documentation of calibration)
+                  
+                  
+                    w
+                    do sensor cleaned
+                  
+                  
+                    wp
+                    do sensor cleaned (presumed, not documented)
+                  
+                  
+                    x
+                    do sensor may be uncalibrated (no documentation of calibration)
+                  
+                
+              
+            
+          
+        
+      
+      702025
+    
+    
+      2015_hobotempstring_L1
+      data table for summer 2015 HOBO temperature string
+      
+        2015_hobotempstring_L1.csv
+        548443
+        eed724570fbe027a256a3795551ffb5c
+        
+          
+            1
+            \n
+            column
+            
+              ,
+            
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/14340fa6419a6b4bc82cfe4713c25ea6
+          
+        
+      
+      
+        
+          datetime
+          date and time (UTC -4) of buoy record - no daylight savings observed
+          date
+          
+            
+              YYYY-MM-DD hh:mm:ss
+              
+            
+          
+        
+        
+          TempC_0p5m
+          water temperature approximately 0.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  19.662
+                  26.585
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_1p5m
+          water temperature approximately 1.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                natural
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_2p5m
+          water temperature approximately 2.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  19.567
+                  25.902
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_3p5m
+          water temperature approximately 3.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  19.567
+                  25.61
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_4p5m
+          water temperature approximately 4.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  19.662
+                  25.513
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_5p5m
+          water temperature approximately 5.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                natural
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_6p5m
+          water temperature approximately 6.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  19.662
+                  25.028
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_7p5m
+          water temperature approximately 7.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  17.76
+                  24.062
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          TempC_8p5m
+          water temperature approximately 8.5 meters below surface
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  14.421
+                  21.855
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          location
+          location of buoy
+          string
+          
+            
+              
+                
+                  location of buoy
+                
+              
+            
+          
+        
+      
+      4993
+    
+    
+      2018_hobodo_L1
+      data table for summer 2018 HOBO dissolved oxygen sensor
+      
+        2018_hobodo_L1.csv
+        578145
+        7ae027b3eb1133f891a5e71c315180c4
+        
+          
+            1
+            \n
+            column
+            
+              ,
+            
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/938a361cbd4f373ba13dec92b6a66caa
+          
+        
+      
+      
+        
+          datetime
+          date and time (UTC -4) of buoy record - no daylight savings observed
+          date
+          
+            
+              YYYY-MM-DD hh:mm:ss
+              
+            
+          
+        
+        
+          do_mgl
+          dissolved oxygen concentration at HOBO DO sensor
+          float
+          
+            
+              
+                milligramsPerLiter
+              
+              
+                real
+                
+                  7.85
+                  10.83
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          temp_degC
+          water temperature at HOBO DO sensor
+          float
+          
+            
+              
+                celsius
+              
+              
+                real
+                
+                  13.88
+                  27.46
+                
+              
+            
+          
+          
+            NA
+            not available
+          
+        
+        
+          hobodo_flag
+          flag for HOBO DO sensor values
+          string
+          
+            
+              
+                
+                  
+                    c
+                    do sensor calibrated
+                  
+                
+              
+            
+          
+        
+        
+          location
+          location of buoy
+          string
+          
+            
+              
+                
+                  
+                    loon
+                    buoy is located near loon island
+                  
+                
+              
+            
+          
+        
+      
+      13644
+    
+    
+      buoylocation_datapub
+      table of buoy location details
+      
+        buoylocation_datapub.csv
+        73
+        04d2fac53eabe63c8cde09366d04bdbe
+        
+          
+            1
+            \r\n
+            column
+            
+              ,
+            
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/9cd342fb70af70d79bc3a258aedeed26
+          
+        
+      
+      
+        
+          location
+          location of buoy
+          string
+          
+            
+              
+                
+                  
+                    harbor
+                    buoy is located in harbor
+                  
+                  
+                    loon
+                    buoy is located near loon island
+                  
+                
+              
+            
+          
+        
+        
+          lat_dd
+          latitude of buoy location - WGS84
+          float
+          
+            
+              
+                decimalDegree
+              
+              
+                real
+                
+                  43.3857
+                  43.3913
+                
+              
+            
+          
+        
+        
+          long_dd
+          longitude of buoy location - WGS84
+          float
+          
+            
+              
+                decimalDegree
+              
+              
+                real
+                
+                  -72.0812
+                  -72.0576
+                
+              
+            
+          
+        
+      
+      2
+    
+    
+      Sunapee_buoy_2007
+      R code to QAQC 2007 buoy data
+      
+        Sunapee_buoy_2007.R
+        29410
+        019368d971fe3cfc3c79d3e4448a22cb
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/d6444f1ab70f325d82bdfef1a0d19a63
+          
+        
+      
+      unknown
+    
+    
+      Sunapee_buoy_2008
+      R code to QAQC 2008 buoy data
+      
+        Sunapee_buoy_2008.R
+        72113
+        ffc0e3b55d7b6c3ecb62262709c06567
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/d40cd681ee2f9ff9ae65be67965c44f4
+          
+        
+      
+      unknown
+    
+    
+      Sunapee_buoy_2009
+      R code to QAQC 2009 buoy data
+      
+        Sunapee_buoy_2009.R
+        67207
+        a9f0bfce439fcc4f745efaa4752dcae5
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/bfc131a00042bd5b996f482bf1c453b4
+          
+        
+      
+      unknown
+    
+    
+      Sunapee_buoy_2010
+      R code to QAQC 2010 buoy data
+      
+        Sunapee_buoy_2010.R
+        123200
+        88a83187bada193b8d143a3316eb14b4
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/bf02ab34e78697b4ea4baffafa4854f6
+          
+        
+      
+      unknown
+    
+    
+      Sunapee_buoy_2011
+      R code to QAQC 2011 buoy data
+      
+        Sunapee_buoy_2011.R
+        51749
+        8edb0ab80592a208547ab4e10bb2a12f
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/64d60b30273127bf15bb091a697175ae
+          
+        
+      
+      unknown
+    
+    
+      Sunapee_buoy_2012
+      R code to QAQC 2012 buoy data
+      
+        Sunapee_buoy_2012.R
+        50529
+        c4f85617b7a6facabd9627685f05d5d4
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/284c3e073854bde3ecaf4c2bf3e5f7db
+          
+        
+      
+      unknown
+    
+    
+      Sunapee_buoy_2013
+      R code to QAQC 2013 buoy data
+      
+        Sunapee_buoy_2013.R
+        53969
+        f69ef9f7d7cef5cc18ed6cad545853ee
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/b1b90daae8146fbac3e370d554ca9d54
+          
+        
+      
+      unknown
+    
+    
+      Sunapee_buoy_2014
+      R code to QAQC 2014 buoy data
+      
+        Sunapee_buoy_2014.R
+        55636
+        5c8fdb115cace5dd883aa0fb2c9a1b5b
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/7c5d0c9fea0fe69291416ce5a186c409
+          
+        
+      
+      unknown
+    
+    
+      Sunapee_buoy_2015
+      R code to QAQC 2015 buoy data
+      
+        Sunapee_buoy_2015.R
+        58870
+        9792f99ce744018d8fa0e92d0f0a2b96
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/94c885587a47d3cff8a859d063cc8da1
+          
+        
+      
+      unknown
+    
+    
+      Sunapee_buoy_2016
+      R code to QAQC 2016 buoy data
+      
+        Sunapee_buoy_2016.R
+        72785
+        1ef2e9ab92066f2a1238045346d7a5e4
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/80fa17837eab9b821a3b6e084af3a9ba
+          
+        
+      
+      unknown
+    
+    
+      Sunapee_buoy_2017
+      R code to QAQC 2017 buoy data
+      
+        Sunapee_buoy_2017.R
+        73622
+        c4135ef03c96971d0b85d953350b03e9
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/fef8ea43ee3a4a199913d2350f62c8bc
+          
+        
+      
+      unknown
+    
+    
+      Sunapee_buoy_2018
+      R code to QAQC 2018 buoy data
+      
+        Sunapee_buoy_2018.R
+        52002
+        b201d73b71f806cb1e3cce1b731a5c55
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/3f2f3704a4b9af13c5362d383a4d4e62
+          
+        
+      
+      unknown
+    
+    
+      Sunapee_buoy_2019
+      R code to QAQC 2019 buoy data
+      
+        Sunapee_buoy_2019.R
+        47953
+        d17382b4f6d89a63d215db897f1d1a47
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/2b9345630330ab64d9563a54df413a40
+          
+        
+      
+      unknown
+    
+    
+      Sunapee_buoy_2020
+      R code to QAQC 2020 buoy data
+      
+        Sunapee_buoy_2020.R
+        57428
+        a16f0e5c91f4be363afe83f293e2aab1
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/ab1995cf26cfa473e989e85bc93883b7
+          
+        
+      
+      unknown
+    
+    
+      Sunapee_hobo_2015
+      R code to QAQC 2015 HOBO temperature line data
+      
+        Sunapee_hobo_2015.R
+        3767
+        6609eacf61b9d8f86ce2cde4197d5ee9
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/b1458efae9ef7aa2938867c615c6cb44
+          
+        
+      
+      unknown
+    
+    
+      sunapee_hobodo_2018
+      R code to QAQC 2018 HOBO dissolved oxygen sensor data
+      
+        sunapee_hobodo_2018.R
+        2772
+        8a27905b2ab2136679d98bce8e4f1d08
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/8b14096c3201fd1036700f23c5254b44
+          
+        
+      
+      unknown
+    
+    
+      buoy_do_collation
+      R code to collate dissolved oxygen data
+      
+        buoy_do_collation.R
+        7313
+        4c478e9e748266c75f1f99ac32d82300
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/3b8829784d635920f3696689b2d6f1ec
+          
+        
+      
+      unknown
+    
+    
+      buoy_temp_collation
+      R code to collate thermistor data
+      
+        buoy_temp_collation.R
+        4954
+        94da3234869eaef9e2ede0dc3609589f
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/201ed8ee676e3a6de8e6c9a5f92e48ec
+          
+        
+      
+      unknown
+    
+    
+      library_func_lists
+      R code for libraries, functions, and lists used in all R code
+      
+        library_func_lists.R
+        3024
+        1c1be3fb36f72b76c6fa84ad3df06e15
+        
+          
+            text/plain
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/7fdf8f393481f473bd975ef31a7aed22
+          
+        
+      
+      unknown
+    
+    
+      sunapee_buoytempdo_eml_v22April2020
+      R code to generate buoy weather EML
+      
+        sunapee_buoytempdo_eml_v26Feb2021.Rmd
+        47395
+        6fbefafd1b902577f9150d446d26d82b
+        
+          
+            text/x-markdown
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/499/2/430ec4465d05ff1874bdb6f5dbf4c88f
+          
+        
+      
+      unknown
+    
+  
+  
+    
+      
+        
+          expression of latitude and longitude geographic coordinates as decimal fractions of a degree
+        
+        
+          percentage of dissolved oxygen concentration relative to that when completely saturated at the temperature of the measurement depth
+        
+        
+          parts per million
+        
+      
+    
+  
