@@ -89,9 +89,15 @@ mean(wrt$wrt)
 range(wrt$wrt)
 
 #get ice
+
+write.csv(sim_vars(nc_file), "vars.csv")
+iceblue <- get_var(nc_file, "blue_ice_thickness")
 ice<-get_var(nc_file,"hwice")
 iceblue<-get_var(nc_file,"hice")
 icesnow <- get_var(nc_file, "hsnow")
+
+plot(iceblue$DateTime, iceblue$blue_ice_thickness)
+
 plot(ice$DateTime,rowSums(cbind(ice$hwice,iceblue$hice)))
 plot(ice$DateTime,ice$hwice, col="black", type="l", ylim=c(0,0.2))
 lines(ice$DateTime, iceblue$hice, col="blue", type="l")

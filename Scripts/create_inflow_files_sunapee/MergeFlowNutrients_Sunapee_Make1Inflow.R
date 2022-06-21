@@ -159,36 +159,36 @@ nutBAL$time<-as.POSIXct(nutBAL$time, format="%Y-%m-%d")
 nutBAL$time<-as.POSIXct(nutBAL$time, format="%Y")
 iBAL <- iBAL %>% left_join(nutBAL)
 
-iALL <- iUNG %>% left_join(iBAL)%>%left_join(i505)%>% left_join(i790) %>% 
-  left_join(i830)  %>% left_join(i788) %>% left_join(i510) %>% left_join(i540) %>% left_join(i800) %>% 
-  left_join(i835) %>% left_join(i805)%>% left_join(i665)%>% left_join(i760)
-
-iALL<-iALL%>%mutate(totFLOW=FLOWung+FLOWBAL+FLOW505+FLOW790+FLOW830+FLOW788+FLOW510+FLOW540+FLOW800+
-                      FLOW835+FLOW805+FLOW665+FLOW760)
-iALL<-iALL%>%mutate(vwsTP=(TPung*FLOWung/totFLOW)+(TPBAL*FLOWBAL/totFLOW)+(TP505*FLOW505/totFLOW)+(TP790*FLOW790/totFLOW)+
-                      (TP830*FLOW830/totFLOW)+(TP788*FLOW788/totFLOW)+(TP510*FLOW510/totFLOW)+
-                      (TP540*FLOW540/totFLOW)+(TP800*FLOW800/totFLOW)+
-                      (TP835*FLOW835/totFLOW)+
-                      (TP805*FLOW805/totFLOW)+(TP665*FLOW665/totFLOW)+(TP760*FLOW760/totFLOW))
-iALL<-iALL%>%mutate(vwsTN=(TNung*FLOWung/totFLOW)+(TNBAL*FLOWBAL/totFLOW)+(TN505*FLOW505/totFLOW)+(TN790*FLOW790/totFLOW)+
-                      (TN830*FLOW830/totFLOW)+(TN788*FLOW788/totFLOW)+(TN510*FLOW510/totFLOW)+
-                      (TN540*FLOW540/totFLOW)+(TN800*FLOW800/totFLOW)+
-                      (TN835*FLOW835/totFLOW)+
-                      (TN805*FLOW805/totFLOW)+(TN665*FLOW665/totFLOW)+(TN760*FLOW760/totFLOW))
-iALL<-iALL%>%mutate(vwsTEMP=(TEMPung*FLOWung/totFLOW)+(TEMPBAL*FLOWBAL/totFLOW)+(TEMP505*FLOW505/totFLOW)+(TEMP790*FLOW790/totFLOW)+
-                      (TEMP830*FLOW830/totFLOW)+(TEMP788*FLOW788/totFLOW)+(TEMP510*FLOW510/totFLOW)+
-                      (TEMP540*FLOW540/totFLOW)+(TEMP800*FLOW800/totFLOW)+
-                      (TEMP835*FLOW835/totFLOW)+
-                      (TEMP805*FLOW805/totFLOW)+(TEMP665*FLOW665/totFLOW)+(TEMP760*FLOW760/totFLOW))
-iALL<-iALL%>%mutate(SALT=0)
-oneINFLOW<-subset(iALL,select=c("time","totFLOW","SALT","vwsTEMP","vwsTP","vwsTN"))
-names(oneINFLOW)[names(oneINFLOW)==c("time","totFLOW","SALT","vwsTEMP","vwsTP","vwsTN")] <- 
-  c("time","FLOW","SALT","TEMP","TP","TN")
-
-test<-oneINFLOW[which(oneINFLOW$time>"2004-12-26"),]
-test<-test[which(test$time<"2011-01-01"),]
-mean(test$TP,na.rm=TRUE)*31/1000
-mean(test$TN,na.rm=TRUE)*14/1000
+# iALL <- iUNG %>% left_join(iBAL)%>%left_join(i505)%>% left_join(i790) %>% 
+#   left_join(i830)  %>% left_join(i788) %>% left_join(i510) %>% left_join(i540) %>% left_join(i800) %>% 
+#   left_join(i835) %>% left_join(i805)%>% left_join(i665)%>% left_join(i760)
+# 
+# iALL<-iALL%>%mutate(totFLOW=FLOWung+FLOWBAL+FLOW505+FLOW790+FLOW830+FLOW788+FLOW510+FLOW540+FLOW800+
+#                       FLOW835+FLOW805+FLOW665+FLOW760)
+# iALL<-iALL%>%mutate(vwsTP=(TPung*FLOWung/totFLOW)+(TPBAL*FLOWBAL/totFLOW)+(TP505*FLOW505/totFLOW)+(TP790*FLOW790/totFLOW)+
+#                       (TP830*FLOW830/totFLOW)+(TP788*FLOW788/totFLOW)+(TP510*FLOW510/totFLOW)+
+#                       (TP540*FLOW540/totFLOW)+(TP800*FLOW800/totFLOW)+
+#                       (TP835*FLOW835/totFLOW)+
+#                       (TP805*FLOW805/totFLOW)+(TP665*FLOW665/totFLOW)+(TP760*FLOW760/totFLOW))
+# iALL<-iALL%>%mutate(vwsTN=(TNung*FLOWung/totFLOW)+(TNBAL*FLOWBAL/totFLOW)+(TN505*FLOW505/totFLOW)+(TN790*FLOW790/totFLOW)+
+#                       (TN830*FLOW830/totFLOW)+(TN788*FLOW788/totFLOW)+(TN510*FLOW510/totFLOW)+
+#                       (TN540*FLOW540/totFLOW)+(TN800*FLOW800/totFLOW)+
+#                       (TN835*FLOW835/totFLOW)+
+#                       (TN805*FLOW805/totFLOW)+(TN665*FLOW665/totFLOW)+(TN760*FLOW760/totFLOW))
+# iALL<-iALL%>%mutate(vwsTEMP=(TEMPung*FLOWung/totFLOW)+(TEMPBAL*FLOWBAL/totFLOW)+(TEMP505*FLOW505/totFLOW)+(TEMP790*FLOW790/totFLOW)+
+#                       (TEMP830*FLOW830/totFLOW)+(TEMP788*FLOW788/totFLOW)+(TEMP510*FLOW510/totFLOW)+
+#                       (TEMP540*FLOW540/totFLOW)+(TEMP800*FLOW800/totFLOW)+
+#                       (TEMP835*FLOW835/totFLOW)+
+#                       (TEMP805*FLOW805/totFLOW)+(TEMP665*FLOW665/totFLOW)+(TEMP760*FLOW760/totFLOW))
+# iALL<-iALL%>%mutate(SALT=0)
+# oneINFLOW<-subset(iALL,select=c("time","totFLOW","SALT","vwsTEMP","vwsTP","vwsTN"))
+# names(oneINFLOW)[names(oneINFLOW)==c("time","totFLOW","SALT","vwsTEMP","vwsTP","vwsTN")] <- 
+#   c("time","FLOW","SALT","TEMP","TP","TN")
+# 
+# test<-oneINFLOW[which(oneINFLOW$time>"2004-12-26"),]
+# test<-test[which(test$time<"2011-01-01"),]
+# mean(test$TP,na.rm=TRUE)*31/1000
+# mean(test$TN,na.rm=TRUE)*14/1000
 
 oneINFLOW<-oneINFLOW%>%mutate(OGM_doc=125)%>%mutate(OGM_poc=12.5)%>%mutate(OGM_don=0.4*TN)%>%
   mutate(NIT_nit=0.1*TN)%>%mutate(NIT_amm=0.1*TN)%>%mutate(OGM_pon=0.4*TN)%>%
