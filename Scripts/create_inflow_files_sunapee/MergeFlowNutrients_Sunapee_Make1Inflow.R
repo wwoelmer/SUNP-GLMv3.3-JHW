@@ -3,7 +3,7 @@ rm(list=ls())
 #options(scipen = 999)
 
 nuts<-read.csv("./data/individual_inflows/TN_TP_Inflow_conc_fracNP_boot_2021-03-16.csv")
-files<-list.files("./data/individual_inflows/", pattern = "*totalinflow_temp_2021-03-17.csv")
+files<-list.files("./data/individual_inflows/", pattern = "*totalinflow_temp_2022-06-24.csv")
 alldata <- do.call(rbind,lapply(paste0("./data/individual_inflows/", files), read.csv))
 
 alldata$date<-as.character(alldata$date)
@@ -24,6 +24,25 @@ nut505$time<-as.POSIXct(nut505$time, format="%Y-%m-%d")
 nut505$time<-as.POSIXct(nut505$time, format="%Y")
 i505 <- i505 %>% left_join(nut505)
 
+colnames(i505) <- c("time", "FLOW", "TEMP", "TP", "TN")
+
+i505<-i505%>%mutate(OGM_doc=125)%>%mutate(OGM_poc=12.5)%>%mutate(OGM_don=0.4*TN)%>%
+  mutate(NIT_nit=0.1*TN)%>%mutate(NIT_amm=0.1*TN)%>%mutate(OGM_pon=0.4*TN)%>%
+  mutate(PHS_frp=0.0295*TP)%>%mutate(OGM_dop=0.1435*TP)%>%mutate(OGM_pop=0.327*TP)%>%
+  mutate(PHS_frp_ads=0.5*TP)
+i505<-i505%>%mutate(SALT=0)
+
+colnames(i505)
+
+i505<-subset(i505,select=c("time","FLOW","SALT","TEMP","OGM_doc","OGM_poc",
+                                     "OGM_don","NIT_nit","NIT_amm","OGM_pon","PHS_frp","OGM_dop",
+                                     "OGM_pop","PHS_frp_ads"))
+
+i505 <- filter(i505, time >= as.POSIXct("1981-12-23"))
+
+write.csv(i505, "./data/individual_inflows/formatted_ind_inflows_loads/i505_load_input.csv", row.names = FALSE, quote = FALSE)
+
+
 i790<-alldata[which(alldata$stream_id==790),]
 i790<- subset(i790, select=c("date", "modelinflow_m3ps", "ModStreamTemp_degC"))
 names(i790)[names(i790)==c("date", "modelinflow_m3ps", "ModStreamTemp_degC")] <- c("time","FLOW790","TEMP790")
@@ -33,6 +52,25 @@ nut790$time<-as.character(nut790$time)
 nut790$time<-as.POSIXct(nut790$time, format="%Y-%m-%d")
 nut790$time<-as.POSIXct(nut790$time, format="%Y")
 i790 <- i790 %>% left_join(nut790)
+
+colnames(i790) <- c("time", "FLOW", "TEMP", "TP", "TN")
+
+i790<-i790%>%mutate(OGM_doc=125)%>%mutate(OGM_poc=12.5)%>%mutate(OGM_don=0.4*TN)%>%
+  mutate(NIT_nit=0.1*TN)%>%mutate(NIT_amm=0.1*TN)%>%mutate(OGM_pon=0.4*TN)%>%
+  mutate(PHS_frp=0.0295*TP)%>%mutate(OGM_dop=0.1435*TP)%>%mutate(OGM_pop=0.327*TP)%>%
+  mutate(PHS_frp_ads=0.5*TP)
+i790<-i790%>%mutate(SALT=0)
+
+colnames(i790)
+
+i790<-subset(i790,select=c("time","FLOW","SALT","TEMP","OGM_doc","OGM_poc",
+                           "OGM_don","NIT_nit","NIT_amm","OGM_pon","PHS_frp","OGM_dop",
+                           "OGM_pop","PHS_frp_ads"))
+
+i790 <- filter(i790, time >= as.POSIXct("1981-12-23"))
+
+write.csv(i790, "./data/individual_inflows/formatted_ind_inflows_loads/i790_load_input.csv", row.names = F, quote = FALSE)
+
 
 i830<-alldata[which(alldata$stream_id==830),]
 i830<- subset(i830, select=c("date", "modelinflow_m3ps", "ModStreamTemp_degC"))
@@ -44,6 +82,25 @@ nut830$time<-as.POSIXct(nut830$time, format="%Y-%m-%d")
 nut830$time<-as.POSIXct(nut830$time, format="%Y")
 i830 <- i830 %>% left_join(nut830)
 
+colnames(i830) <- c("time", "FLOW", "TEMP", "TP", "TN")
+
+i830<-i830%>%mutate(OGM_doc=125)%>%mutate(OGM_poc=12.5)%>%mutate(OGM_don=0.4*TN)%>%
+  mutate(NIT_nit=0.1*TN)%>%mutate(NIT_amm=0.1*TN)%>%mutate(OGM_pon=0.4*TN)%>%
+  mutate(PHS_frp=0.0295*TP)%>%mutate(OGM_dop=0.1435*TP)%>%mutate(OGM_pop=0.327*TP)%>%
+  mutate(PHS_frp_ads=0.5*TP)
+i830<-i830%>%mutate(SALT=0)
+
+colnames(i830)
+
+i830<-subset(i830,select=c("time","FLOW","SALT","TEMP","OGM_doc","OGM_poc",
+                           "OGM_don","NIT_nit","NIT_amm","OGM_pon","PHS_frp","OGM_dop",
+                           "OGM_pop","PHS_frp_ads"))
+
+i830 <- filter(i830, time >= as.POSIXct("1981-12-23"))
+
+write.csv(i830, "./data/individual_inflows/formatted_ind_inflows_loads/i830_load_input.csv", row.names = F, quote = FALSE)
+
+
 i788<-alldata[which(alldata$stream_id==788),]
 i788<- subset(i788, select=c("date", "modelinflow_m3ps", "ModStreamTemp_degC"))
 names(i788)[names(i788)==c("date", "modelinflow_m3ps", "ModStreamTemp_degC")] <- c("time","FLOW788","TEMP788")
@@ -53,6 +110,25 @@ nut788$time<-as.character(nut788$time)
 nut788$time<-as.POSIXct(nut788$time, format="%Y-%m-%d")
 nut788$time<-as.POSIXct(nut788$time, format="%Y")
 i788 <- i788 %>% left_join(nut788)
+
+colnames(i788) <- c("time", "FLOW", "TEMP", "TP", "TN")
+
+i788<-i788%>%mutate(OGM_doc=125)%>%mutate(OGM_poc=12.5)%>%mutate(OGM_don=0.4*TN)%>%
+  mutate(NIT_nit=0.1*TN)%>%mutate(NIT_amm=0.1*TN)%>%mutate(OGM_pon=0.4*TN)%>%
+  mutate(PHS_frp=0.0295*TP)%>%mutate(OGM_dop=0.1435*TP)%>%mutate(OGM_pop=0.327*TP)%>%
+  mutate(PHS_frp_ads=0.5*TP)
+i788<-i788%>%mutate(SALT=0)
+
+colnames(i788)
+
+i788<-subset(i788,select=c("time","FLOW","SALT","TEMP","OGM_doc","OGM_poc",
+                           "OGM_don","NIT_nit","NIT_amm","OGM_pon","PHS_frp","OGM_dop",
+                           "OGM_pop","PHS_frp_ads"))
+
+i788 <- filter(i788, time >= as.POSIXct("1981-12-23"))
+
+write.csv(i788, "./data/individual_inflows/formatted_ind_inflows_loads/i788_load_input.csv", row.names = F, quote = FALSE)
+
 
 i510<-alldata[which(alldata$stream_id==510),]
 i510<- subset(i510, select=c("date", "modelinflow_m3ps", "ModStreamTemp_degC"))
@@ -64,6 +140,25 @@ nut510$time<-as.POSIXct(nut510$time, format="%Y-%m-%d")
 nut510$time<-as.POSIXct(nut510$time, format="%Y")
 i510 <- i510 %>% left_join(nut510)
 
+colnames(i510) <- c("time", "FLOW", "TEMP", "TP", "TN")
+
+i510<-i510%>%mutate(OGM_doc=125)%>%mutate(OGM_poc=12.5)%>%mutate(OGM_don=0.4*TN)%>%
+  mutate(NIT_nit=0.1*TN)%>%mutate(NIT_amm=0.1*TN)%>%mutate(OGM_pon=0.4*TN)%>%
+  mutate(PHS_frp=0.0295*TP)%>%mutate(OGM_dop=0.1435*TP)%>%mutate(OGM_pop=0.327*TP)%>%
+  mutate(PHS_frp_ads=0.5*TP)
+i510<-i510%>%mutate(SALT=0)
+
+colnames(i510)
+
+i510<-subset(i510,select=c("time","FLOW","SALT","TEMP","OGM_doc","OGM_poc",
+                           "OGM_don","NIT_nit","NIT_amm","OGM_pon","PHS_frp","OGM_dop",
+                           "OGM_pop","PHS_frp_ads"))
+
+i510 <- filter(i510, time >= as.POSIXct("1981-12-23"))
+
+write.csv(i510, "./data/individual_inflows/formatted_ind_inflows_loads/i510_load_input.csv", row.names = F, quote = FALSE)
+
+
 i540<-alldata[which(alldata$stream_id==540),]
 i540<- subset(i540, select=c("date", "modelinflow_m3ps", "ModStreamTemp_degC"))
 names(i540)[names(i540)==c("date", "modelinflow_m3ps", "ModStreamTemp_degC")] <- c("time","FLOW540","TEMP540")
@@ -73,6 +168,25 @@ nut540$time<-as.character(nut540$time)
 nut540$time<-as.POSIXct(nut540$time, format="%Y-%m-%d")
 nut540$time<-as.POSIXct(nut540$time, format="%Y")
 i540 <- i540 %>% left_join(nut540)
+
+colnames(i540) <- c("time", "FLOW", "TEMP", "TP", "TN")
+
+i540<-i540%>%mutate(OGM_doc=125)%>%mutate(OGM_poc=12.5)%>%mutate(OGM_don=0.4*TN)%>%
+  mutate(NIT_nit=0.1*TN)%>%mutate(NIT_amm=0.1*TN)%>%mutate(OGM_pon=0.4*TN)%>%
+  mutate(PHS_frp=0.0295*TP)%>%mutate(OGM_dop=0.1435*TP)%>%mutate(OGM_pop=0.327*TP)%>%
+  mutate(PHS_frp_ads=0.5*TP)
+i540<-i540%>%mutate(SALT=0)
+
+colnames(i540)
+
+i540<-subset(i540,select=c("time","FLOW","SALT","TEMP","OGM_doc","OGM_poc",
+                           "OGM_don","NIT_nit","NIT_amm","OGM_pon","PHS_frp","OGM_dop",
+                           "OGM_pop","PHS_frp_ads"))
+
+i540 <- filter(i540, time >= as.POSIXct("1981-12-23"))
+
+write.csv(i540, "./data/individual_inflows/formatted_ind_inflows_loads/i540_load_input.csv", row.names = F, quote = FALSE)
+
 
 # 
 i800<-alldata[which(alldata$stream_id==800),]
@@ -85,6 +199,26 @@ nut800$time<-as.POSIXct(nut800$time, format="%Y-%m-%d")
 nut800$time<-as.POSIXct(nut800$time, format="%Y")
 i800 <- i800 %>% left_join(nut800)
 
+colnames(i800) <- c("time", "FLOW", "TEMP", "TP", "TN")
+
+i800<-i800%>%mutate(OGM_doc=125)%>%mutate(OGM_poc=12.5)%>%mutate(OGM_don=0.4*TN)%>%
+  mutate(NIT_nit=0.1*TN)%>%mutate(NIT_amm=0.1*TN)%>%mutate(OGM_pon=0.4*TN)%>%
+  mutate(PHS_frp=0.0295*TP)%>%mutate(OGM_dop=0.1435*TP)%>%mutate(OGM_pop=0.327*TP)%>%
+  mutate(PHS_frp_ads=0.5*TP)
+i800<-i800%>%mutate(SALT=0)
+
+colnames(i800)
+
+i800<-subset(i800,select=c("time","FLOW","SALT","TEMP","OGM_doc","OGM_poc",
+                           "OGM_don","NIT_nit","NIT_amm","OGM_pon","PHS_frp","OGM_dop",
+                           "OGM_pop","PHS_frp_ads"))
+
+i800 <- filter(i800, time >= as.POSIXct("1981-12-23"))
+
+write.csv(i800, "./data/individual_inflows/formatted_ind_inflows_loads/i800_load_input.csv", row.names = F, quote = FALSE)
+
+
+
 i835<-alldata[which(alldata$stream_id==835),]
 i835<- subset(i835, select=c("date", "modelinflow_m3ps", "ModStreamTemp_degC"))
 names(i835)[names(i835)==c("date", "modelinflow_m3ps", "ModStreamTemp_degC")] <- c("time","FLOW835","TEMP835")
@@ -94,6 +228,25 @@ nut835$time<-as.character(nut835$time)
 nut835$time<-as.POSIXct(nut835$time, format="%Y-%m-%d")
 nut835$time<-as.POSIXct(nut835$time, format="%Y")
 i835 <- i835 %>% left_join(nut835)
+
+colnames(i835) <- c("time", "FLOW", "TEMP", "TP", "TN")
+
+i835<-i835%>%mutate(OGM_doc=125)%>%mutate(OGM_poc=12.5)%>%mutate(OGM_don=0.4*TN)%>%
+  mutate(NIT_nit=0.1*TN)%>%mutate(NIT_amm=0.1*TN)%>%mutate(OGM_pon=0.4*TN)%>%
+  mutate(PHS_frp=0.0295*TP)%>%mutate(OGM_dop=0.1435*TP)%>%mutate(OGM_pop=0.327*TP)%>%
+  mutate(PHS_frp_ads=0.5*TP)
+i835<-i835%>%mutate(SALT=0)
+
+colnames(i835)
+
+i835<-subset(i835,select=c("time","FLOW","SALT","TEMP","OGM_doc","OGM_poc",
+                           "OGM_don","NIT_nit","NIT_amm","OGM_pon","PHS_frp","OGM_dop",
+                           "OGM_pop","PHS_frp_ads"))
+
+i835 <- filter(i835, time >= as.POSIXct("1981-12-23"))
+
+write.csv(i835, "./data/individual_inflows/formatted_ind_inflows_loads/i835_load_input.csv", row.names = F, quote = FALSE)
+
 
 i805<-alldata[which(alldata$stream_id==805),]
 i805<- subset(i805, select=c("date", "modelinflow_m3ps", "ModStreamTemp_degC"))
@@ -105,6 +258,25 @@ nut805$time<-as.POSIXct(nut805$time, format="%Y-%m-%d")
 nut805$time<-as.POSIXct(nut805$time, format="%Y")
 i805 <- i805 %>% left_join(nut805)
 
+colnames(i805) <- c("time", "FLOW", "TEMP", "TP", "TN")
+
+i805<-i805%>%mutate(OGM_doc=125)%>%mutate(OGM_poc=12.5)%>%mutate(OGM_don=0.4*TN)%>%
+  mutate(NIT_nit=0.1*TN)%>%mutate(NIT_amm=0.1*TN)%>%mutate(OGM_pon=0.4*TN)%>%
+  mutate(PHS_frp=0.0295*TP)%>%mutate(OGM_dop=0.1435*TP)%>%mutate(OGM_pop=0.327*TP)%>%
+  mutate(PHS_frp_ads=0.5*TP)
+i805<-i805%>%mutate(SALT=0)
+
+colnames(i805)
+
+i805<-subset(i805,select=c("time","FLOW","SALT","TEMP","OGM_doc","OGM_poc",
+                           "OGM_don","NIT_nit","NIT_amm","OGM_pon","PHS_frp","OGM_dop",
+                           "OGM_pop","PHS_frp_ads"))
+
+i805 <- filter(i805, time >= as.POSIXct("1981-12-23"))
+
+write.csv(i805, "./data/individual_inflows/formatted_ind_inflows_loads/i805_load_input.csv", row.names = F, quote = FALSE)
+
+
 i665<-alldata[which(alldata$stream_id==665),]
 i665<- subset(i665, select=c("date", "modelinflow_m3ps", "ModStreamTemp_degC"))
 names(i665)[names(i665)==c("date", "modelinflow_m3ps", "ModStreamTemp_degC")] <- c("time","FLOW665","TEMP665")
@@ -114,6 +286,25 @@ nut665$time<-as.character(nut665$time)
 nut665$time<-as.POSIXct(nut665$time, format="%Y-%m-%d")
 nut665$time<-as.POSIXct(nut665$time, format="%Y")
 i665 <- i665 %>% left_join(nut665)
+
+colnames(i665) <- c("time", "FLOW", "TEMP", "TP", "TN")
+
+i665<-i665%>%mutate(OGM_doc=125)%>%mutate(OGM_poc=12.5)%>%mutate(OGM_don=0.4*TN)%>%
+  mutate(NIT_nit=0.1*TN)%>%mutate(NIT_amm=0.1*TN)%>%mutate(OGM_pon=0.4*TN)%>%
+  mutate(PHS_frp=0.0295*TP)%>%mutate(OGM_dop=0.1435*TP)%>%mutate(OGM_pop=0.327*TP)%>%
+  mutate(PHS_frp_ads=0.5*TP)
+i665<-i665%>%mutate(SALT=0)
+
+colnames(i665)
+
+i665<-subset(i665,select=c("time","FLOW","SALT","TEMP","OGM_doc","OGM_poc",
+                           "OGM_don","NIT_nit","NIT_amm","OGM_pon","PHS_frp","OGM_dop",
+                           "OGM_pop","PHS_frp_ads"))
+
+i665 <- filter(i665, time >= as.POSIXct("1981-12-23"))
+
+write.csv(i665, "./data/individual_inflows/formatted_ind_inflows_loads/i665_load_input.csv", row.names = F, quote = FALSE)
+
 
 
 i760<-alldata[which(alldata$stream_id==760),]
@@ -126,41 +317,60 @@ nut760$time<-as.POSIXct(nut760$time, format="%Y-%m-%d")
 nut760$time<-as.POSIXct(nut760$time, format="%Y")
 i760 <- i760 %>% left_join(nut760)
 
+colnames(i760) <- c("time", "FLOW", "TEMP", "TP", "TN")
 
-nuts<-nuts%>%mutate(aveTP=(i505_TP+i790_TP+i830_TP+i788_TP+i510_TP+i540_TP+i800_TP+
-                               i835_TP+i805_TP+i670_TP+i760_TP)/11)
-nuts<-nuts%>%mutate(aveTN=(i505_TN+i790_TN+i830_TN+i788_TN+i510_TN+i540_TN+i800_TN+
-                             i835_TN+i805_TN+i670_TN+i760_TN)/11)
-test<-subset(nuts,select=c("V1","aveTP","aveTN"))
+i760<-i760%>%mutate(OGM_doc=125)%>%mutate(OGM_poc=12.5)%>%mutate(OGM_don=0.4*TN)%>%
+  mutate(NIT_nit=0.1*TN)%>%mutate(NIT_amm=0.1*TN)%>%mutate(OGM_pon=0.4*TN)%>%
+  mutate(PHS_frp=0.0295*TP)%>%mutate(OGM_dop=0.1435*TP)%>%mutate(OGM_pop=0.327*TP)%>%
+  mutate(PHS_frp_ads=0.5*TP)
+i760<-i760%>%mutate(SALT=0)
 
-iUNG<-alldata[which(alldata$stream_id=="ung"),]
-iUNG<- subset(iUNG, select=c("date", "modelinflow_m3ps", "ModStreamTemp_degC"))
-names(iUNG)[names(iUNG)==c("date", "modelinflow_m3ps", "ModStreamTemp_degC")] <- c("time","FLOWung","TEMPung")
+colnames(i760)
 
-#nutUNG<-test #!!!14June19 testing how to reduce nutrient concentration for overall inflow concentration being ~3x epi concentration
-nutUNG<-subset(nuts,select=c("V1","i505_TP","i505_TN"))
+i760<-subset(i760,select=c("time","FLOW","SALT","TEMP","OGM_doc","OGM_poc",
+                           "OGM_don","NIT_nit","NIT_amm","OGM_pon","PHS_frp","OGM_dop",
+                           "OGM_pop","PHS_frp_ads"))
 
-#names(nutUNG)[names(nutUNG)==c("V1","aveTP","aveTN")] <- c("time","TPung","TNung")
-names(nutUNG)[names(nutUNG)==c("V1","i505_TP","i505_TN")] <- c("time","TPung","TNung")
-nutUNG$time<-as.character(nutUNG$time)
-nutUNG$time<-as.POSIXct(nutUNG$time, format="%Y-%m-%d")
-nutUNG$time<-as.POSIXct(nutUNG$time, format="%Y")
-iUNG <- iUNG %>% left_join(nutUNG)
+i760 <- filter(i760, time >= as.POSIXct("1981-12-23"))
 
-iBAL<-alldata[which(alldata$stream_id=="bal"),]
-iBAL<- subset(iBAL, select=c("date", "modelinflow_m3ps", "ModStreamTemp_degC"))
-names(iBAL)[names(iBAL)==c("date", "modelinflow_m3ps", "ModStreamTemp_degC")] <- c("time","FLOWBAL","TEMPBAL")
-nutBAL<-test
-names(nutBAL)[names(nutBAL)==c("V1","aveTP","aveTN")] <- c("time","TPBAL","TNBAL")
-nutBAL$time<-as.character(nutBAL$time)
-nutBAL$TPBAL<-0.0001
-nutBAL$TNBAL<-0.0001
-nutBAL$time<-as.POSIXct(nutBAL$time, format="%Y-%m-%d")
-nutBAL$time<-as.POSIXct(nutBAL$time, format="%Y")
-iBAL <- iBAL %>% left_join(nutBAL)
+write.csv(i760, "./data/individual_inflows/formatted_ind_inflows_loads/i760_load_input.csv", row.names = F, quote = FALSE)
 
-# iALL <- iUNG %>% left_join(iBAL)%>%left_join(i505)%>% left_join(i790) %>% 
-#   left_join(i830)  %>% left_join(i788) %>% left_join(i510) %>% left_join(i540) %>% left_join(i800) %>% 
+
+
+# nuts<-nuts%>%mutate(aveTP=(i505_TP+i790_TP+i830_TP+i788_TP+i510_TP+i540_TP+i800_TP+
+#                                i835_TP+i805_TP+i670_TP+i760_TP)/11)
+# nuts<-nuts%>%mutate(aveTN=(i505_TN+i790_TN+i830_TN+i788_TN+i510_TN+i540_TN+i800_TN+
+#                              i835_TN+i805_TN+i670_TN+i760_TN)/11)
+# test<-subset(nuts,select=c("V1","aveTP","aveTN"))
+# 
+# iUNG<-alldata[which(alldata$stream_id=="ung"),]
+# iUNG<- subset(iUNG, select=c("date", "modelinflow_m3ps", "ModStreamTemp_degC"))
+# names(iUNG)[names(iUNG)==c("date", "modelinflow_m3ps", "ModStreamTemp_degC")] <- c("time","FLOWung","TEMPung")
+# 
+# #nutUNG<-test #!!!14June19 testing how to reduce nutrient concentration for overall inflow concentration being ~3x epi concentration
+# nutUNG<-subset(nuts,select=c("V1","i505_TP","i505_TN"))
+# 
+# #names(nutUNG)[names(nutUNG)==c("V1","aveTP","aveTN")] <- c("time","TPung","TNung")
+# names(nutUNG)[names(nutUNG)==c("V1","i505_TP","i505_TN")] <- c("time","TPung","TNung")
+# nutUNG$time<-as.character(nutUNG$time)
+# nutUNG$time<-as.POSIXct(nutUNG$time, format="%Y-%m-%d")
+# nutUNG$time<-as.POSIXct(nutUNG$time, format="%Y")
+# iUNG <- iUNG %>% left_join(nutUNG)
+# 
+# iBAL<-alldata[which(alldata$stream_id=="bal"),]
+# iBAL<- subset(iBAL, select=c("date", "modelinflow_m3ps", "ModStreamTemp_degC"))
+# names(iBAL)[names(iBAL)==c("date", "modelinflow_m3ps", "ModStreamTemp_degC")] <- c("time","FLOWBAL","TEMPBAL")
+# nutBAL<-test
+# names(nutBAL)[names(nutBAL)==c("V1","aveTP","aveTN")] <- c("time","TPBAL","TNBAL")
+# nutBAL$time<-as.character(nutBAL$time)
+# nutBAL$TPBAL<-0.0001
+# nutBAL$TNBAL<-0.0001
+# nutBAL$time<-as.POSIXct(nutBAL$time, format="%Y-%m-%d")
+# nutBAL$time<-as.POSIXct(nutBAL$time, format="%Y")
+# iBAL <- iBAL %>% left_join(nutBAL)
+# 
+# iALL <- iUNG %>% left_join(iBAL)%>%left_join(i505)%>% left_join(i790) %>%
+#   left_join(i830)  %>% left_join(i788) %>% left_join(i510) %>% left_join(i540) %>% left_join(i800) %>%
 #   left_join(i835) %>% left_join(i805)%>% left_join(i665)%>% left_join(i760)
 # 
 # iALL<-iALL%>%mutate(totFLOW=FLOWung+FLOWBAL+FLOW505+FLOW790+FLOW830+FLOW788+FLOW510+FLOW540+FLOW800+
@@ -182,20 +392,20 @@ iBAL <- iBAL %>% left_join(nutBAL)
 #                       (TEMP805*FLOW805/totFLOW)+(TEMP665*FLOW665/totFLOW)+(TEMP760*FLOW760/totFLOW))
 # iALL<-iALL%>%mutate(SALT=0)
 # oneINFLOW<-subset(iALL,select=c("time","totFLOW","SALT","vwsTEMP","vwsTP","vwsTN"))
-# names(oneINFLOW)[names(oneINFLOW)==c("time","totFLOW","SALT","vwsTEMP","vwsTP","vwsTN")] <- 
+# names(oneINFLOW)[names(oneINFLOW)==c("time","totFLOW","SALT","vwsTEMP","vwsTP","vwsTN")] <-
 #   c("time","FLOW","SALT","TEMP","TP","TN")
 # 
 # test<-oneINFLOW[which(oneINFLOW$time>"2004-12-26"),]
 # test<-test[which(test$time<"2011-01-01"),]
 # mean(test$TP,na.rm=TRUE)*31/1000
 # mean(test$TN,na.rm=TRUE)*14/1000
-
-oneINFLOW<-oneINFLOW%>%mutate(OGM_doc=125)%>%mutate(OGM_poc=12.5)%>%mutate(OGM_don=0.4*TN)%>%
-  mutate(NIT_nit=0.1*TN)%>%mutate(NIT_amm=0.1*TN)%>%mutate(OGM_pon=0.4*TN)%>%
-  mutate(PHS_frp=0.0295*TP)%>%mutate(OGM_dop=0.1435*TP)%>%mutate(OGM_pop=0.327*TP)%>%
-  mutate(PHS_frp_ads=0.5*TP)
-
-oneINFLOW<-subset(oneINFLOW,select=c("time","FLOW","SALT","TEMP","OGM_doc","OGM_poc",
-                                     "OGM_don","NIT_nit","NIT_amm","OGM_pon","PHS_frp","OGM_dop",
-                                     "OGM_pop","PHS_frp_ads"))
-write.csv(oneINFLOW,paste0("./data/oneInflow", Sys.Date(), ".csv"), row.names = FALSE, quote = FALSE)
+# 
+# oneINFLOW<-oneINFLOW%>%mutate(OGM_doc=125)%>%mutate(OGM_poc=12.5)%>%mutate(OGM_don=0.4*TN)%>%
+#   mutate(NIT_nit=0.1*TN)%>%mutate(NIT_amm=0.1*TN)%>%mutate(OGM_pon=0.4*TN)%>%
+#   mutate(PHS_frp=0.0295*TP)%>%mutate(OGM_dop=0.1435*TP)%>%mutate(OGM_pop=0.327*TP)%>%
+#   mutate(PHS_frp_ads=0.5*TP)
+# 
+# oneINFLOW<-subset(oneINFLOW,select=c("time","FLOW","SALT","TEMP","OGM_doc","OGM_poc",
+#                                      "OGM_don","NIT_nit","NIT_amm","OGM_pon","PHS_frp","OGM_dop",
+#                                      "OGM_pop","PHS_frp_ads"))
+# write.csv(oneINFLOW,paste0("./data/oneInflow", Sys.Date(), ".csv"), row.names = FALSE, quote = FALSE)

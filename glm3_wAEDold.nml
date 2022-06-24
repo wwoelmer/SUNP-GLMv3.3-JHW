@@ -97,8 +97,8 @@
    time_fmt = 'YYYY-MM-DD hh:mm:ss'
 /
 &inflow
-   num_inflows = 1
-   names_of_strms = 'weir','SSS'
+   num_inflows = 11
+   names_of_strms = 'i505', 'i510', 'i540', 'i665', 'i760', 'i788', 'i790', 'i800', 'i805', 'i830', 'i835'
    subm_flag = .false., .true.
    strm_hf_angle = 65, -15
    strmbd_slope = 0.05, 15

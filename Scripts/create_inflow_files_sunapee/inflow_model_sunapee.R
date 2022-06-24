@@ -38,12 +38,12 @@ final_theme=theme_bw() +
 
 #load workspace. CNH-GLM_sunapee_inflowoutflow_begwrkspc has all the original data frames resulting from the 'read.csv' and 'read.xls' functions
 #change this to the appropriate working directory
-load("./scripts/create_inflow_files_sunapee/CNH-GLM_sunapee_inflowoutflow_begwrkspc.RData")
+load("Scripts/create_inflow_files_sunapee/CNH-GLM_sunapee_inflowoutflow_begwrkspc.RData")
 
 #### bring in NLDAS-2 climate data ####
-MetData <- read.csv('./NLDASData/NLDAS_Data_2019_2020/Sunapee_2018_12_31_2020_12_31_alldata.csv', header=T, na.strings=NA) 
+MetData <- read.csv('data/SunapeeMet_1979_2020EST.csv', header=T, na.strings=NA) 
 MetData <- MetData %>%   
-  select(local_dateTime, ShortWave.W_m2, LongWave.W_m2, AirTemp.C, RelHum, WindSpeed.m_s, Rain.m_day)
+  select(time, ShortWave, LongWave, AirTemp, RelHum, WindSpeed, Rain)
 colnames(MetData) <- c("time", 'ShortWave', "LongWave", "AirTemp", "RelHum", "WindSpeed", "Rain")
 
 MetData$dateTime <- as.POSIXct(MetData$time, format='%Y-%m-%d %H:%M:%S') #format date 
@@ -1046,7 +1046,7 @@ str(daily_t_all) #check work
 
 ####********** compare NLDAS2 and transducer stream temp data ***********####
 # read in historical met data to match with the pressure transducer data
-hist <- read.csv("C:/Users/wwoel/Desktop/Sunapee-GLM/data/SunapeeMet_1979_2018EST.csv")
+hist <- read.csv("data/SunapeeMet_1979_2018EST.csv")
 hist$date <- as.Date(hist$time)
 temp_daily <- summaryBy(AirTemp ~ date, 
                         data=hist,
@@ -1715,7 +1715,7 @@ pro_505 + pro_510 + pro_540 + pro_665 + pro_760 + pro_788 + pro_790 + pro_800 + 
 
 #### bring in lake sunapee area and volume data for other calculations ####
 #setwd("C:/Users/steeleb/Dropbox/Lake Sunapee/Lake Sunapee Lake Model/Final Data/lake level and storage") # in begwrkspc
-dam_volarea <- read.csv('./from_Bethel/Raw_Data/HypsographyStorage/historical area and volume according to dam depth.csv') #in begwrkspc
+dam_volarea <- read.csv('data/historical area and volume according to dam depth.csv') #in begwrkspc
 
 dam_volarea$date <- as.Date(dam_volarea$date, format='%Y-%m-%d')
 
@@ -1888,6 +1888,7 @@ inf_base_ung_s <- rename.vars(inf_base_ung_s, from='model_imp_50_50_plusbase_m3p
 inf_base_ung_s$stream_id <- 'ung'
 write.csv(inf_base_ung_s, file=paste0('./data/individual_inflows/ung_totalinflow_temp_', Sys.Date(),  '.csv'), row.names = F)
 
+###########################################################################################################################
 #### calculate additional storage via rain on lake ####
 #additional storage is area * aggregated rain/day
 dam_met$add_stor_rain_m3 <- dam_met$Rain.m_day * dam_met$area_m2
@@ -1927,7 +1928,7 @@ ix=which(balance_inflow$outflow_m3s<0) #select negative values
 balance_inflow$bal_inf_m3s = 0 #create a column of 0 values for next step
 balance_inflow$bal_inf_m3s[ix] = 0 - (balance_inflow$outflow_m3s [ix]) #create offsetting value
 balance_inflow_temp <- merge(balance_inflow, run510_temp_sub, by='date', all=T) #merge with a temp file made from all transducer data to mock an inflow file
-balance_inflow_sub <- subset(balance_inflow_temp, select=c('date', 'modelinflow_m3ps', 'ModStreamTemp_degC'))
+balance_inflow_sub <- subset(balance_inflow_temp, select=c('date', 'bal_inf_m3s', 'ModStreamTemp_degC'))
 balance_inflow_sub <- subset(balance_inflow_sub, subset=!is.na(bal_inf_m3s))
 balance_inflow_sub$stream_id <- 'bal'
 
@@ -1951,6 +1952,6 @@ corr_outflow_sub <- subset(corr_outflow, select=c('date', 'corr_outflow_m3s'))
 
 #write .csv
 #setwd("C:/Users/steeleb/Dropbox/Lake Sunapee/Lake Sunapee Lake Model/Final Data/outflow")
-write.csv(corr_outflow_sub, paste0('./data/individual_inflows/corr_outflow_impmodel_baseflow_', Sys.Date(),  '.csv'), row.names = F)
+write.csv(corr_outflow_sub, paste0('./data/individual_inflows/corr_outflow_impmodel_baseflow_', Sys.Date(),  '.csv'), row.names = F, quote = F)
 
 

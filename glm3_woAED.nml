@@ -89,14 +89,14 @@
    time_fmt = 'YYYY-MM-DD hh:mm:ss'
 /
 &inflow
-   num_inflows = 1
+   num_inflows = 11
    names_of_strms = 'ibal'
    subm_flag = .false.
    strm_hf_angle = 65
    strmbd_slope = 3
    strmbd_drag = 0.016
    inflow_factor = 1
-   inflow_fl = 'data/oneInflow_14Jun19.csv'
+   inflow_fl = 'data/individual_inflows/formatted_ind_inflows_loads/i505_load_input.csv', 'data/individual_inflows/formatted_ind_inflows_loads/i510_load_input.csv', 'data/individual_inflows/formatted_ind_inflows_loads/i540_load_input.csv', 'data/individual_inflows/formatted_ind_inflows_loads/i665_load_input.csv', 'data/individual_inflows/formatted_ind_inflows_loads/i760_load_input.csv', 'data/individual_inflows/formatted_ind_inflows_loads/i788_load_input.csv', 'data/individual_inflows/formatted_ind_inflows_loads/i790_load_input.csv', 'data/individual_inflows/formatted_ind_inflows_loads/i800_load_input.csv', 'data/individual_inflows/formatted_ind_inflows_loads/i805_load_input.csv', 'data/individual_inflows/formatted_ind_inflows_loads/i830_load_input.csv', 'data/individual_inflows/formatted_ind_inflows_loads/i835_load_input.csv'
    inflow_varnum = 13
    inflow_vars = 'FLOW','SALT','TEMP','OGM_doc','OGM_poc','OGM_don','NIT_nit','NIT_amm','OGM_pon','PHS_frp','OGM_dop','OGM_pop','PHS_frp_ads'
 /

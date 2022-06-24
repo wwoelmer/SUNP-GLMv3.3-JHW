@@ -24,7 +24,7 @@ setwd("~/Dropbox/SUNP-GLMv3.3-JHW/")
 sim_folder <- getwd()
 
 #look at glm and aed nml files
-nml_file <- paste0(sim_folder,"/glm3_woAED.nml")
+nml_file <- paste0(sim_folder,"/glm3.nml")
 aed_file <- paste0(sim_folder,"/aed/aed.nml")
 aed_phytos_file <- paste0(sim_folder,"/aed/aed2_phyto_pars_2May2022_RQT.nml")
 nml <- read_nml(nml_file) 
@@ -90,11 +90,15 @@ range(wrt$wrt)
 
 #get ice
 
-write.csv(sim_vars(nc_file), "vars.csv")
+#write.csv(sim_vars(nc_file), "vars.csv")
 iceblue <- get_var(nc_file, "blue_ice_thickness")
 ice<-get_var(nc_file,"hwice")
 iceblue<-get_var(nc_file,"hice")
 icesnow <- get_var(nc_file, "hsnow")
+
+obsiceon <- read.csv('data/observed_ice_dates/iceon_dates.csv')
+obsiceoff <- read.csv('data/observed_ice_dates/iceoff_dates.csv')
+
 
 plot(iceblue$DateTime, iceblue$blue_ice_thickness)
 
