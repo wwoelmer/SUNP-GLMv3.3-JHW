@@ -116,9 +116,10 @@ x0 <- calib$x0
 lb <- calib$lb
 ub <- calib$ub
 pars <- calib$par
-#not sure what field_FCR.csv contains, assuming temp for now
+#not sure what field_FCR.csv contains, assuming temp for now  
 #obs <- read_field_obs('field_data/field_FCR.csv', var)
-nml_file = 'aed/aed4.nml'
+obs <- read_field_obs("data/formatted-data/field_temp_oxy_noon_obs.csv", var)
+nml_file = 'aed/aed.nml'
 run_sensitivity(var, max_r, x0, lb, ub, pars, obs, nml_file)
 
 # 3) dissolved inorganic carbon

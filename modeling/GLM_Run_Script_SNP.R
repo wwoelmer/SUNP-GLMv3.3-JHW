@@ -98,11 +98,17 @@ icesnow <- get_var(nc_file, "hsnow")
 
 
 
+DateTime <- as.data.frame(as.POSIXct(c("2000-04-09 12:00:00", "2001-05-03 12:00:00", "2002-04-12 12:00:00",
+                                       "2003-04-27 12:00:00", "2004-04-18 12:00:00", "2005-04-19 12:00:00")))
+str(DateTime)
+
+
 obsiceon <- read.csv('data/observed_ice_dates/iceon_dates.csv')
 obsiceoff <- read.csv('data/observed_ice_dates/iceoff_dates.csv')
 
 
 plot(iceblue$DateTime, iceblue$blue_ice_thickness)
+abline(v = DateTime[,1], col = "red")
 
 plot(ice$DateTime,rowSums(cbind(ice$hwice,iceblue$hice)))
 plot(ice$DateTime,ice$hwice, col="black", type="l", ylim=c(0,0.2))
