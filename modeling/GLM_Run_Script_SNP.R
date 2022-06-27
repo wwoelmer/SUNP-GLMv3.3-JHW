@@ -96,6 +96,8 @@ ice<-get_var(nc_file,"hwice")
 iceblue<-get_var(nc_file,"hice")
 icesnow <- get_var(nc_file, "hsnow")
 
+
+
 obsiceon <- read.csv('data/observed_ice_dates/iceon_dates.csv')
 obsiceoff <- read.csv('data/observed_ice_dates/iceoff_dates.csv')
 

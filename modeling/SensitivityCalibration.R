@@ -9,23 +9,26 @@
 #*****************************************************************
 
 
+#scripts for formatting create_noon_oxy_file_obs
+
 rm(list = ls()) #let's clean up that workspace!
 
-setwd("~/Dropbox/GLM_V3/FCR/mh")
+setwd("~/Dropbox/SUNP-GLMv3.3-JHW/")
 #setwd("./FCR_2013_2019GLMHistoricalRun_GLMv3beta") #if pulling from github, sets it to proper wd
 source('modeling/functions-glm.R') #source the helper functions
 read.packages() 
 
 # RUN GLM AND READ RESULTS  ---------------------------
-filename = 'FCR'
+filename = 'SNP'
 out = 'output/output.nc' 
 sim_vars(out)
 
 sim_folder<-getwd()
 
-run_glm('Compiled') #using Cayelan's GLM-AED dynamic libraries in this repo
+#run_glm('Compiled') #using Cayelan's GLM-AED dynamic libraries in this repo
+
 plot_temp(out, col_lim = c(0,30))
-plot_var(file=out,"OXY_oxy",reference="surface")
+plot_var(file=out,"OXY_sat",reference="surface")
 
 # GET FIELD DATA FOR CALIBRATION AND VALIDATION  ---------------------------
 # WTR AND OXY DATA

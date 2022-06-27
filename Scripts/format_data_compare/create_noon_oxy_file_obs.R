@@ -6,9 +6,9 @@ sim_folder <- getwd()
 
 
 # download data from EDI: https://portal.edirepository.org/nis/mapbrowse?packageid=edi.499.2
-#data <-  "https://pasta.lternet.edu/package/data/eml/edi/499/2/1f903796efc8d79e263a549f8b5aa8a6" 
-#destination <- paste0(getwd(), '/data/buoy-data') # some location on your computer
-#try(download.file(data,destfile = paste0(destination, '/data/buoy-data/2007-2020_do_L1_v26Feb2021.csv'),method="curl"))
+data <-  "https://pasta.lternet.edu/package/data/eml/edi/499/2/1f903796efc8d79e263a549f8b5aa8a6" 
+destination <- paste0(getwd(), '/data/buoy-data') # some location on your computer
+try(download.file(data,destfile = paste0(destination, '/data/buoy-data/2007-2020_do_L1_v26Feb2021.csv'),method="curl"))
 
 field_temp_all <- file.path(paste0(sim_folder, '/data/buoy-data/2007-2020_do_L1_v26Feb2021.csv'))
 field_all <- read.csv(field_temp_all)
@@ -58,6 +58,6 @@ ggplot(data = field_format, aes(x = DateTime, y = DOppm)) +
   geom_point(aes(col = as.factor(year(DateTime)))) +
   facet_wrap(~Depth)
 
-#write.csv(field_format, row.names = FALSE, './data/formatted-data/field_oxy_noon_obs.csv')
+write.csv(field_format, row.names = FALSE, './data/formatted-data/field_oxy_noon_obs.csv')
 
 
