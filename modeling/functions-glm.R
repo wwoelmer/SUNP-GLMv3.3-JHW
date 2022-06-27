@@ -712,7 +712,8 @@ run_sensitivity <- function(var, max_r, x0, lb, ub, pars, obs, nml_file){
   
   morris_cluster = morris_res[,c('mean','std')]
   # Compute and plot wss for k = 2 to k = 15
-  k.values <- 2:(nrow(morris_cluster)-1)
+  #k.values <- 2:(nrow(morris_cluster)-1)
+  k.values <- 2:(nrow(morris_cluster)/4) #EDITED THIS - was k.values <- 2:(nrow(morris_cluster)-1)
   mean_ss <- k.values*0
   for (k in k.values){
     km.res <- kmeans(morris_cluster, centers = k, nstart = 25)

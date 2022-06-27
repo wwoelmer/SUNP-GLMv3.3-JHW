@@ -972,13 +972,20 @@ for(i in 1:length(depths)){
 #### chlorophyll a #######
 
 var="PHY_tchla"
-field_file <- file.path(sim_folder,'/field_data/CleanedObsChla.csv') 
+field_file <- file.path(sim_folder,'data/formatted-data/field_obs_chla.csv') 
 
-obs<-read.csv('field_data/CleanedObsChla.csv', header=TRUE) %>% #read in observed chemistry data
+obs<-read.csv('data/formatted-data/field_obs_chla.csv', header=TRUE) %>% #read in observed chemistry data
   dplyr::mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%
   rename(PHY_tchla = PHY_TCHLA) %>% 
-  dplyr::select(DateTime, Depth, var) %>%
-  na.omit()
+  dplyr::select(DateTime, Depth, var) 
+obs$Depth <- 1
+modchla <- get_var(nc_file, var)
+modchla_filtered <- select(modchla, DateTime, PHY_tchla.elv_1.75425361602724)
+obs_filtered <- filter(obs, DateTime >= "2000-01-02 12:00:00" & DateTime <= "2005-12-26 12:00:00")
+
+plot(x = modchla_filtered$DateTime, y = modchla_filtered$PHY_tchla.elv_1.75425361602724, col = 'black')
+points(x = obs_filtered$DateTime, y = obs_filtered$PHY_tchla, col = 'red') 
+
 
 plot_var_compare(nc_file,field_file,var_name = var, precision="days",col_lim = c(0,30)) #compare obs vs modeled
 
