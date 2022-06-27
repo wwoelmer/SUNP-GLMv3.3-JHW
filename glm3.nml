@@ -58,8 +58,8 @@
 /
 &time
    timefmt = 2
-   start = '2012-01-01 12:00:00'
-   stop = '2015-12-31 12:00:00'
+   start = '2000-01-01 12:00:00'
+   stop = '2005-12-31 12:00:00'
    dt = 3600
    num_days = 1
    timezone = -5
@@ -124,10 +124,10 @@
    num_inflows = 11
    names_of_strms = 'i505', 'i510', 'i540', 'i665', 'i760', 'i788', 'i790', 'i800', 'i805', 'i830', 'i835'
    subm_flag = .false.
-   strm_hf_angle = 65
-   strmbd_slope = 3
-   strmbd_drag = 0.016
-   inflow_factor = 1
+   strm_hf_angle = 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65
+   strmbd_slope = 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3
+   strmbd_drag = 0.016,0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016
+   inflow_factor = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
    inflow_fl = 'data/individual_inflows/formatted_ind_inflows_loads/i505_load_input.csv', 
    'data/individual_inflows/formatted_ind_inflows_loads/i510_load_input.csv', 
    'data/individual_inflows/formatted_ind_inflows_loads/i540_load_input.csv', 
