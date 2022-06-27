@@ -55,3 +55,42 @@ colnames(bio) <- c('DateTime', 'Depth', 'PHY_TCHLA')
 #depth is NA here--can compare to 'surface' of aed output?
 
 write.csv(bio, './data/formatted-data/field_obs_chla.csv', row.names = FALSE)
+
+
+######### format secchi
+secchi <- data %>% 
+  filter(parameter=='secchidepth_m')
+
+secchi <- secchi %>% 
+  select(date, depth_m, value)
+colnames(secchi) <- c('DateTime', 'Depth', 'Secchi_m')
+
+secchi <- secchi %>% 
+  mutate(extc_coef = Secchi_m/1.7) 
+
+# set depth to '1' following FCR
+secchi$Depth <- 1
+  
+ggplot(secchi, aes(DateTime, Secchi_m)) + 
+  geom_point()
+
+write.csv(secchi, './data/formatted-data/field_obs_secchi.csv', row.names = FALSE)
+
+######### format pH
+ph <- data %>% 
+  filter(parameter=='conc_H_molpl')
+
+ph <- ph %>% 
+  select(date, depth_m, value)
+colnames(ph) <- c('DateTime', 'Depth', 'conc_H_molpl')
+
+# convert concentration of hydrogen ions in water in moles/L to pH
+# (H+ = 10^-pH) 
+ph <- ph %>% 
+  mutate(pH = log10(conc_H_molpl)*-1)
+
+ggplot(ph, aes(DateTime, pH, color = as.factor(Depth))) +
+  geom_point()
+
+# depths with NA's? not sure where these were taken historically but looks like they are all older sites
+write.csv(ph, './data/formatted-data/field_obs_pH.csv', row.names = FALSE)
