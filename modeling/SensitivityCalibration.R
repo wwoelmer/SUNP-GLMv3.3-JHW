@@ -32,8 +32,8 @@ plot_var(file=out,"OXY_sat",reference="surface")
 
 # GET FIELD DATA FOR CALIBRATION AND VALIDATION  ---------------------------
 # WTR AND OXY DATA
-field_temp<-read.csv("field_data/CleanedObsTemp1.csv", header=T)
-field_oxy <-read.csv("field_data/CleanedObsOxy1.csv", header=T)
+field_temp<-read.csv("data/formatted-data/field_temp_noon_obs.csv", header=T)
+field_oxy <-read.csv("data/formatted-data/field_oxy_noon_obs.csv", header=T)
 field_temp$DateTime <-as.POSIXct(strptime(field_temp$DateTime, "%Y-%m-%d", tz="EST"))
 field_oxy$DateTime <-as.POSIXct(strptime(field_oxy$DateTime, "%Y-%m-%d", tz="EST"))
 
@@ -52,7 +52,7 @@ gases$DateTime <-as.POSIXct(strptime(gases$DateTime, "%Y-%m-%d", tz="EST"))
 #first, copy & paste your glm3.nml and aed2.nml within their respective directories
 # and rename as glm4.nml and aed4.nml; these 4.nml versions are going to be rewritten
 file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
-file.copy('aed2/aed4_20210204_2DOCpools.nml', 'aed2/aed2_20210204_2DOCpools.nml', overwrite = TRUE)
+file.copy('aed/aed4.nml', 'aed/aed.nml', overwrite = TRUE)
 var = 'temp'
 
 #build a matrix with all potential parameters for sensitivity analysis here
@@ -90,7 +90,7 @@ x0 <- calib$x0
 lb <- calib$lb
 ub <- calib$ub
 pars <- calib$par
-obs <- read_field_obs('field_data/field_FCR.csv', var)
+#obs <- read_field_obs('field_data/field_FCR.csv', var)
 nml_file = 'glm3.nml'
 run_sensitivity(var, max_r, x0, lb, ub, pars, obs, nml_file)
 
@@ -116,8 +116,12 @@ x0 <- calib$x0
 lb <- calib$lb
 ub <- calib$ub
 pars <- calib$par
-obs <- read_field_obs('field_data/field_FCR.csv', var)
-nml_file = 'aed2/aed2_20210204_2DOCpools.nml'
+
+obs <- field_temp
+
+#not sure what field_FCR.csv contains, assuming temp for now
+#obs <- read_field_obs('field_data/field_FCR.csv', var)
+nml_file = 'aed/aed4.nml'
 run_sensitivity(var, max_r, x0, lb, ub, pars, obs, nml_file)
 
 # 3) dissolved inorganic carbon
@@ -137,7 +141,7 @@ x0 <- calib$x0
 lb <- calib$lb
 ub <- calib$ub
 pars <- calib$par
-obs <- read_field_obs('field_data/field_chem.csv', var)
+#obs <- read_field_obs('field_data/field_chem.csv', var)
 obs <- completeFun(obs, 'CAR_dic')
 nml_file = 'aed2/aed2_20210204_2DOCpools.nml'
 run_sensitivity(var, max_r, x0, lb, ub, pars, obs, nml_file)

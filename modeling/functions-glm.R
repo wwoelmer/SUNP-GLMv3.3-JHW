@@ -188,8 +188,8 @@ run_glm <- function(os){
     file.copy('aed2/aed4.nml', 'aed2/aed2.nml', overwrite = TRUE)
     system("glm",ignore.stdout=TRUE)
   } else if (os == "Compiled"){
-    sim_folder <- "/Users/cayelan/Dropbox/GLM_V3/FCR/mh" #BE SURE TO EDIT THIS!
-    system2("/Users/cayelan/Dropbox/GLM_V3/bin/Monterey/glm+.app/Contents/MacOS/glm+", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/cayelan/Dropbox/GLM_V3/bin/Monterey/glm.app/Contents/MacOS")
+    sim_folder <- "/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW" #BE SURE TO EDIT THIS!
+    system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
   }
 }
 

@@ -116,7 +116,7 @@ plot(avgsurftemp$DateTime, avgsurftemp$avg_surf_temp, ylim=c(-1,30))
 
 ############## temperature data #######
 #read in cleaned CTD temp file with long-term obs at focal depths
-obstemp<-read_csv('field_data/CleanedObsTemp.csv') %>%
+obstemp<-read_csv("data/formatted-data/field_temp_noon_obs.csv") %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST")))
 
 #get modeled temperature readings for focal depths

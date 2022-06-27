@@ -3,7 +3,7 @@
    max_layers = 700
    min_layer_vol = 0.025
    min_layer_thick = 0.5
-   max_layer_thick = 1
+   max_layer_thick = 1.0
    density_model = 1
    non_avg = .true.
 /
@@ -26,15 +26,25 @@
 /
 &mixing
    surface_mixing = 1
-   coef_mix_conv = 0.1124444
-   coef_wind_stir = 0.1142222
-   coef_mix_shear = 0.1222222
-   coef_mix_turb = 0.236
-   coef_mix_KH = 0.1144444
-   coef_mix_hyp = 0.256
+   coef_mix_conv = 0.08213
+   coef_wind_stir = 1.27
+   coef_mix_shear = 0.296
+   coef_mix_turb = 0.526
+   coef_mix_KH = 0.415
+   coef_mix_hyp = 0.4974922
    deep_mixing = 2
    diff = 0
    coef_mix_shreq = 0
+   ! these are FCR parameters
+   !&mixing
+   !coef_mix_conv = 0.2
+   !coef_wind_stir = 0.23
+   !coef_mix_shear = 0.3
+   !coef_mix_turb = 0.51
+   !coef_mix_KH = 0.3
+   !coef_mix_hyp = 0.6458725
+   !deep_mixing = .true.
+   !coef_mix_shreq = 0
 /
 &morphometry
    lake_name = 'Sunapee'
@@ -57,7 +67,7 @@
 &output
    out_dir = 'output'
    out_fn = 'output'
-   nsave = 24
+   nsave = 24 ! number of hours that pass before saving, 24 means saving once daily
    csv_lake_fname = 'lake'
 /
 &init_profiles
@@ -67,9 +77,20 @@
    the_temps = 5.1, 5, 4.9, 4.9, 4.8, 4.8
    the_sals = 0, 0, 0, 0, 0, 0
    num_wq_vars = 12
-   wq_names = 'OGM_don','OGM_pon','OGM_dop','OGM_pop','OGM_doc','OGM_poc','OXY_oxy','CAR_dic','NIT_amm','NIT_nit','PHS_frp_ads','PHS_frp'
-   wq_init_vals = 11, 11, 11, 11, 11, 11, 10, 10, 10, 10, 10, 10, 0.046, 0.046, 0.046, 0.046, 0.046, 0.046, 0.105, 0.105, 0.105, 0.105, 0.105, 0.105, 80, 80, 80, 80, 80, 80, 6, 6, 6, 6, 6, 6, 440.625, 437.5, 434.375, 425, 400, 387.5, 5, 5, 5, 5, 5, 5, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.161, 0.161, 0.161, 0.161, 0.161, 0.161, 0.009, 0.009, 0.009, 0.009, 0.009, 0.009
-   snow_thickness = 0
+   wq_names =  'OGM_don',  'OGM_pon',  'OGM_dop','OGM_pop','OGM_doc','OGM_poc','OXY_oxy','CAR_dic','NIT_amm','NIT_nit','PHS_frp_ads'    ,'PHS_frp'
+   wq_init_vals = 11,11,11,11,11,11,
+   10,10,10,10,10,10,
+   0.046,0.046,0.046,0.046,0.046,0.046,
+   0.105,0.105,0.105,0.1050,0.105,0.105,
+   80,80,80,80,80,80,
+   6,6,6,6,6,6,
+   440.625,437.5,434.375,425,400,387.5,
+   5,5,5,5,5,5,
+   0.7,0.7,0.7,0.7,0.7,0.7,
+   0.7,0.7,0.7,0.7,0.7,0.7,
+   0.161,0.161,0.161,0.161,0.161,0.161,
+   0.009,0.009,0.009,0.009,0.009,0.009
+      snow_thickness = 0
    white_ice_thickness = 0
    blue_ice_thickness = 0
    avg_surf_temp = 6
@@ -86,26 +107,26 @@
    cloud_mode = 4
    meteo_fl = 'data/SunapeeMet_1979_2020EST.csv'
    subdaily = .true.
-   wind_factor = 0.7855556
-   sw_factor = 0.7577778
-   lw_factor = 0.7788889
-   at_factor = 0.7666667
-   rh_factor = 0.7877778
-   rain_factor = 0.7888889
-   cd = 0.0005266667
-   ce = 0.0005166667
-   ch = 0.0005333333
+   wind_factor = 1.060516
+   sw_factor = 1
+   lw_factor = 0.9753245
+   at_factor = 1
+   rh_factor = 1
+   rain_factor = 1
+   cd = 0.0013
+   ce = 0.0013
+   ch =  0.0013 !0.00124222863441015, 0.512789495779882
    rain_threshold = 0.001
    runoff_coef = 0.99
    time_fmt = 'YYYY-MM-DD hh:mm:ss'
 /
 &inflow
    num_inflows = 11
-   names_of_strms = 'i505','i510','i540','i665','i760','i788','i790','i800','i805','i830','i835'
+   names_of_strms = 'i505', 'i510', 'i540', 'i665', 'i760', 'i788', 'i790', 'i800', 'i805', 'i830', 'i835'
    subm_flag = .false.
    strm_hf_angle = 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65
    strmbd_slope = 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3
-   strmbd_drag = 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016
+   strmbd_drag = 0.016,0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016
    inflow_factor = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
    inflow_fl = 'data/individual_inflows/formatted_ind_inflows_loads/i505_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i510_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i540_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i665_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i760_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i788_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i790_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i800_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i805_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i830_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i835_load_input.csv'
    inflow_varnum = 13
@@ -128,14 +149,25 @@
    dt_iceon_avg = 0.5
    avg_surf_temp_thres = 0.5
 /
+!&sediment!glm2doesnothave2sedimentzones
+!   benthic_mode = 2
+!   sed_heat_model = 1
+!   n_zones = 2
+!   zone_heights = 10, 35
+!   sed_temp_mean = 3.46308320462984, 9.50920557379741 !FCR is 11, 14
+!   !sed_temp_depth = 0.2, 0.2
+!   sed_temp_amplitude = 4, 3
+!   sed_temp_peak_doy = 242.5, 242.5
+!   sed_heat_Ksoil = 0.1, 0.1
+!/
 &sediment!glm2doesnothave2sedimentzones
    benthic_mode = 2
    sed_heat_model = 1
    n_zones = 2
-   zone_heights = 0.580444444444444, 0.476
-   sed_temp_mean = 3.83111111111111, 3.22666666666667
+   zone_heights = 20, 35
+   sed_temp_mean = 7, 14
    sed_temp_depth = 0.2, 0.2
-   sed_temp_amplitude = 2.04444444444444, 2.88888888888889
-   sed_temp_peak_doy = 251.6, 251.4
+   sed_temp_amplitude = 4, 3
+   sed_temp_peak_doy = 242.5, 242.5
    sed_heat_Ksoil = 1.8, 1.8
 /
