@@ -1,5 +1,6 @@
 # script to download and format observed nutrient and chl-a data in Lake Sunapee
 library(tidyverse)
+library(ggplot2)
 
 # download LSPA LMP monitoring data from zenodo: https://zenodo.org/record/4652076#.YrmxBnbMLa9
 # you already copied this data over from the sunapee glm but if you want to hardcode the download, this code will do it if you modify it slightly:
@@ -36,9 +37,6 @@ do_mgl <- select(data, date, depth_m, value)
 
 colnames(do_mgl) <- c("DateTime", "Depth", "DOppm")
 
-
-
-data <- read.csv('./data/manual-data/master files/LSPALMP_1986-2020_v2021-03-29.csv')
 
 
 # buoy is site 210
