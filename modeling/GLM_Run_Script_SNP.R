@@ -202,31 +202,38 @@ RMSE(m_temp,o_temp)
 
 #read in cleaned CTD temp file with long-term obs at focal depths
 var="OXY_oxy"
-obs_oxy<-read.csv('field_data/CleanedObsOxy.csv') %>%
+obs_oxy<-read.csv('data/formatted-data/manual_buoy_noon_obs.csv') %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST")))
-field_file <- file.path(sim_folder,'/field_data/CleanedObsOxy.csv') 
-depths<- c(0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9.2) 
-plot_var(nc_file,var_name = var, precision="days",col_lim = c(0,600)) #compare obs vs modeled
+ #field_file <- file.path(sim_folder,'/field_data/manual_buoy') 
+depths<- unique(obs_oxy$Depth)
+plot_var(nc_file,var_name = var, precision="days",col_lim = c(0,120)) #compare obs vs modeled
 
 #get modeled oxygen concentrations for focal depths
-mod_oxy <- get_var(nc_file, "OXY_sat", reference="surface", z_out=depths) %>%
-  pivot_longer(cols=starts_with("OXY_sat"), names_to="Depth", names_prefix="OXY_sat", values_to = "OXY_sat") %>%
+mod_oxy <- get_var(nc_file, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) 
 
 
 
-plot_var(nc_file,var_name = 'OXY_sat', precision="days",col_lim = c(0,150)) #compare obs vs modeled
+plot_var(nc_file,var_name = var, precision="days",col_lim = c(0,150)) #compare obs vs modeled
 
+colnames(obs_oxy)
+colnames(mod_oxy)
+obs_oxy$Depth <- as.numeric(obs_oxy$Depth)
+mod_oxy$Depth <- gsub('_', '', mod_oxy$Depth)
+mod_oxy$Depth <- as.numeric(mod_oxy$Depth)
 
 #lets do depth by depth comparisons of modeled vs. observed oxygen
-oxy_compare <- merge(mod_oxy, obs_oxy, by=c("DateTime","Depth")) %>%
-  rename(mod_oxy = OXY_oxy.x, obs_oxy = OXY_oxy.y)
+oxy_compare <- merge(mod_oxy, obs_oxy, by=c("DateTime","Depth")) %>% 
+  rename(mod_oxy = OXY_sat, obs_oxy = DOSat)
+depths<- unique(oxy_compare$Depth)
+
 for(i in 1:length(unique(oxy_compare$Depth))){
   tempdf<-subset(oxy_compare, oxy_compare$Depth==depths[i])
-  plot(tempdf$DateTime,tempdf$obs_oxy, type='p', col='red',
-       ylab='Oxygen mmol/m3', xlab='time',
-       main = paste0("Obs=Red,Mod=Black,Depth=",depths[i]),ylim=c(0,600))
-  points(tempdf$DateTime, tempdf$mod_oxy, type="l",col='black')
+  plot(as.Date(tempdf$DateTime),tempdf$obs_oxy, type='p', col='red',
+       ylab='Percent Oxygen', xlab='time',
+       main = paste0("Obs=Red,Mod=Black,Depth=",depths[i]),ylim=c(50,150))
+  points(as.Date(tempdf$DateTime), tempdf$mod_oxy, type="l",col='black')
 }
 
 
