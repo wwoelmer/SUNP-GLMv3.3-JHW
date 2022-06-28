@@ -77,7 +77,7 @@ ggplot(data = subset(data_nodups, DateTime >= "2015-01-01 00:00:00"), aes(x = Da
 
 
 
-write.csv(data_nodups, row.names = FALSE, './data/formatted-data/manual_buoy_noon_obs.csv')
+write.csv(data_nodups, row.names = FALSE, './data/formatted-data/manual_buoy_oxy.csv')
 
 #write.csv(field_format, row.names = FALSE, './data/formatted-data/field_oxy_noon_obs.csv')
 

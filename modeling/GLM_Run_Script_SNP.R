@@ -202,7 +202,7 @@ RMSE(m_temp,o_temp)
 
 #read in cleaned CTD temp file with long-term obs at focal depths
 var="OXY_oxy"
-obs_oxy<-read.csv('data/formatted-data/manual_buoy_noon_obs.csv') %>%
+obs_oxy<-read.csv('data/formatted-data/manual_buoy_oxy.csv') %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST")))
  #field_file <- file.path(sim_folder,'/field_data/manual_buoy') 
 depths<- unique(obs_oxy$Depth)
