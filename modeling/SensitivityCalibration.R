@@ -91,6 +91,7 @@ lb <- calib$lb
 ub <- calib$ub
 pars <- calib$par
 obs <- read_field_obs("data/formatted-data/field_temp_noon_obs.csv", var)
+obs$Depth <- round(obs$Depth)
 nml_file = 'glm3.nml'
 run_sensitivity(var, max_r, x0, lb, ub, pars, obs, nml_file)
 
