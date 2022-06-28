@@ -121,22 +121,28 @@ plot(avgsurftemp$DateTime, avgsurftemp$avg_surf_temp, ylim=c(-1,30))
 
 
 ############## temperature data #######
-#read in cleaned CTD temp file with long-term obs at focal depths
 obstemp<-read_csv("data/formatted-data/field_temp_noon_obs.csv") %>%
-  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST")))
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>% 
+  rename(obstemp = Temp)
+
+unique(obstemp$Depth)
 
 #get modeled temperature readings for focal depths
-depths<- c(0.1, 1, 2, 3, 4, 5, 6, 7, 8, 9) 
+depths<- unique(obstemp$Depth)
 modtemp <- get_temp(nc_file, reference="surface", z_out=depths) %>%
   pivot_longer(cols=starts_with("temp_"), names_to="Depth", names_prefix="temp_", values_to = "temp") %>%
-  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) 
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>% 
+  rename(modtemp = temp)
+
+
 
 #lets do depth by depth comparisons of the obs vs mod temps for each focal depth
-watertemp<-merge(modtemp, obstemp, by=c("DateTime","Depth")) %>%
-  rename(modtemp = temp.x, obstemp = temp.y)
+watertemp<-merge(modtemp, obstemp, by=c("DateTime","Depth"))
+watertemp$Depth <- as.numeric(watertemp$Depth)
+watertemp$DateTime <- as.Date(watertemp$DateTime)
 for(i in 1:length(unique(watertemp$Depth))){
   tempdf<-subset(watertemp, watertemp$Depth==depths[i])
-  plot(tempdf$DateTime, tempdf$obstemp, type='p', col='red',
+  plot(as.Date(tempdf$DateTime), tempdf$obstemp, type='p', col='red',
        ylab='temperature', xlab='time',
        main = paste0("Obs=Red,Mod=Black,Depth=",depths[i]),ylim=c(0,30))
        points(tempdf$DateTime, tempdf$modtemp, type="l",col='black')

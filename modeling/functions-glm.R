@@ -566,7 +566,10 @@ glmFUNsa <- function(p){
   write_path <- nml_file
   write_nml(eg_nml, file = write_path)
   
-  run_glm("Compiled") #changed from Unix
+  #Commenting out and doing a direct path to running new GLM 
+  #run_glm("Compiled") #changed from Unix
+  system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
+  
   
   mod <- mod2obs(mod_nc = out, obs = obs, reference = 'surface', var)
   
@@ -606,7 +609,9 @@ glmFUN <- function(p){
   write_path <- nml_file
   write_nml(eg_nml, file = write_path)
   
-  run_glm(os)
+  #run_glm(os)
+  system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
+  
   
   # uni.deps = unique(obs)
   # if(length(uni.deps) > 300){
@@ -649,7 +654,9 @@ glmFUNrmse <- function(p){
   write_path <- nml_file
   write_nml(eg_nml, file = write_path)
   
-  run_glm(os)
+  #run_glm(os)
+  system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
+  
   
   mod <- mod2obs(mod_nc = out, obs = obs, reference = 'surface', var)
   
@@ -896,7 +903,8 @@ run_calibvalid <- function(var, var_unit, var_seq, cal_pars, pars, ub, lb, init.
   #end Robert's version of the glmOPT function
   
   #Run GLM
-  run_glm(os)
+  #run_glm(os)
+  system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
   h <- paste(filename,', RMSE',
              round(get_rmse(temp_mods <- mod2obs(out, obs, reference = 'surface', var), 
                             obs),2),var_unit,'NSE',
@@ -912,7 +920,8 @@ run_calibvalid <- function(var, var_unit, var_seq, cal_pars, pars, ub, lb, init.
   nml <- read_nml('glm3.nml')
   nml <- set_nml(nml, arg_list = validation.list)
   write_nml(nml, 'glm3.nml')
-  run_glm(os)
+  system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
+  #run_glm(os)
   h <- paste(filename,', RMSE',
              round(get_rmse(temp_mods <- mod2obs(out, obs, reference = 'surface', var), 
                             obs),2),var_unit,'NSE',
@@ -930,7 +939,8 @@ run_calibvalid <- function(var, var_unit, var_seq, cal_pars, pars, ub, lb, init.
   nml <- read_nml('glm3.nml')
   nml <- set_nml(nml, arg_list = total.list)
   write_nml(nml, 'glm3.nml')
-  run_glm(os)
+  system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
+  #run_glm(os)
   h <- paste(filename,', RMSE',
              round(get_rmse(temp_mods <- mod2obs(out, obs, reference = 'surface', var), 
                             obs),2),var_unit,'NSE',
