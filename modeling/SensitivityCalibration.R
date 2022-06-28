@@ -40,10 +40,7 @@ field_oxy$DateTime <-as.POSIXct(strptime(field_oxy$DateTime, "%Y-%m-%d", tz="EST
 # CHEMISTRY: GET ALL NUTRIENTS, SILICA, CH4, & CO2
 chem <- read.csv('field_data/field_chem.csv', header=T)
 chem$DateTime <-as.POSIXct(strptime(chem$DateTime, "%Y-%m-%d", tz="EST"))
-silica<-read.csv('field_data/field_silica.csv', header=T)
-silica$DateTime <-as.POSIXct(strptime(silica$DateTime, "%Y-%m-%d", tz="EST"))
-gases<-read.csv('field_data/field_gases.csv', header=T)
-gases$DateTime <-as.POSIXct(strptime(gases$DateTime, "%Y-%m-%d", tz="EST"))
+
 
 
 #######################################################
@@ -146,119 +143,6 @@ nml_file = 'aed2/aed2_20210204_2DOCpools.nml'
 run_sensitivity(var, max_r, x0, lb, ub, pars, obs, nml_file)
 
 
-# 3b) dissolved methane
-file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
-file.copy('aed2/aed4_20210204_2DOCpools.nml', 'aed2/aed2_20210204_2DOCpools.nml', overwrite = TRUE)
-var = 'CAR_ch4'
-calib <- matrix(c('par', 'lb', 'ub', 'x0',
-                  'Rch4ox', 0.0001, 5, 1,
-                  'Kch4ox', 0.0001, 5, 0.5,
-                  'vTch4ox', 0.9, 1.2, 1.08,
-                  'Fsed_ch4', 0.001, 300, 30,
-                  'Ksed_ch4', 0.001, 100, 30,
-                  'theta_sed_ch4', 1, 1.15, 1.08), nrow = 7, ncol = 4, byrow = TRUE)
-write.table(calib, file = paste0('sensitivity/sample_sensitivity_config_',var,'.csv'), row.names = FALSE, 
-            col.names = FALSE, sep = ',',
-            quote = FALSE)
-max_r = 3
-calib <- read.csv(paste0('sensitivity/sample_sensitivity_config_',var,'.csv'), stringsAsFactors = F)
-x0 <- calib$x0
-lb <- calib$lb
-ub <- calib$ub
-pars <- calib$par
-obs <- read_field_obs('field_data/field_gases.csv', var)
-obs <- completeFun(obs, 'CAR_ch4')
-nml_file = 'aed2/aed2_20210204_2DOCpools.nml'
-run_sensitivity(var, max_r, x0, lb, ub, pars, obs, nml_file)
-
-
-# 4) silica
-file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
-file.copy('aed2/aed4_20210204_2DOCpools.nml', 'aed2/aed2_20210204_2DOCpools.nml', overwrite = TRUE)
-var = 'SIL_rsi'
-calib <- matrix(c('par', 'lb', 'ub', 'x0',
-                  'Fsed_rsi', 0.1, 100, 25,
-                  'Ksed_rsi', 0.1, 300, 50,
-                  'theta_sed_rsi', 1, 1.15, 1.08), nrow = 4, ncol = 4, byrow = TRUE)
-write.table(calib, file = paste0('sensitivity/sample_sensitivity_config_',var,'.csv'), row.names = FALSE, 
-            col.names = FALSE, sep = ',',
-            quote = FALSE)
-max_r = 3
-calib <- read.csv(paste0('sensitivity/sample_sensitivity_config_',var,'.csv'), stringsAsFactors = F)
-x0 <- calib$x0
-lb <- calib$lb
-ub <- calib$ub
-pars <- calib$par
-obs <- read_field_obs('field_data/field_silica.csv', var)
-obs <- completeFun(obs, 'SIL_rsi')
-nml_file = 'aed2/aed2_20210204_2DOCpools.nml'
-run_sensitivity(var, max_r, x0, lb, ub, pars, obs, nml_file)
-
-# 5a) ammonium
-file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
-file.copy('aed2/aed4_20210204_2DOCpools.nml', 'aed2/aed2_20210204_2DOCpools.nml', overwrite = TRUE)
-var = 'NIT_amm'
-calib <- matrix(c('par', 'lb', 'ub', 'x0',
-                  'Rnitrif', 0.001, 1, 0.075,
-                  'Knitrif', 1, 80, 20,
-                  'theta_nitrif', 1, 1.15, 1.08,
-                  'Rnh4o2', 0.0001, 2, 1,
-                  'Rnh4no2', 0.0001, 2, 0.001,
-                  'Ranammox', 0.0001, 2, 0.001,
-                  'Kanmx_amm', 0.001, 5, 2,
-                  'Rdnra', 0.0001, 2, 0.001,
-                  'Kdnra_oxy', 0.01, 5, 2,
-                  'Fsed_amm', 1, 30, 4,
-                  'Ksed_amm', 1, 30, 10,
-                  'theta_sed_amm', 1, 1.15, 1.08), nrow = 13, ncol = 4, byrow = TRUE)
-write.table(calib, file = paste0('sensitivity/sample_sensitivity_config_',var,'.csv'), row.names = FALSE, 
-            col.names = FALSE, sep = ',',
-            quote = FALSE)
-max_r = 3
-calib <- read.csv(paste0('sensitivity/sample_sensitivity_config_',var,'.csv'), stringsAsFactors = F)
-x0 <- calib$x0
-lb <- calib$lb
-ub <- calib$ub
-pars <- calib$par
-obs <- read_field_obs('field_data/field_chem.csv', var)
-obs <- completeFun(obs, 'NIT_amm')
-nml_file = 'aed2/aed2_20210204_2DOCpools.nml'
-run_sensitivity(var, max_r, x0, lb, ub, pars, obs, nml_file)
-
-# 5b) nitrate
-file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
-file.copy('aed2/aed4_20210204_2DOCpools.nml', 'aed2/aed2_20210204_2DOCpools.nml', overwrite = TRUE)
-var = 'NIT_nit'
-calib <- matrix(c('par', 'lb', 'ub', 'x0',
-                  'Rnitrif', 0.001, 1, 0.011,
-                  'Knitrif', 1, 80, 61,
-                  'theta_nitrif', 1, 1.15, 1.08,
-                  'Rnh4o2', 0.0001, 2, 1,
-                  'Rno2o2', 0.1, 2, 1,
-                  'Ranammox', 0.0001, 2, 0.001,
-                  'Kanmx_nit', 0.001, 5, 2,
-                  'Rdenit', 0.001, 2, 0.065,
-                  'Kdenit', 1, 50, 20,
-                  'theta_denit',1, 1.15, 1.08,
-                  'Rdnra', 0.0001, 2, 0.01,
-                  'Kdnra_oxy', 0.01, 5, 2,
-                  'Fsed_nit', -10,-0.001, -1.755,
-                  'Ksed_nit', 10, 210, 100,
-                  'theta_sed_nit', 1, 1.15, 1.08), nrow = 16, ncol = 4, byrow = TRUE)
-write.table(calib, file = paste0('sensitivity/sample_sensitivity_config_',var,'.csv'), row.names = FALSE, 
-            col.names = FALSE, sep = ',',
-            quote = FALSE)
-max_r = 3
-calib <- read.csv(paste0('sensitivity/sample_sensitivity_config_',var,'.csv'), stringsAsFactors = F)
-x0 <- calib$x0
-lb <- calib$lb
-ub <- calib$ub
-pars <- calib$par
-obs <- read_field_obs('field_data/field_chem.csv', var)
-obs <- completeFun(obs, 'NIT_nit')
-nml_file = 'aed2/aed2_20210204_2DOCpools.nml'
-run_sensitivity(var, max_r, x0, lb, ub, pars, obs, nml_file)
-
 
 # 6) phosphorus
 file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
@@ -282,67 +166,6 @@ obs <- completeFun(obs, 'PHS_frp')
 nml_file = 'aed2/aed2_20210204_2DOCpools.nml'
 run_sensitivity(var, max_r, x0, lb, ub, pars, obs, nml_file)
 
-
-# 7a) dissolved organic carbon labile
-file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
-file.copy('aed2/aed4_20210204_2DOCpools.nml', 'aed2/aed2_20210204_2DOCpools.nml', overwrite = TRUE)
-var = 'OGM_doc'
-calib <- matrix(c('par', 'lb', 'ub', 'x0',
-                  'Rdom_minerl', 0.0001, 0.10, 0.001,
-                  'Rpom_hydrol', 0.0001, 0.10, 0.03,
-                  'theta_minerl', 1, 1.15, 1.08,
-                  'theta_hydrol', 1, 1.15, 1.08,
-                  'Kdom_minerl', 1, 100, 31.25,
-                  'Kpom_hydrol', 1, 100, 31.25,
-                  'Rdomr_minerl', 0.00001,0.10,0.0001,
-                  'Rcpom_bdown', 0.0001, 0.10, 0.001,
-                  'w_pom', -2, 0, -0.06,
-                  'sedimentOMfrac', 0.0001, 1, 0.0002,
-                  'Fsed_doc', 0.1, 50, 10), nrow = 12, ncol = 4, byrow = TRUE)
-write.table(calib, file = paste0('sensitivity/sample_sensitivity_config_',var,'.csv'), row.names = FALSE, 
-            col.names = FALSE, sep = ',',
-            quote = FALSE)
-max_r = 3
-calib <- read.csv(paste0('sensitivity/sample_sensitivity_config_',var,'.csv'), stringsAsFactors = F)
-x0 <- calib$x0
-lb <- calib$lb
-ub <- calib$ub
-pars <- calib$par
-obs <- read_field_obs('field_data/field_chem.csv', var)
-obs <- completeFun(obs, 'OGM_doc')
-nml_file = 'aed2/aed2_20210204_2DOCpools.nml'
-run_sensitivity(var, max_r, x0, lb, ub, pars, obs, nml_file)
-
-
-# 7b) dissolved organic carbon recalcitrant
-file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
-file.copy('aed2/aed4_20210204_2DOCpools.nml', 'aed2/aed2_20210204_2DOCpools.nml', overwrite = TRUE)
-var = 'OGM_docr'
-calib <- matrix(c('par', 'lb', 'ub', 'x0',
-                  'Rdom_minerl', 0.0001, 0.10, 0.001,
-                  'Rpom_hydrol', 0.0001, 0.10, 0.03,
-                  'theta_minerl', 1, 1.15, 1.08,
-                  'theta_hydrol', 1, 1.15, 1.08,
-                  'Kdom_minerl', 1, 100, 31.25,
-                  'Kpom_hydrol', 1, 100, 31.25,
-                  'Rdomr_minerl', 0.00001,0.10,0.0001,
-                  'Rcpom_bdown', 0.0001, 0.10, 0.001,
-                  'w_pom', -2, 0, -0.06,
-                  'sedimentOMfrac', 0.0001, 1, 0.0002,
-                  'Fsed_doc', 0.1, 50, 10), nrow = 12, ncol = 4, byrow = TRUE)
-write.table(calib, file = paste0('sensitivity/sample_sensitivity_config_',var,'.csv'), row.names = FALSE, 
-            col.names = FALSE, sep = ',',
-            quote = FALSE)
-max_r = 3
-calib <- read.csv(paste0('sensitivity/sample_sensitivity_config_',var,'.csv'), stringsAsFactors = F)
-x0 <- calib$x0
-lb <- calib$lb
-ub <- calib$ub
-pars <- calib$par
-obs <- read_field_obs('field_data/field_chem.csv', var)
-obs <- completeFun(obs, 'OGM_docr')
-nml_file = 'aed2/aed2_20210204_2DOCpools.nml'
-run_sensitivity(var, max_r, x0, lb, ub, pars, obs, nml_file)
 
 
 # 8) chlorophyll a
