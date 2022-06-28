@@ -10,8 +10,10 @@ data <-  "https://pasta.lternet.edu/package/data/eml/edi/499/2/1f903796efc8d79e2
 destination <- paste0(getwd(), '/data/buoy-data') # some location on your computer
 try(download.file(data,destfile = paste0(destination, '/data/buoy-data/2007-2020_do_L1_v26Feb2021.csv'),method="curl"))
 
-field_temp_all <- file.path(paste0(sim_folder, '/data/buoy-data/2007-2020_do_L1_v26Feb2021.csv'))
-field_all <- read.csv(field_temp_all)
+#field_temp_all <- file.path(paste0(sim_folder, '/data/buoy-data/2007-2020_do_L1_v26Feb2021.csv'))
+#field_all <- read.csv(field_temp_all)
+
+field_all <- read.csv("data/buoy-data/2007-2020_do_L1_v26Feb2021.csv")
 
 # extract noon measurements only and only observations when buoy is deployed
 field_all$datetime <- as.POSIXct(field_all$datetime, format = "%Y-%m-%d %H:%M:%S")
@@ -58,6 +60,25 @@ ggplot(data = field_format, aes(x = DateTime, y = DOppm)) +
   geom_point(aes(col = as.factor(year(DateTime)))) +
   facet_wrap(~Depth)
 
-write.csv(field_format, row.names = FALSE, './data/formatted-data/field_oxy_noon_obs.csv')
+
+manual <- read.csv("data/formatted-data/manual_oxy.csv")
+
+manual$DateTime <- as.POSIXct(manual$DateTime, format = "%Y-%m-%d %H:%M:%S")
+
+remove <- manual$DateTime
+
+field_format <- field_format[!field_format$DateTime %in% remove,  ]
+
+# combine the two datasets
+oxy_data <- full_join(manual, field_format)
+data_nodups <- oxy_data[!duplicated(oxy_data[,1:2]),]
+
+ggplot(data = subset(data_nodups, DateTime >= "2015-01-01 00:00:00"), aes(x = DateTime, y = DOSat, col = as.factor(Depth)))+geom_point()
+
+
+
+write.csv(data_nodups, row.names = FALSE, './data/formatted-data/manual_buoy_noon_obs.csv')
+
+#write.csv(field_format, row.names = FALSE, './data/formatted-data/field_oxy_noon_obs.csv')
 
 

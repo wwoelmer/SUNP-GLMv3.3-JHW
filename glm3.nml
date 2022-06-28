@@ -25,13 +25,23 @@
    Kw = 0.3
 /
 &mixing
+   !surface_mixing = 1
+   !coef_mix_conv = 0.1062222
+   !coef_wind_stir = 0.1337778
+   !coef_mix_shear = 0.1233333
+   !coef_mix_turb = 0.2213333
+   !coef_mix_KH = 0.1144444
+   !coef_mix_hyp = 0.2453333
+   !deep_mixing = 2
+   !diff = 0
+   !coef_mix_shreq = 0
    surface_mixing = 1
-   coef_mix_conv = 0.1062222
-   coef_wind_stir = 0.1142222
-   coef_mix_shear = 0.1055556
-   coef_mix_turb = 0.248
-   coef_mix_KH = 0.1444444
-   coef_mix_hyp = 0.2453333
+   coef_mix_conv = 0.2
+   coef_wind_stir = 0.23
+   coef_mix_shear = 0.3
+   coef_mix_turb = 0.51
+   coef_mix_KH = 0.3
+   coef_mix_hyp = 0.5
    deep_mixing = 2
    diff = 0
 /
@@ -85,15 +95,15 @@
    cloud_mode = 4
    meteo_fl = 'data/SunapeeMet_1979_2020EST.csv'
    subdaily = .true.
-   wind_factor = 0.7822222
-   sw_factor = 0.7844444
-   lw_factor = 0.7744444
-   at_factor = 0.7855556
-   rh_factor = 0.7966667
-   rain_factor = 0.7511111
-   cd = 0.0005666667
-   ce = 0.0006266667
-   ch = 0.0005766667
+   wind_factor = 1
+   sw_factor = 0.8
+   lw_factor = 0.8
+   at_factor = 1
+   rh_factor = 1
+   rain_factor = 1
+   cd = 0.0005466667
+   ce = 0.00053
+   ch = 0.0005866667
    rain_threshold = 0.001
    runoff_coef = 0.99
    time_fmt = 'YYYY-MM-DD hh:mm:ss'
@@ -131,10 +141,10 @@
    benthic_mode = 2
    sed_heat_model = 1
    n_zones = 2
-   zone_heights = 0.308888888888889, 0.392444444444444
-   sed_temp_mean = 3.11333333333333, 3.94444444444444
+   zone_heights = 20, 33
+   sed_temp_mean = 6.7, 11.8
    sed_temp_depth = 0.2, 0.2
-   sed_temp_amplitude = 2.97777777777778, 2.4
-   sed_temp_peak_doy = 251.8, 250.8
+   sed_temp_amplitude = 4, 3
+   sed_temp_peak_doy = 242.5, 242.5
    sed_heat_Ksoil = 1.8, 1.8
 /

@@ -18,11 +18,64 @@ library(tidyverse)
 
 data <- read.csv('./data/manual-data/master files/LSPALMP_1986-2020_v2021-03-29.csv')
 
+
 # buoy is site 210
 data <- data %>% 
-  filter(station==210)
+  filter(station==210, parameter == 'DO_mgl')
+data$date <- as.Date(data$date)
 
-unique(data$parameter)
+data <- data %>% 
+  mutate(depth_m = round(depth_m)) %>% 
+  group_by(date, depth_m) %>% 
+  mutate(value = mean(value), na.rm = TRUE)
+
+ggplot(data = data[data$depth_m>20,], mapping = aes(x = date, y = value, col = as.factor(depth_m))) + 
+  geom_point()
+
+do_mgl <- select(data, date, depth_m, value)
+
+colnames(do_mgl) <- c("DateTime", "Depth", "DOppm")
+
+
+
+data <- read.csv('./data/manual-data/master files/LSPALMP_1986-2020_v2021-03-29.csv')
+
+
+# buoy is site 210
+data <- data %>% 
+  filter(station==210, parameter == 'DO_pctsat')
+data$date <- as.Date(data$date)
+
+data <- data %>% 
+  mutate(depth_m = round(depth_m)) %>% 
+  group_by(date, depth_m) %>% 
+  mutate(value = mean(value), na.rm = TRUE)
+
+ggplot(data = data[data$depth_m>20,], mapping = aes(x = date, y = value, col = as.factor(depth_m))) + 
+  geom_point()
+
+do_sat <- select(data, date, depth_m, value)
+
+colnames(do_sat) <- c("DateTime", "Depth", "DOSat")
+
+df_list <- list(do_sat, do_mgl)
+merged_do <- df_list %>% reduce(full_join, by= c('DateTime', 'Depth'))
+
+merged_do <- unique(merged_do)
+
+merged_do$Flag <- as.character(NA)
+
+merged_do$time <- " 12:00:00"
+merged_do$DateTime <- as.character(merged_do$DateTime)
+
+merged_do$DateTime <- paste0(merged_do$DateTime, merged_do$time)
+merged_do$DateTime <- as.POSIXct(merged_do$DateTime, format = "%Y-%m-%d %H:%M:%S")
+merged_do <- select(merged_do, -time)
+
+merged_do$DOppm <- merged_do$DOppm*1000/32
+
+write.csv(merged_do, "data/formatted-data/manual_oxy.csv", row.names = F, quote = F)
+
 
 ########## format TP 
 chem <- data %>% 
