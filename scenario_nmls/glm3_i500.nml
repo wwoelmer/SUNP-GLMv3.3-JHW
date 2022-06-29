@@ -64,10 +64,10 @@
    timezone = -5
 /
 &output
-   out_dir = 'scenario_output/i800'
-   out_fn = 'output_800x2'
+   out_dir = 'scenario_output/i500'
+   out_fn = 'output_500x2'
    nsave = 24
-   csv_lake_fname = 'lake_800x2'
+   csv_lake_fname = 'lake_500x2'
 /
 &init_profiles
    lake_depth = 33.33408
@@ -116,7 +116,7 @@
    strmbd_slope = 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3
    strmbd_drag = 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016
    inflow_factor = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-   inflow_fl = 'data/individual_inflows/formatted_ind_inflows_loads/i505_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i510_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i540_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i665_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i760_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i788_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i790_load_input.csv','data/altered_inflows/i800_OGM_pop_x2.csv','data/altered_inflows/i805_OGM_pop_x2.csv','data/altered_inflows/i830_OGM_pop_x2.csv','data/altered_inflows/i835_OGM_pop_x2.csv'
+   inflow_fl = 'data/altered_inflows/i505_OGM_pop_x2.csv','data/altered_inflows/i510_OGM_pop_x2.csv','data/altered_inflows/i540_OGM_pop_x2.csv','data/individual_inflows/formatted_ind_inflows_loads/i665_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i760_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i788_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i790_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i800_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i805_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i830_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i835_load_input.csv'
    inflow_varnum = 13
    inflow_vars = 'FLOW','SALT','TEMP','OGM_doc','OGM_poc','OGM_don','NIT_nit','NIT_amm','OGM_pon','PHS_frp','OGM_dop','OGM_pop','PHS_frp_ads'
 /

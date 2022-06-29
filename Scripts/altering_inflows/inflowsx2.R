@@ -49,6 +49,7 @@ for(i in 1:length(dflist_names)) {                              # Head of for-lo
              paste0("data/altered_inflows/",
                     dflist_names[i],
                     "_OGM_pop_x2.csv"),
-             row.names = FALSE)
+             row.names = FALSE, 
+            quot = FALSE)
 }
 
