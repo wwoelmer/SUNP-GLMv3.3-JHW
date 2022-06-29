@@ -36,6 +36,3 @@ system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm",
 file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
 
 
-# take normal output to create visualizations
-# focusing on hypolimnetic DO, surface chl, surface TP
-# visualizations are for LSPA
