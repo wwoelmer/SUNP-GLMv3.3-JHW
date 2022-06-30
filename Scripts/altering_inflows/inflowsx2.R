@@ -27,7 +27,10 @@ dflist <- list(i505, i510, i540, i665, i760, i788, i790, i800, i805, i830, i835)
 dflist_names <- c("i505", "i510", "i540", "i665", "i760", "i788", "i790", "i800", "i805", "i830", "i835")
 
 dflist <- lapply(dflist, function(df) {
+  df$PHS_frp <- df$PHS_frp * 2
   df$OGM_pop <- df$OGM_pop * 2
+  df$OGM_dop <- df$OGM_dop * 2
+  
   return(df)
 })
 

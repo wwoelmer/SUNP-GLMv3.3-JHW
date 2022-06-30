@@ -1,4 +1,5 @@
 # run scenarios and visualize
+rm(list = ls())
 pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools)
 sim_folder <- getwd()
 
