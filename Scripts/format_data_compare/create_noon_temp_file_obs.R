@@ -47,7 +47,7 @@ field_format <- field_format %>% select( 'DateTime', 'Depth', 'Temp') %>%
   arrange(DateTime, Depth)
 field_format <- na.omit(field_format)
 
-ggplot(data = field_format, aes(x = DateTime, y = Temp)) +
+ggplot(data = field_format, aes(x = DateTime, y = temp)) +
   geom_point() +
   facet_wrap(~Depth)
 
