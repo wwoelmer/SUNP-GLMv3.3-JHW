@@ -23,6 +23,9 @@ pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools)
 setwd("~/Dropbox/SUNP-GLMv3.3-JHW/")
 sim_folder <- getwd()
 
+file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
+
+
 #look at glm and aed nml files
 nml_file <- paste0(sim_folder,"/glm3.nml")
 aed_file <- paste0(sim_folder,"/aed/aed.nml")
@@ -33,6 +36,8 @@ aed_phytos <- read_nml(aed_phytos_file)
 print(nml)
 print(aed)
 print(aed_phytos)
+
+
 
 ##### run the model! #######
 sim_folder<-"~/Dropbox/SUNP-GLMv3.3-JHW"
@@ -215,7 +220,7 @@ mod_oxy <- get_var(nc_file, var, reference="surface", z_out=depths) %>%
 
 
 
-plot_var(nc_file,var_name = var, precision="days",col_lim = c(0,150)) #compare obs vs modeled
+plot_var(nc_file,var_name = var, precision="days",col_lim = c(0,600)) #compare obs vs modeled
 
 colnames(obs_oxy)
 colnames(mod_oxy)
@@ -993,10 +998,10 @@ obs<-read.csv('data/formatted-data/field_obs_chla.csv', header=TRUE) %>% #read i
   dplyr::select(DateTime, Depth, var) 
 obs$Depth <- 1
 modchla <- get_var(nc_file, var)
-modchla_filtered <- select(modchla, DateTime, PHY_tchla.elv_1.75425361602724)
+modchla_filtered <- select(modchla, DateTime, PHY_tchla.elv_1.75424389182543)
 obs_filtered <- filter(obs, DateTime >= "2000-01-02 12:00:00" & DateTime <= "2005-12-26 12:00:00")
 
-plot(x = modchla_filtered$DateTime, y = modchla_filtered$PHY_tchla.elv_1.75425361602724, col = 'black')
+plot(x = modchla_filtered$DateTime, y = modchla_filtered$PHY_tchla.elv_1.75424389182543, col = 'black')
 points(x = obs_filtered$DateTime, y = obs_filtered$PHY_tchla, col = 'red') 
 
 

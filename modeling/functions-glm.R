@@ -915,7 +915,7 @@ run_calibvalid <- function(var, var_unit, var_seq, cal_pars, pars, ub, lb, init.
   dev.off()
   
   
-  validation.list <- list("start" = '2019-01-01 00:00:00',
+  validation.list <- list("start" = '2015-07-07 12:00:00',
                           "stop" = '2019-12-31 12:00:00') # EDIT THIS
   nml <- read_nml('glm3.nml')
   nml <- set_nml(nml, arg_list = validation.list)
