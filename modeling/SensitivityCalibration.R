@@ -68,8 +68,8 @@ calib <- matrix(c('par', 'lb', 'ub', 'x0',
                   'ce', 0.0005, 0.002, 0.0013,
                   'ch', 0.0005, 0.002, 0.0013,
                   'cd', 0.0005, 0.002, 0.0013,
-                  'zone_heights', 20,33,5,
-                  'zone_heights', 20,33,9,
+                  'zone_heights', 20,33,22,
+                  'zone_heights', 20,33,22,
                   'rain_factor', 0.75, 1.25, 1,
                   'at_factor', 0.75, 1.25, 1,
                   'rh_factor', 0.75, 1.25, 1,
@@ -118,7 +118,7 @@ ub <- calib$ub
 pars <- calib$par
 #not sure what field_FCR.csv contains, assuming temp for now  
 #obs <- read_field_obs('field_data/field_FCR.csv', var)
-obs <- read_field_obs("data/formatted-data/field_temp_oxy_noon_obs.csv", var)
+obs <- read_field_obs("data/formatted-data/field_temp_noon_obs.csv", var)
 nml_file = 'aed/aed.nml'
 run_sensitivity(var, max_r, x0, lb, ub, pars, obs, nml_file)
 
