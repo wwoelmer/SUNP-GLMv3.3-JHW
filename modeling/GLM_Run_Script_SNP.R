@@ -206,12 +206,12 @@ RMSE(m_temp,o_temp)
 ############## oxygen data #######
 
 #read in cleaned CTD temp file with long-term obs at focal depths
-var="OXY_oxy"
+var="OXY_sat"
 obs_oxy<-read.csv('data/formatted-data/manual_buoy_oxy.csv') %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST")))
  #field_file <- file.path(sim_folder,'/field_data/manual_buoy') 
 depths<- unique(obs_oxy$Depth)
-plot_var(nc_file,var_name = var, precision="days",col_lim = c(0,120)) #compare obs vs modeled
+plot_var(nc_file,var_name = var, precision="days",col_lim = c(0, 120)) #compare obs vs modeled
 
 #get modeled oxygen concentrations for focal depths
 mod_oxy <- get_var(nc_file, var, reference="surface", z_out=depths) %>%
@@ -220,7 +220,7 @@ mod_oxy <- get_var(nc_file, var, reference="surface", z_out=depths) %>%
 
 
 
-plot_var(nc_file,var_name = var, precision="days",col_lim = c(0,600)) #compare obs vs modeled
+plot_var(nc_file,var_name = var, precision="days",col_lim = c(0,120)) #compare obs vs modeled
 
 colnames(obs_oxy)
 colnames(mod_oxy)
@@ -233,11 +233,12 @@ oxy_compare <- merge(mod_oxy, obs_oxy, by=c("DateTime","Depth")) %>%
   rename(mod_oxy = OXY_sat, obs_oxy = DOSat)
 depths<- unique(oxy_compare$Depth)
 
+
 for(i in 1:length(unique(oxy_compare$Depth))){
   tempdf<-subset(oxy_compare, oxy_compare$Depth==depths[i])
   plot(as.Date(tempdf$DateTime),tempdf$obs_oxy, type='p', col='red',
        ylab='Percent Oxygen', xlab='time',
-       main = paste0("Obs=Red,Mod=Black,Depth=",depths[i]),ylim=c(50,150))
+       main = paste0("Obs=Red,Mod=Black,Depth=",depths[i]),ylim=c(0,120))
   points(as.Date(tempdf$DateTime), tempdf$mod_oxy, type="l",col='black')
 }
 
