@@ -358,9 +358,9 @@
 !-------------------------------------------------------------------------------
 &aed_phytoplankton
  !-- Configure phytoplankton groups to simulate
-   num_phytos = 3      ! cyanos,greens,diatoms
-   the_phytos = 1,2,3
-   settling   = 1,1,1
+   num_phytos = 2      ! cyanos,greens,diatoms
+   the_phytos = 1,2!,3
+   settling   = 1,1!,1
  !-- Benthic phytoplankton group (microphytobenthos)
    do_mpb = 0
  !-- Set link variables to other modules
