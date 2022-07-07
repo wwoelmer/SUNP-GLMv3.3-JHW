@@ -52,7 +52,9 @@ field_format <- field_format %>%
 field_format <- field_format[field_format$Flag != 'm' & field_format$Flag !='mcep', ]
 field_format <- na.omit(field_format)
 
-ggplot(data = field_format, aes(x = DateTime, y = DOSat)) +
+field_format$DOppm <- field_format$DOppm*1000/32
+
+ggplot(data = field_format, aes(x = DateTime, y = DOppm)) +
   geom_point(aes(col = as.factor(year(DateTime)))) +
   facet_wrap(~Depth)
 
@@ -73,11 +75,17 @@ field_format <- field_format[!field_format$DateTime %in% remove,  ]
 oxy_data <- full_join(manual, field_format)
 data_nodups <- oxy_data[!duplicated(oxy_data[,1:2]),]
 
-ggplot(data = subset(data_nodups, DateTime >= "2015-01-01 00:00:00"), aes(x = DateTime, y = DOSat, col = as.factor(Depth)))+geom_point()
+ggplot(data = subset(data_nodups, DateTime >= "2015-01-01 00:00:00"), aes(x = DateTime, y = DOppm, col = as.factor(Depth)))+geom_point()
 
 
+namechange <- data_nodups
+colnames(namechange) <- c("DateTime", "Depth", "OXY_sat", "OXY_oxy", "Flag")
+namechange <- select(namechange, -Flag)
 
 write.csv(data_nodups, row.names = FALSE, './data/formatted-data/manual_buoy_oxy.csv')
+
+write.csv(namechange, row.names = FALSE, './data/formatted-data/oxy_fieldfile.csv')
+
 
 #write.csv(field_format, row.names = FALSE, './data/formatted-data/field_oxy_noon_obs.csv')
 

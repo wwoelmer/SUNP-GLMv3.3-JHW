@@ -23,19 +23,19 @@ pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools)
 setwd("~/Dropbox/SUNP-GLMv3.3-JHW/")
 sim_folder <- getwd()
 
-file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
+# file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
 
 
 #look at glm and aed nml files
-nml_file <- paste0(sim_folder,"/glm3.nml")
-aed_file <- paste0(sim_folder,"/aed/aed.nml")
-aed_phytos_file <- paste0(sim_folder,"/aed/aed2_phyto_pars_2May2022_RQT.nml")
-nml <- read_nml(nml_file) 
-aed <- read_nml(aed_file) #you may get a warning about an incomplete final line but it doesn't matter
-aed_phytos <- read_nml(aed_phytos_file)
-print(nml)
-print(aed)
-print(aed_phytos)
+# nml_file <- paste0(sim_folder,"/glm3.nml")
+# aed_file <- paste0(sim_folder,"/aed/aed.nml")
+# aed_phytos_file <- paste0(sim_folder,"/aed/aed2_phyto_pars_2May2022_RQT.nml")
+# nml <- read_nml(nml_file) 
+# aed <- read_nml(aed_file) #you may get a warning about an incomplete final line but it doesn't matter
+# aed_phytos <- read_nml(aed_phytos_file)
+# print(nml)
+# print(aed)
+# print(aed_phytos)
 
 
 
