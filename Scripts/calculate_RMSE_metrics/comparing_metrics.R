@@ -34,13 +34,13 @@ modtemp <- get_temp(nc_file, reference="surface", z_out=depths) %>%
 watertemp<-merge(modtemp, obstemp, by=c("DateTime","Depth"))
 watertemp$Depth <- as.numeric(watertemp$Depth)
 watertemp$DateTime <- as.Date(watertemp$DateTime)
-for(i in 1:length(unique(watertemp$Depth))){
-  tempdf<-subset(watertemp, watertemp$Depth==depths[i])
-  plot(as.Date(tempdf$DateTime), tempdf$obstemp, type='p', col='red',
-       ylab='temperature', xlab='time',
-       main = paste0("Obs=Red,Mod=Black,Depth=",depths[i]),ylim=c(0,30))
-  points(as.Date(tempdf$DateTime), tempdf$modtemp, type="l",col='black')
-}
+#for(i in 1:length(unique(watertemp$Depth))){
+#  tempdf<-subset(watertemp, watertemp$Depth==depths[i])
+#  plot(as.Date(tempdf$DateTime), tempdf$obstemp, type='p', col='red',
+#       ylab='temperature', xlab='time',
+#       main = paste0("Obs=Red,Mod=Black,Depth=",depths[i]),ylim=c(0,30))
+#  points(as.Date(tempdf$DateTime), tempdf$modtemp, type="l",col='black')
+#}
 
 # #thermocline depth comparison
 # field_file<-file.path(sim_folder,'/field_data/CleanedObsTemp.csv')
@@ -77,6 +77,8 @@ field_file<-file.path(sim_folder,"data/formatted-data/manual_buoy_temp.csv")
 temps <- resample_to_field(nc_file, field_file, precision="mins", method='interp')
 temps<-temps[complete.cases(temps),]
 
+temps <- filter(temps, DateTime >= "2007-01-01")
+
 m_temp <- temps$Modeled_temp[temps$Depth==c(1)] #1m depth (epi) RMSE
 o_temp <- temps$Observed_temp[temps$Depth==c(1)] 
 RMSE(m_temp,o_temp)
@@ -86,14 +88,17 @@ bias(o_temp, m_temp)
 m_temp <- temps$Modeled_temp[temps$Depth==c(30)] #30m depth (hypo) RMSE
 o_temp <- temps$Observed_temp[temps$Depth==c(30)] 
 RMSE(m_temp,o_temp)
+bias(o_temp, m_temp)
 
 m_temp <- temps$Modeled_temp[temps$Depth==c(8)] #8m depth (meta) RMSE
 o_temp <- temps$Observed_temp[temps$Depth==c(8)] 
 RMSE(m_temp,o_temp)
+bias(o_temp, m_temp)
 
 m_temp <- temps$Modeled_temp[temps$Depth>=0 & temps$Depth<=33] # (all depths)
 o_temp <- temps$Observed_temp[temps$Depth>=0 & temps$Depth<=33] 
 RMSE(m_temp,o_temp)
+bias(o_temp, m_temp)
 
 
 
@@ -114,7 +119,7 @@ mod_oxy <- get_var(nc_file, var, reference="surface", z_out=depths) %>%
 
 
 
-plot_var(nc_file,var_name = var, precision="days",col_lim = c(0,600)) #compare obs vs modeled
+#plot_var(nc_file,var_name = var, precision="days",col_lim = c(0,600)) #compare obs vs modeled
 
 colnames(obs_oxy)
 colnames(mod_oxy)
@@ -146,6 +151,8 @@ RMSE = function(m, o){
 oxygen <- resample_to_field(nc_file, field_file, precision="days", method='interp', 
                             var_name="OXY_oxy")
 oxygen <-oxygen[complete.cases(oxygen),] #remove missing data
+oxygen <- filter(oxygen, DateTime >= "2007-01-01")
+
 oxygen$Observed_OXY_oxy_mgl <- oxygen$Observed_OXY_oxy*32/1000
 oxygen$Modeled_OXY_oxy_mgl <- oxygen$Modeled_OXY_oxy*32/1000
 
@@ -181,15 +188,15 @@ obs<-read.csv('data/formatted-data/field_obs_chla.csv', header=TRUE) %>% #read i
   dplyr::select(DateTime, Depth, var) 
 obs$Depth <- 1
 write.csv(obs, "data/formatted-data/fieldchla.csv")
-modchla <- get_var(nc_file, var)
-modchla_filtered <- select(modchla, DateTime, PHY_tchla.elv_31.4788988658047)
-obs_filtered <- filter(obs, DateTime >= "2015-01-01 12:00:00" & DateTime <= "2020-12-31 12:00:00")
+#modchla <- get_var(nc_file, var)
+#modchla_filtered <- select(modchla, DateTime, PHY_tchla.elv_31.4788988658047)
+#obs_filtered <- filter(obs, DateTime >= "2015-01-01 12:00:00" & DateTime <= "2020-12-31 12:00:00")
+#
+#plot(x = modchla_filtered$DateTime, y = modchla_filtered$PHY_tchla.elv_31.4788988658047, col = 'black', type = 'l')
+#points(x = obs_filtered$DateTime, y = obs_filtered$PHY_tchla, col = 'red') 
 
-plot(x = modchla_filtered$DateTime, y = modchla_filtered$PHY_tchla.elv_31.4788988658047, col = 'black', type = 'l')
-points(x = obs_filtered$DateTime, y = obs_filtered$PHY_tchla, col = 'red') 
 
-
-plot_var_compare(nc_file,field_file,var_name = var, precision="days",col_lim = c(0,30)) #compare obs vs modeled
+#plot_var_compare(nc_file,field_file,var_name = var, precision="days",col_lim = c(0,30)) #compare obs vs modeled
 
 #get modeled concentrations for focal depths
 depths<- sort(as.numeric(unique(obs$Depth)))
@@ -205,7 +212,7 @@ mod<- get_var(nc_file, var, reference="surface", z_out=depths) %>%
 #compare<-na.omit(compare)
 for(i in 1:length(depths)){
   modeled <-subset(mod, mod$Depth==depths[i])
-  observed <-subset(obs, obs$Depth==depths[i] & DateTime >= "2010-01-01" & DateTime <= "2015-12-31")
+  observed <-subset(obs, obs$Depth==depths[i] & DateTime >= "2005-06-27" & DateTime <= "2015-01-01")
   if(nrow(modeled)>1){
     plot(observed$DateTime,observed[,3], type='p', col='red',
          ylab=var, xlab='time',
@@ -224,6 +231,7 @@ newdata <- resample_to_field(nc_file, field_file, precision="hours", method='int
                              var_name=var)
 newdata <-newdata[complete.cases(newdata),]
 
+newdata <- filter(newdata, DateTime >= "2007-01-01")
 
 mod <- eval(parse(text=paste0("newdata$Modeled_",var)))[newdata$Depth>=1 & newdata$Depth<=1] 
 obs <- eval(parse(text=paste0("newdata$Observed_",var)))[newdata$Depth>=1 & newdata$Depth<=1] 
@@ -282,6 +290,7 @@ for(i in 1:length(depths)){
 newdata <- resample_to_field(nc_file, field_file, precision="hours", method='interp', 
                              var_name=var)
 newdata <-newdata[complete.cases(newdata),]
+newdata <- filter(newdata, DateTime >= "2007-01-01")
 
 newdata$Observed_TOT_tp_ugl <- newdata$Observed_TOT_tp*30.9738
 newdata$Modeled_TOT_tp_ugl <- newdata$Modeled_TOT_tp*30.9738
