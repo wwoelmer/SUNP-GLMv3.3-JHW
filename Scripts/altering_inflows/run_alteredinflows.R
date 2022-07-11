@@ -7,33 +7,43 @@ sim_folder <- getwd()
 file.copy('glm3.nml', 'glm4.nml', overwrite = TRUE)
 
 
-# scenario 1: double P inputs in 500's watersheds
 
-# Copy scenario 1 nml to glm3.nml
-file.copy('scenario_nmls/glm3_i500.nml', 'glm3.nml', overwrite = TRUE)
+file.copy('scenario_nmls/glm3_i505.nml', 'glm3.nml', overwrite = TRUE)
+system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
 
+file.copy('scenario_nmls/glm3_i510.nml', 'glm3.nml', overwrite = TRUE)
+system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
+
+file.copy('scenario_nmls/glm3_i540.nml', 'glm3.nml', overwrite = TRUE)
 system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
 
 
-# scenario 2: double P inputs in 600's watersheds
-file.copy('scenario_nmls/glm3_i600.nml', 'glm3.nml', overwrite = TRUE)
-
+file.copy('scenario_nmls/glm3_i665.nml', 'glm3.nml', overwrite = TRUE)
 system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
 
 
-# scenario 3: double P inputs in 700's watersheds
-file.copy('scenario_nmls/glm3_i700.nml', 'glm3.nml', overwrite = TRUE)
-
+file.copy('scenario_nmls/glm3_i760.nml', 'glm3.nml', overwrite = TRUE)
 system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
 
+file.copy('scenario_nmls/glm3_i788.nml', 'glm3.nml', overwrite = TRUE)
+system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
 
-# scenario 4: double P inputs in 800's watersheds
+file.copy('scenario_nmls/glm3_i790.nml', 'glm3.nml', overwrite = TRUE)
+system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
+
 file.copy('scenario_nmls/glm3_i800.nml', 'glm3.nml', overwrite = TRUE)
+system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
 
+file.copy('scenario_nmls/glm3_i805.nml', 'glm3.nml', overwrite = TRUE)
+system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
+
+file.copy('scenario_nmls/glm3_i830.nml', 'glm3.nml', overwrite = TRUE)
+system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
+
+file.copy('scenario_nmls/glm3_i835.nml', 'glm3.nml', overwrite = TRUE)
 system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
 
 
-# write nml file back to base nml 
 file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
 
 

@@ -34,14 +34,14 @@ modtemp <- get_temp(nc_file, reference="surface", z_out=depths) %>%
 watertemp<-merge(modtemp, obstemp, by=c("DateTime","Depth"))
 watertemp$Depth <- as.numeric(watertemp$Depth)
 watertemp$DateTime <- as.Date(watertemp$DateTime)
-#for(i in 1:length(unique(watertemp$Depth))){
-#  tempdf<-subset(watertemp, watertemp$Depth==depths[i])
-#  plot(as.Date(tempdf$DateTime), tempdf$obstemp, type='p', col='red',
-#       ylab='temperature', xlab='time',
-#       main = paste0("Obs=Red,Mod=Black,Depth=",depths[i]),ylim=c(0,30))
-#  points(as.Date(tempdf$DateTime), tempdf$modtemp, type="l",col='black')
-#}
-
+watertemp <- filter(watertemp, DateTime >= "2007-01-01")
+for(i in 1:length(unique(watertemp$Depth))){
+  tempdf<-subset(watertemp, watertemp$Depth==depths[i])
+  plot(as.Date(tempdf$DateTime), tempdf$obstemp, type='p', col='red',
+       ylab='temperature', xlab='time',
+       main = paste0("Obs=Red,Mod=Black,Depth=",depths[i]),ylim=c(0,30))
+  points(as.Date(tempdf$DateTime), tempdf$modtemp, type="l",col='black')
+}
 # #thermocline depth comparison
 # field_file<-file.path(sim_folder,'/field_data/CleanedObsTemp.csv')
 # plot_var_compare(nc_file,field_file,var_name = "temp", precision="days",col_lim = c(0,30)) #compare obs vs modeled
@@ -90,8 +90,8 @@ o_temp <- temps$Observed_temp[temps$Depth==c(30)]
 RMSE(m_temp,o_temp)
 bias(o_temp, m_temp)
 
-m_temp <- temps$Modeled_temp[temps$Depth==c(8)] #8m depth (meta) RMSE
-o_temp <- temps$Observed_temp[temps$Depth==c(8)] 
+m_temp <- temps$Modeled_temp[temps$Depth==c(10)] #8m depth (meta) RMSE
+o_temp <- temps$Observed_temp[temps$Depth==c(10)] 
 RMSE(m_temp,o_temp)
 bias(o_temp, m_temp)
 
@@ -110,7 +110,7 @@ obs_oxy<-read.csv('data/formatted-data/manual_buoy_oxy.csv') %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST")))
 field_file <- file.path(sim_folder,'data/formatted-data/oxy_fieldfile.csv') 
 depths<- unique(obs_oxy$Depth)
-plot_var(nc_file,var_name = var, precision="days",col_lim = c(0, 600)) #compare obs vs modeled
+#plot_var(nc_file,var_name = var, precision="days",col_lim = c(0, 600)) #compare obs vs modeled
 
 #get modeled oxygen concentrations for focal depths
 mod_oxy <- get_var(nc_file, var, reference="surface", z_out=depths) %>%
@@ -132,12 +132,15 @@ oxy_compare <- merge(mod_oxy, obs_oxy, by=c("DateTime","Depth")) %>%
   rename(mod_oxy = OXY_oxy, obs_oxy = DOppm)
 depths<- unique(oxy_compare$Depth)
 
+oxy_compare$mod_oxy <- oxy_compare$mod_oxy*32/1000
+oxy_compare$obs_oxy <- oxy_compare$obs_oxy*32/1000
+oxy_compare <- filter(oxy_compare, DateTime >= "2007-01-01")
 
 for(i in 1:length(unique(oxy_compare$Depth))){
   tempdf<-subset(oxy_compare, oxy_compare$Depth==depths[i])
   plot(as.Date(tempdf$DateTime),tempdf$obs_oxy, type='p', col='red',
-       ylab='mmol/m3', xlab='time',
-       main = paste0("Obs=Red,Mod=Black,Depth=",depths[i]),ylim=c(0,600))
+       ylab='mg/L', xlab='time',
+       main = paste0("Obs=Red,Mod=Black,Depth=",depths[i]),ylim=c(0,20))
   points(as.Date(tempdf$DateTime), tempdf$mod_oxy, type="l",col='black')
 }
 
@@ -165,8 +168,8 @@ m_oxygen <- oxygen$Modeled_OXY_oxy_mgl[oxygen$Depth>=30 & oxygen$Depth<=30] #30m
 o_oxygen <- oxygen$Observed_OXY_oxy_mgl[oxygen$Depth>=30 & oxygen$Depth<=30] 
 RMSE(m_oxygen,o_oxygen)
 
-m_oxygen <- oxygen$Modeled_OXY_oxy_mgl[oxygen$Depth>=8 & oxygen$Depth<=8] #8 m depth
-o_oxygen <- oxygen$Observed_OXY_oxy_mgl[oxygen$Depth>=8 & oxygen$Depth<=8] 
+m_oxygen <- oxygen$Modeled_OXY_oxy_mgl[oxygen$Depth>=10 & oxygen$Depth<=10] #8 m depth
+o_oxygen <- oxygen$Observed_OXY_oxy_mgl[oxygen$Depth>=10 & oxygen$Depth<=10] 
 RMSE(m_oxygen,o_oxygen)
 
 m_oxygen <- oxygen$Modeled_OXY_oxy_mgl[oxygen$Depth>=0 & oxygen$Depth<=33] #all depths
@@ -210,6 +213,8 @@ mod<- get_var(nc_file, var, reference="surface", z_out=depths) %>%
 #lets do depth by depth comparisons of the sims
 #compare<-merge(mod, obs, by=c("DateTime","Depth"))
 #compare<-na.omit(compare)
+mod <- filter(mod, DateTime >= "2007-01-01")
+obs <- filter(obs, DateTime >= "2007-01-01")
 for(i in 1:length(depths)){
   modeled <-subset(mod, mod$Depth==depths[i])
   observed <-subset(obs, obs$Depth==depths[i] & DateTime >= "2005-06-27" & DateTime <= "2015-01-01")
@@ -276,12 +281,17 @@ mod<- get_var(nc_file, var, reference="surface", z_out=depths) %>%
 #lets do depth by depth comparisons of the sims
 compare<-merge(mod, obs, by=c("DateTime","Depth"))
 compare<-na.omit(compare)
+compare <- filter(compare, DateTime >= "2007-01-01")
+compare$TOT_tp.x <- compare$TOT_tp.x*30.9738
+compare$TOT_tp.y <- compare$TOT_tp.y*30.9738
+
+
 for(i in 1:length(depths)){
   tempdf<-subset(compare, compare$Depth==depths[i])
   if(nrow(tempdf)>1){
     plot(tempdf$DateTime,eval(parse(text=paste0("tempdf$",var,".y"))), type='p', col='red',
          ylab=var, xlab='time',
-         main = paste0("Obs=Red,Mod=Black,Depth=",depths[i]),ylim=c(0,0.5))
+         main = paste0("Obs=Red,Mod=Black,Depth=",depths[i]),ylim=c(0,12))
     points(tempdf$DateTime, eval(parse(text=paste0("tempdf$",var,".x"))), type="l",col='black')
   }
 }
@@ -301,16 +311,16 @@ range(newdata$Modeled_TOT_tp_ugl)
 mean(newdata$Observed_TOT_tp_ugl)
 mean(newdata$Modeled_TOT_tp_ugl)
 
-mod <- eval(parse(text=paste0("newdata$Modeled_",var, "_ugl")))[newdata$Depth>=2.0 & newdata$Depth<=2.0] 
-obs <- eval(parse(text=paste0("newdata$Observed_",var, "_ugl")))[newdata$Depth>=2.0 & newdata$Depth<=2.0] 
+mod <- eval(parse(text=paste0("newdata$Modeled_",var, "_ugl")))[newdata$Depth>=4.0 & newdata$Depth<=4.0] 
+obs <- eval(parse(text=paste0("newdata$Observed_",var, "_ugl")))[newdata$Depth>=4.0 & newdata$Depth<=4.0] 
 RMSE(mod,obs)
 
 mod <- eval(parse(text=paste0("newdata$Modeled_",var, "_ugl")))[newdata$Depth>=22 & newdata$Depth<=22] 
 obs <- eval(parse(text=paste0("newdata$Observed_",var, "_ugl")))[newdata$Depth>=22 & newdata$Depth<=22] 
 RMSE(mod,obs)
 
-mod <- eval(parse(text=paste0("newdata$Modeled_",var, "_ugl")))[newdata$Depth>=8 & newdata$Depth<=8] 
-obs <- eval(parse(text=paste0("newdata$Observed_",var, "_ugl")))[newdata$Depth>=8 & newdata$Depth<=8] 
+mod <- eval(parse(text=paste0("newdata$Modeled_",var, "_ugl")))[newdata$Depth>=10 & newdata$Depth<=10] 
+obs <- eval(parse(text=paste0("newdata$Observed_",var, "_ugl")))[newdata$Depth>=10 & newdata$Depth<=10] 
 RMSE(mod,obs)
 
 mod <- eval(parse(text=paste0("newdata$Modeled_",var, "_ugl")))[newdata$Depth>=0.1 & newdata$Depth<=33] 

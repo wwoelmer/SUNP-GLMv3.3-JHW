@@ -10,7 +10,7 @@ sim_folder <- getwd()
 
 # read unaltered nc file as well as altered nc files 
 nc_file <- file.path(sim_folder, 'output/output.nc') #defines the output.nc file 
-nc_file_i500x2 <- file.path(sim_folder, 'scenario_output/i500/output_500x2.nc')
+nc_file_i500x2 <- file.path(sim_folder, '')
 nc_file_i600x2 <- file.path(sim_folder, 'scenario_output/i600/output_600x2.nc')
 nc_file_i700x2 <- file.path(sim_folder, 'scenario_output/i700/output_700x2.nc')
 nc_file_i800x2 <- file.path(sim_folder, 'scenario_output/i800/output_800x2.nc')
