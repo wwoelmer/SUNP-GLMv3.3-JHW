@@ -11,36 +11,38 @@
 #*****************************************************************
 
 # changing to glm3r
-# remotes::install_github("CareyLabVT/GLM3r", force = T)
-# remotes::install_github("CareyLabVT/glmtools", force = T)
+remotes::install_github("CareyLabVT/GLM3r", force = T)
+remotes::install_github("CareyLabVT/glmtools", force = T)
 
 Sys.setenv(TZ = 'America/New_York')
 
 # Load packages, set sim folder, load nml file ####
 #if (!require('pacman')) install.packages('pacman'); library('pacman')
+<<<<<<< HEAD
 pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools)
 
 setwd("~/Dropbox/SUNP-GLMv3.3-JHW/")
 sim_folder <- getwd()
 
 #file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
+=======
+pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools, here)
+>>>>>>> a3304b85778da696dee6c84b3a826020c1678906
 
+sim_folder <- here::here()
 
 #look at glm and aed nml files
-# nml_file <- paste0(sim_folder,"/glm3.nml")
-# aed_file <- paste0(sim_folder,"/aed/aed.nml")
-# aed_phytos_file <- paste0(sim_folder,"/aed/aed2_phyto_pars_2May2022_RQT.nml")
-# nml <- read_nml(nml_file) 
-# aed <- read_nml(aed_file) #you may get a warning about an incomplete final line but it doesn't matter
-# aed_phytos <- read_nml(aed_phytos_file)
-# print(nml)
-# print(aed)
-# print(aed_phytos)
-
-
+nml_file <- paste0(sim_folder,"/glm3.nml")
+aed_file <- paste0(sim_folder,"/aed/aed.nml")
+aed_phytos_file <- paste0(sim_folder,"/aed/aed2_phyto_pars_2May2022_RQT.nml")
+nml <- read_nml(nml_file) 
+aed <- read_nml(aed_file) #you may get a warning about an incomplete final line but it doesn't matter
+aed_phytos <- read_nml(aed_phytos_file)
+print(nml)
+print(aed)
+print(aed_phytos)
 
 ##### run the model! #######
-sim_folder<-"~/Dropbox/SUNP-GLMv3.3-JHW"
 setwd(sim_folder)
 
 # GLM3r::run_glm(sim_folder, nml_file = 'glm3.nml', verbose = T)
@@ -74,17 +76,6 @@ colnames(evap)[1]<-"time"
 plot(volume$time, volume$Tot_V)
 plot(evap$time, evap$evap)
 plot(precip$time, precip$precip)
-
-outflow<-read.csv("inputs/FCR_spillway_outflow_SUMMED_WeirWetland_2013_2019_20200615.csv", header=T)
-inflow_weir<-read.csv("inputs/FCR_weir_inflow_2013_2019_20200828_allfractions_2poolsDOC.csv", header=T)
-inflow_wetland<-read.csv("inputs/FCR_wetland_inflow_2013_2019_20200828_allfractions_2DOCpools.csv", header=T)
-outflow$time<-as.POSIXct(strptime(outflow$time, "%Y-%m-%d", tz="EST"))
-inflow_weir$time<-as.POSIXct(strptime(inflow_weir$time, "%Y-%m-%d", tz="EST"))
-inflow_wetland$time<-as.POSIXct(strptime(inflow_wetland$time, "%Y-%m-%d", tz="EST"))
-
-plot(inflow_weir$time,inflow_weir$FLOW)
-lines(inflow_wetland$time, inflow_wetland$FLOW, col="red")
-sum(inflow_weir$FLOW)/(sum(inflow_weir$FLOW) + sum(inflow_wetland$FLOW))#proportion of wetland:weir inflows over time
 
 volume$time<-as.POSIXct(strptime(volume$time, "%Y-%m-%d", tz="EST"))
 wrt<-merge(volume, outflow, by='time')
@@ -209,12 +200,12 @@ RMSE(m_temp,o_temp)
 ############## oxygen data #######
 
 #read in cleaned CTD temp file with long-term obs at focal depths
-var="OXY_sat"
+var="OXY_oxy"
 obs_oxy<-read.csv('data/formatted-data/manual_buoy_oxy.csv') %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST")))
  #field_file <- file.path(sim_folder,'/field_data/manual_buoy') 
 depths<- unique(obs_oxy$Depth)
-plot_var(nc_file,var_name = var, precision="days",col_lim = c(0, 120)) #compare obs vs modeled
+plot_var(nc_file,var_name = var, precision="days",col_lim = c(0,120)) #compare obs vs modeled
 
 #get modeled oxygen concentrations for focal depths
 mod_oxy <- get_var(nc_file, var, reference="surface", z_out=depths) %>%
@@ -223,7 +214,7 @@ mod_oxy <- get_var(nc_file, var, reference="surface", z_out=depths) %>%
 
 
 
-plot_var(nc_file,var_name = var, precision="days",col_lim = c(0,120)) #compare obs vs modeled
+plot_var(nc_file,var_name = var, precision="days",col_lim = c(0,150)) #compare obs vs modeled
 
 colnames(obs_oxy)
 colnames(mod_oxy)
@@ -236,12 +227,11 @@ oxy_compare <- merge(mod_oxy, obs_oxy, by=c("DateTime","Depth")) %>%
   rename(mod_oxy = OXY_sat, obs_oxy = DOSat)
 depths<- unique(oxy_compare$Depth)
 
-
 for(i in 1:length(unique(oxy_compare$Depth))){
   tempdf<-subset(oxy_compare, oxy_compare$Depth==depths[i])
   plot(as.Date(tempdf$DateTime),tempdf$obs_oxy, type='p', col='red',
        ylab='Percent Oxygen', xlab='time',
-       main = paste0("Obs=Red,Mod=Black,Depth=",depths[i]),ylim=c(0,120))
+       main = paste0("Obs=Red,Mod=Black,Depth=",depths[i]),ylim=c(50,150))
   points(as.Date(tempdf$DateTime), tempdf$mod_oxy, type="l",col='black')
 }
 
@@ -1002,10 +992,10 @@ obs<-read.csv('data/formatted-data/field_obs_chla.csv', header=TRUE) %>% #read i
   dplyr::select(DateTime, Depth, var) 
 obs$Depth <- 1
 modchla <- get_var(nc_file, var)
-modchla_filtered <- select(modchla, DateTime, PHY_tchla.elv_1.75424389182543)
+modchla_filtered <- select(modchla, DateTime, PHY_tchla.elv_1.75425361602724)
 obs_filtered <- filter(obs, DateTime >= "2000-01-02 12:00:00" & DateTime <= "2005-12-26 12:00:00")
 
-plot(x = modchla_filtered$DateTime, y = modchla_filtered$PHY_tchla.elv_1.75424389182543, col = 'black')
+plot(x = modchla_filtered$DateTime, y = modchla_filtered$PHY_tchla.elv_1.75425361602724, col = 'black')
 points(x = obs_filtered$DateTime, y = obs_filtered$PHY_tchla, col = 'red') 
 
 
