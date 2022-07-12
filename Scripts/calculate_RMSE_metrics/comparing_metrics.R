@@ -3,8 +3,8 @@ pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools, Metrics)
 setwd("~/Dropbox/SUNP-GLMv3.3-JHW/")
 sim_folder <- getwd()
 
-file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
-file.copy('aed/aed4.nml', 'aed/aed.nml', overwrite = TRUE)
+# file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
+# file.copy('aed/aed4.nml', 'aed/aed.nml', overwrite = TRUE)
 
 nc_file <- file.path(sim_folder, 'output/output.nc') #defines the output.nc file 
 
@@ -326,6 +326,16 @@ RMSE(mod,obs)
 mod <- eval(parse(text=paste0("newdata$Modeled_",var, "_ugl")))[newdata$Depth>=0.1 & newdata$Depth<=33] 
 obs <- eval(parse(text=paste0("newdata$Observed_",var, "_ugl")))[newdata$Depth>=0.1 & newdata$Depth<=33] 
 RMSE(mod,obs)
+
+
+
+var="PHS_frp_dsf"
+mod_phs <- get_var(nc_file, var, reference="surface", z_out=0.1) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) 
+
+plot(mod_phs$DateTime, mod_phs$PHS_frp_dsf)
+
 
 
 

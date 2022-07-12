@@ -23,7 +23,7 @@ pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools)
 setwd("~/Dropbox/SUNP-GLMv3.3-JHW/")
 sim_folder <- getwd()
 
-file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
+#file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
 
 
 #look at glm and aed nml files
@@ -59,6 +59,9 @@ nc_file <- file.path(sim_folder, 'output/output.nc') #defines the output.nc file
 
 #get water level
 water_level<-get_surface_height(nc_file, ice.rm = TRUE, snow.rm = TRUE)
+plot(water_level$DateTime,water_level$surface_height)
+
+phs_frp_ads <-get_var(nc_file, ice.rm = TRUE, snow.rm = TRUE)
 plot(water_level$DateTime,water_level$surface_height)
 
 #get WRT
