@@ -153,7 +153,7 @@ mod_oxy_835 <- get_var(nc_file_i835, var, reference="surface", z_out=depths) %>%
 
 
 
-bound_oxy <- rbind(mod_oxy_unaltered, mod_oxy_505, mod_oxy_510, mod_oxy_665, mod_oxy_760, mod_oxy_790, mod_oxy_830, mod_oxy_835)
+bound_oxy <- rbind(mod_oxy_unaltered, mod_oxy_505, mod_oxy_510, mod_oxy_540, mod_oxy_665, mod_oxy_760, mod_oxy_790, mod_oxy_788, mod_oxy_800, mod_oxy_805, mod_oxy_830, mod_oxy_835)
 bound_oxy_depth <- select(bound_oxy, Depth, depth_avg, id)
 bound_oxy_date <- select(bound_oxy, DateTime, date_avg, id)
 unique(bound_oxy_depth)
@@ -175,25 +175,29 @@ test <- subset(oxy_date_wide, month == 6)
 
 ggplot(subset(oxy_date_wide), aes(x = DateTime, y = unaltered, col = "Reference")) +
   geom_line() + 
-  geom_line(aes(x = DateTime, y = i505, col = "i505")) +
+  geom_line(aes(x = DateTime, y = i505, col = "i505")) + 
   geom_line(aes(x = DateTime, y = i510, col = "i510")) + 
+  geom_line(aes(x = DateTime, y = i540, col = "i540")) + 
   geom_line(aes(x = DateTime, y = i665, col = "i665")) + 
   geom_line(aes(x = DateTime, y = i760, col = "i760")) + 
+  geom_line(aes(x = DateTime, y = i788, col = "i788")) + 
   geom_line(aes(x = DateTime, y = i790, col = "i790")) + 
+  geom_line(aes(x = DateTime, y = i800, col = "i800")) + 
+  geom_line(aes(x = DateTime, y = i805, col = "i805")) + 
   geom_line(aes(x = DateTime, y = i830, col = "i830")) + 
   geom_line(aes(x = DateTime, y = i835, col = "i835")) + 
   geom_line(aes(x = DateTime, y = i510, col = "i510")) + 
   ylab("% Saturation") + 
   ggtitle("Summer Oxygen Saturation")
   
-ggplot(subset(oxy_date_wide, month >= 1 & month <= 2), aes(x = DateTime, y = unaltered, col = "Reference")) +
-  geom_line() +
-  geom_line(aes(x = DateTime, y = i500x2, col = "i500x2")) + 
-  geom_line(aes(x = DateTime, y = i600x2, col = "i600x2")) + 
-  geom_line(aes(x = DateTime, y = i700x2, col = "i700x2")) + 
-  geom_line(aes(x = DateTime, y = i800x2, col = "i800x2")) + 
-  ylab("% Saturation") + 
-  ggtitle("Winter Oxygen Saturation")
+# ggplot(subset(oxy_date_wide, month >= 1 & month <= 2), aes(x = DateTime, y = unaltered, col = "Reference")) +
+#   geom_line() +
+#   geom_line(aes(x = DateTime, y = i500x2, col = "i500x2")) + 
+#   geom_line(aes(x = DateTime, y = i600x2, col = "i600x2")) + 
+#   geom_line(aes(x = DateTime, y = i700x2, col = "i700x2")) + 
+#   geom_line(aes(x = DateTime, y = i800x2, col = "i800x2")) + 
+#   ylab("% Saturation") + 
+#   ggtitle("Winter Oxygen Saturation")
   
 
 obs_oxy<-read.csv('data/formatted-data/manual_buoy_oxy.csv') %>%
@@ -216,15 +220,15 @@ colnames(obs_oxy_filtered) <- c("DateTime", "observed_do")
 
 mod_obs_ox <- merge(oxy_date_wide, obs_oxy_filtered, by = "DateTime", all = TRUE)
 
-ggplot(subset(mod_obs_ox, DateTime <= "2016-01-01"), aes(x = DateTime, y = unaltered, col = "Reference")) +
-  geom_line() +
-  geom_line(aes(x = DateTime, y = i500, col = "i500x2")) + 
-  geom_line(aes(x = DateTime, y = i600x2, col = "i600x2")) + 
-  geom_line(aes(x = DateTime, y = i700x2, col = "i700x2")) + 
-  geom_line(aes(x = DateTime, y = i800x2, col = "i800x2")) + 
-  geom_point(aes(x = DateTime, y = observed_do, col = "observed")) + 
-  ylab("% Saturation") + 
-  ggtitle("Year round oxygen saturation")
+# ggplot(subset(mod_obs_ox, DateTime <= "2016-01-01"), aes(x = DateTime, y = unaltered, col = "Reference")) +
+#   geom_line() +
+#   geom_line(aes(x = DateTime, y = i500, col = "i500x2")) + 
+#   geom_line(aes(x = DateTime, y = i600x2, col = "i600x2")) + 
+#   geom_line(aes(x = DateTime, y = i700x2, col = "i700x2")) + 
+#   geom_line(aes(x = DateTime, y = i800x2, col = "i800x2")) + 
+#   geom_point(aes(x = DateTime, y = observed_do, col = "observed")) + 
+#   ylab("% Saturation") + 
+#   ggtitle("Year round oxygen saturation")
 
 bound_oxy_hypo <- bound_oxy %>% 
   group_by(id) %>% 
@@ -290,8 +294,139 @@ mod_chla_800x2 <- get_var(nc_file_i800x2, var, reference="surface", z_out=depths
   mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
   mutate(id = 'i800x2')
 
-bound_chla <- rbind(mod_chla_unaltered, mod_chla_500x2, mod_chla_600x2, mod_chla_700x2, mod_chla_800x2)
-bound_chla <- select(bound_chla, Depth, depth_avg, id)
+
+
+
+depths = c(0.1)
+var="PHY_tchla"
+
+mod_chla_unaltered <- get_var(nc_file, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  mutate(id = 'unaltered')
+
+mod_chla_505 <- get_var(nc_file_i505, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  mutate(id = 'i505')
+
+mod_chla_510 <- get_var(nc_file_i510, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  mutate(id = 'i510')
+
+mod_chla_540 <- get_var(nc_file_i540, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  mutate(id = 'i540')
+
+mod_chla_665 <- get_var(nc_file_i665, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  mutate(id = 'i665')
+
+mod_chla_760 <- get_var(nc_file_i760, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  mutate(id = 'i760')
+
+mod_chla_788 <- get_var(nc_file_i788, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  mutate(id = 'i788')
+
+mod_chla_790 <- get_var(nc_file_i790, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  mutate(id = 'i790')
+
+mod_chla_800 <- get_var(nc_file_i800, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  mutate(id = 'i800')
+
+mod_chla_805 <- get_var(nc_file_i805, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  mutate(id = 'i805')
+
+mod_chla_830 <- get_var(nc_file_i830, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  mutate(id = 'i830')
+
+mod_chla_835 <- get_var(nc_file_i835, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
+  mutate(id = 'i835')
+
+
+
+
+
+bound_chla <- rbind(mod_chla_unaltered, mod_chla_505, mod_chla_510, mod_chla_540, mod_chla_665, mod_chla_760, mod_chla_788, mod_chla_790, 
+                    mod_chla_800, mod_chla_805, mod_chla_830, mod_chla_835)
+bound_chla <- select(bound_chla, Depth, depth_avg, date_avg, id)
 unique(bound_chla)
 
 bound_chla_surf <- bound_chla %>% 
@@ -322,7 +457,8 @@ bound_chla_surf$var_type <- as.factor("chla")
 ggplot(data = bound_chla_surf, aes(x = var_type, y = chla_avg, col = as.factor(id))) + geom_point()
 
 
-bound_chla <- rbind(mod_chla_unaltered, mod_chla_500x2, mod_chla_600x2, mod_chla_700x2, mod_chla_800x2)
+bound_chla <- rbind(mod_chla_unaltered, mod_chla_505, mod_chla_510, mod_chla_540, mod_chla_665, mod_chla_760, mod_chla_788, mod_chla_790, 
+                    mod_chla_800, mod_chla_805, mod_chla_830, mod_chla_835)
 bound_chla_depth <- select(bound_chla, Depth, depth_avg, id)
 bound_chla_date <- select(bound_chla, DateTime, date_avg, id)
 unique(bound_chla_depth)
@@ -342,10 +478,17 @@ chla_date_wide$month <- month(chla_date_wide$DateTime)
 
 ggplot(subset(chla_date_wide), aes(x = DateTime, y = unaltered, col = "Reference")) +
   geom_line() +
-  geom_line(aes(x = DateTime, y = i500x2, col = "i500x2")) + 
-  geom_line(aes(x = DateTime, y = i600x2, col = "i600x2")) + 
-  geom_line(aes(x = DateTime, y = i700x2, col = "i700x2")) + 
-  geom_line(aes(x = DateTime, y = i800x2, col = "i800x2")) + 
+  geom_line(aes(x = DateTime, y = i505, col = "i505")) + 
+  geom_line(aes(x = DateTime, y = i510, col = "i510")) + 
+  geom_line(aes(x = DateTime, y = i540, col = "i540")) + 
+  geom_line(aes(x = DateTime, y = i665, col = "i665")) + 
+  geom_line(aes(x = DateTime, y = i760, col = "i760")) + 
+  geom_line(aes(x = DateTime, y = i788, col = "i788")) + 
+  geom_line(aes(x = DateTime, y = i790, col = "i790")) + 
+  geom_line(aes(x = DateTime, y = i800, col = "i800")) + 
+  geom_line(aes(x = DateTime, y = i805, col = "i805")) + 
+  geom_line(aes(x = DateTime, y = i830, col = "i830")) + 
+  geom_line(aes(x = DateTime, y = i835, col = "i835")) + 
   ylab("Total chla") + 
   ggtitle("Surface Chlorophyll-a")
 
@@ -367,52 +510,124 @@ mod_tp_unaltered <- get_var(nc_file, var, reference="surface", z_out=depths) %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
   mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
   group_by(Depth) %>% 
-  mutate(depth_avg = mean(TOT_tp)) %>% 
+  mutate(depth_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
   group_by(DateTime) %>% 
   mutate(date_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
   mutate(id = 'unaltered')
 
-mod_tp_500x2 <- get_var(nc_file_i500x2, var, reference="surface", z_out=depths) %>%
+mod_tp_505 <- get_var(nc_file_i505, var, reference="surface", z_out=depths) %>%
   pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
   mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
   group_by(Depth) %>% 
-  mutate(depth_avg = mean(TOT_tp)) %>% 
+  mutate(depth_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
   group_by(DateTime) %>% 
   mutate(date_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
-  mutate(id = 'i500x2')
+  mutate(id = 'i505')
 
-mod_tp_600x2 <- get_var(nc_file_i600x2, var, reference="surface", z_out=depths) %>%
+mod_tp_510 <- get_var(nc_file_i510, var, reference="surface", z_out=depths) %>%
   pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
   mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
   group_by(Depth) %>% 
-  mutate(depth_avg = mean(TOT_tp)) %>% 
+  mutate(depth_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
   group_by(DateTime) %>% 
   mutate(date_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
-  mutate(id = 'i600x2')
+  mutate(id = 'i510')
 
-mod_tp_700x2 <- get_var(nc_file_i700x2, var, reference="surface", z_out=depths) %>%
+mod_tp_540 <- get_var(nc_file_i540, var, reference="surface", z_out=depths) %>%
   pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
   mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
   group_by(Depth) %>% 
-  mutate(depth_avg = mean(TOT_tp)) %>% 
+  mutate(depth_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
   group_by(DateTime) %>% 
   mutate(date_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
-  mutate(id = 'i700x2')
+  mutate(id = 'i540')
 
-mod_tp_800x2 <- get_var(nc_file_i800x2, var, reference="surface", z_out=depths) %>%
+mod_tp_665 <- get_var(nc_file_i665, var, reference="surface", z_out=depths) %>%
   pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
   mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
   group_by(Depth) %>% 
-  mutate(depth_avg = mean(TOT_tp)) %>% 
+  mutate(depth_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
   group_by(DateTime) %>% 
   mutate(date_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
-  mutate(id = 'i800x2')
+  mutate(id = 'i665')
 
-bound_tp <- rbind(mod_tp_unaltered, mod_tp_500x2, mod_tp_600x2, mod_tp_700x2, mod_tp_800x2)
+mod_tp_760 <- get_var(nc_file_i760, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
+  mutate(id = 'i760')
+
+mod_tp_788 <- get_var(nc_file_i788, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
+  mutate(id = 'i788')
+
+mod_tp_790 <- get_var(nc_file_i790, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
+  mutate(id = 'i790')
+
+mod_tp_800 <- get_var(nc_file_i800, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
+  mutate(id = 'i800')
+
+mod_tp_805 <- get_var(nc_file_i805, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
+  mutate(id = 'i805')
+
+mod_tp_830 <- get_var(nc_file_i830, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
+  mutate(id = 'i830')
+
+mod_tp_835 <- get_var(nc_file_i835, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tp, na.rm = TRUE)) %>% 
+  mutate(id = 'i835')
+
+
+bound_tp <- rbind(mod_tp_unaltered, mod_tp_505, mod_tp_510, mod_tp_540, mod_tp_665, mod_tp_760, mod_tp_788, mod_tp_790, mod_tp_800, mod_tp_805,
+                  mod_tp_830, mod_tp_835)
 bound_tp <- select(bound_tp, Depth, depth_avg, id)
 unique(bound_tp)
 
@@ -428,7 +643,9 @@ bound_tp_surf$var_type <- as.factor("tp")
 ggplot(data = bound_tp_surf, aes(x = var_type, y = tp_avg, col = as.factor(id))) + geom_point()
 
 
-bound_tp <- rbind(mod_tp_unaltered, mod_tp_500x2, mod_tp_600x2, mod_tp_700x2, mod_tp_800x2)
+bound_tp <- rbind(mod_tp_unaltered, mod_tp_505, mod_tp_510, mod_tp_540, mod_tp_665, mod_tp_760, mod_tp_788, mod_tp_790, mod_tp_800, mod_tp_805,
+                  mod_tp_830, mod_tp_835)
+
 bound_tp_depth <- select(bound_tp, Depth, depth_avg, id)
 bound_tp_date <- select(bound_tp, DateTime, date_avg, id)
 unique(bound_tp_depth)
@@ -448,12 +665,209 @@ tp_date_wide$month <- month(tp_date_wide$DateTime)
 
 ggplot(subset(tp_date_wide), aes(x = DateTime, y = unaltered, col = "Reference")) +
   geom_line() +
-  geom_line(aes(x = DateTime, y = i500x2, col = "i500x2")) + 
-  geom_line(aes(x = DateTime, y = i600x2, col = "i600x2")) + 
-  geom_line(aes(x = DateTime, y = i700x2, col = "i700x2")) + 
-  geom_line(aes(x = DateTime, y = i800x2, col = "i800x2")) + 
+  geom_line(aes(x = DateTime, y = i505, col = "i505")) + 
+  geom_line(aes(x = DateTime, y = i510, col = "i510")) + 
+  geom_line(aes(x = DateTime, y = i540, col = "i540")) + 
+  geom_line(aes(x = DateTime, y = i665, col = "i665")) + 
+  geom_line(aes(x = DateTime, y = i760, col = "i760")) + 
+  geom_line(aes(x = DateTime, y = i788, col = "i788")) + 
+  geom_line(aes(x = DateTime, y = i790, col = "i790")) + 
+  geom_line(aes(x = DateTime, y = i800, col = "i800")) + 
+  geom_line(aes(x = DateTime, y = i805, col = "i805")) + 
+  geom_line(aes(x = DateTime, y = i830, col = "i830")) + 
+  geom_line(aes(x = DateTime, y = i835, col = "i835")) + 
   ylab("Total TP") + 
   ggtitle("Surface Total Phosphorus")
+
+
+
+
+
+
+
+# surface TN 
+
+
+depths = c(0.1)
+var="TOT_tn"
+mod_tn_unaltered <- get_var(nc_file, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  mutate(id = 'unaltered')
+
+mod_tn_505 <- get_var(nc_file_i505, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  mutate(id = 'i505')
+
+mod_tn_510 <- get_var(nc_file_i510, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  mutate(id = 'i510')
+
+mod_tn_540 <- get_var(nc_file_i540, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  mutate(id = 'i540')
+
+mod_tn_665 <- get_var(nc_file_i665, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  mutate(id = 'i665')
+
+mod_tn_760 <- get_var(nc_file_i760, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  mutate(id = 'i760')
+
+mod_tn_788 <- get_var(nc_file_i788, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  mutate(id = 'i788')
+
+mod_tn_790 <- get_var(nc_file_i790, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  mutate(id = 'i790')
+
+mod_tn_800 <- get_var(nc_file_i800, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  mutate(id = 'i800')
+
+mod_tn_805 <- get_var(nc_file_i805, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  mutate(id = 'i805')
+
+mod_tn_830 <- get_var(nc_file_i830, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  mutate(id = 'i830')
+
+mod_tn_835 <- get_var(nc_file_i835, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(TOT_tn, na.rm = TRUE)) %>% 
+  mutate(id = 'i835')
+
+
+bound_tn <- rbind(mod_tn_unaltered, mod_tn_505, mod_tn_510, mod_tn_540, mod_tn_665, mod_tn_760, mod_tn_788, mod_tn_790, mod_tn_800, mod_tn_805,
+                  mod_tn_830, mod_tn_835)
+bound_tn <- select(bound_tn, Depth, depth_avg, id)
+unique(bound_tn)
+
+bound_tn_surf <- bound_tn %>% 
+  group_by(id) %>% 
+  mutate(tn_avg = mean(depth_avg, na.rm = T)) %>% 
+  select(id, tn_avg) 
+
+bound_tn_surf <- unique(bound_tn_surf)
+
+bound_tn_surf$var_type <- as.factor("tn")
+
+ggplot(data = bound_tn_surf, aes(x = var_type, y = tn_avg, col = as.factor(id))) + geom_point()
+
+
+bound_tn <- rbind(mod_tn_unaltered, mod_tn_505, mod_tn_510, mod_tn_540, mod_tn_665, mod_tn_760, mod_tn_788, mod_tn_790, mod_tn_800, mod_tn_805,
+                  mod_tn_830, mod_tn_835)
+
+bound_tn_depth <- select(bound_tn, Depth, depth_avg, id)
+bound_tn_date <- select(bound_tn, DateTime, date_avg, id)
+unique(bound_tn_depth)
+bound_tn_date <- unique(bound_tn_date)
+
+# bound_oxy_date <- bound_oxy_date %>% 
+#   mutate(month = month(DateTime)) %>% 
+#   mutate(year = year(DateTime)) %>% 
+#   group_by(month, year, id) %>% 
+#   mutate(month_avg = mean(date_avg, na.rm = TRUE))
+
+bound_tn_date <- select(bound_tn_date, DateTime, date_avg, id)
+
+tn_date_wide <- dcast(bound_tn_date, DateTime~id, value.var = "date_avg")
+tn_date_wide$month <- month(tn_date_wide$DateTime)
+
+
+ggplot(subset(tn_date_wide), aes(x = DateTime, y = unaltered, col = "Reference")) +
+  geom_line() +
+  geom_line(aes(x = DateTime, y = i505, col = "i505")) + 
+  geom_line(aes(x = DateTime, y = i510, col = "i510")) + 
+  geom_line(aes(x = DateTime, y = i540, col = "i540")) + 
+  geom_line(aes(x = DateTime, y = i665, col = "i665")) + 
+  geom_line(aes(x = DateTime, y = i760, col = "i760")) + 
+  geom_line(aes(x = DateTime, y = i788, col = "i788")) + 
+  geom_line(aes(x = DateTime, y = i790, col = "i790")) + 
+  geom_line(aes(x = DateTime, y = i800, col = "i800")) + 
+  geom_line(aes(x = DateTime, y = i805, col = "i805")) + 
+  geom_line(aes(x = DateTime, y = i830, col = "i830")) + 
+  geom_line(aes(x = DateTime, y = i835, col = "i835")) + 
+  ylab("Total TN") + 
+  ggtitle("Surface Total Nitrogen")
+
+
+water_level <-get_surface_height(nc_file_i665, ice.rm = TRUE, snow.rm = TRUE)
+plot(water_level$DateTime,water_level$surface_height)
+
 
 
 
