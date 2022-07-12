@@ -18,16 +18,13 @@ Sys.setenv(TZ = 'America/New_York')
 
 # Load packages, set sim folder, load nml file ####
 #if (!require('pacman')) install.packages('pacman'); library('pacman')
-<<<<<<< HEAD
 pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools)
 
 setwd("~/Dropbox/SUNP-GLMv3.3-JHW/")
 sim_folder <- getwd()
 
 #file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
-=======
 pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools, here)
->>>>>>> a3304b85778da696dee6c84b3a826020c1678906
 
 sim_folder <- here::here()
 
