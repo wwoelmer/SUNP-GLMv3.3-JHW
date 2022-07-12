@@ -11,8 +11,8 @@
 #*****************************************************************
 
 # changing to glm3r
-remotes::install_github("CareyLabVT/GLM3r", force = T)
-remotes::install_github("CareyLabVT/glmtools", force = T)
+# remotes::install_github("CareyLabVT/GLM3r", force = T)
+# remotes::install_github("CareyLabVT/glmtools", force = T)
 
 Sys.setenv(TZ = 'America/New_York')
 
@@ -23,7 +23,7 @@ pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools)
 setwd("~/Dropbox/SUNP-GLMv3.3-JHW/")
 sim_folder <- getwd()
 
-# file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
+file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
 
 
 #look at glm and aed nml files

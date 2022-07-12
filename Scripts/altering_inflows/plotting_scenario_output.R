@@ -10,10 +10,18 @@ sim_folder <- getwd()
 
 # read unaltered nc file as well as altered nc files 
 nc_file <- file.path(sim_folder, 'output/output.nc') #defines the output.nc file 
-nc_file_i500x2 <- file.path(sim_folder, '')
-nc_file_i600x2 <- file.path(sim_folder, 'scenario_output/i600/output_600x2.nc')
-nc_file_i700x2 <- file.path(sim_folder, 'scenario_output/i700/output_700x2.nc')
-nc_file_i800x2 <- file.path(sim_folder, 'scenario_output/i800/output_800x2.nc')
+nc_file_i505 <- file.path(sim_folder, 'scenario_output/output_i505.nc')
+nc_file_i510 <- file.path(sim_folder, 'scenario_output/output_i510.nc')
+nc_file_i540 <- file.path(sim_folder, 'scenario_output/output_i540.nc')
+nc_file_i665 <- file.path(sim_folder, 'scenario_output/output_i665.nc')
+nc_file_i760 <- file.path(sim_folder, 'scenario_output/output_i760.nc')
+nc_file_i788 <- file.path(sim_folder, 'scenario_output/output_i788.nc')
+nc_file_i790 <- file.path(sim_folder, 'scenario_output/output_i790.nc')
+nc_file_i800 <- file.path(sim_folder, 'scenario_output/output_i800.nc')
+nc_file_i805 <- file.path(sim_folder, 'scenario_output/output_i805.nc')
+nc_file_i830 <- file.path(sim_folder, 'scenario_output/output_i830.nc')
+nc_file_i835 <- file.path(sim_folder, 'scenario_output/output_i835.nc')
+
 
 
 # time series with box plots -- break box plots into four seasons, or summer and winter depending on how interesting 
@@ -28,53 +36,124 @@ mod_oxy_unaltered <- get_var(nc_file, var, reference="surface", z_out=depths) %>
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
   mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
   group_by(Depth) %>% 
-  mutate(depth_avg = mean(OXY_sat)) %>% 
+  mutate(depth_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
   group_by(DateTime) %>% 
   mutate(date_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
   mutate(id = 'unaltered')
 
-mod_oxy_500x2 <- get_var(nc_file_i500x2, var, reference="surface", z_out=depths) %>%
+mod_oxy_505 <- get_var(nc_file_i505, var, reference="surface", z_out=depths) %>%
   pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
   mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
   group_by(Depth) %>% 
-  mutate(depth_avg = mean(OXY_sat)) %>% 
+  mutate(depth_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
   group_by(DateTime) %>% 
   mutate(date_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
-  mutate(id = 'i500x2')
+  mutate(id = 'i505')
 
-mod_oxy_600x2 <- get_var(nc_file_i600x2, var, reference="surface", z_out=depths) %>%
+ mod_oxy_510 <- get_var(nc_file_i510, var, reference="surface", z_out=depths) %>%
   pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
   mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
   group_by(Depth) %>% 
-  mutate(depth_avg = mean(OXY_sat)) %>% 
+  mutate(depth_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
   group_by(DateTime) %>% 
   mutate(date_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
-  mutate(id = 'i600x2')
+  mutate(id = 'i510')
 
-mod_oxy_700x2 <- get_var(nc_file_i700x2, var, reference="surface", z_out=depths) %>%
+mod_oxy_540 <- get_var(nc_file_i540, var, reference="surface", z_out=depths) %>%
   pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
   mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
   group_by(Depth) %>% 
-  mutate(depth_avg = mean(OXY_sat)) %>% 
+  mutate(depth_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
   group_by(DateTime) %>% 
   mutate(date_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
-  mutate(id = 'i700x2')
+  mutate(id = 'i540')
 
-mod_oxy_800x2 <- get_var(nc_file_i800x2, var, reference="surface", z_out=depths) %>%
+mod_oxy_665 <- get_var(nc_file_i665, var, reference="surface", z_out=depths) %>%
   pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
   mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
   group_by(Depth) %>% 
-  mutate(depth_avg = mean(OXY_sat)) %>% 
+  mutate(depth_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
   group_by(DateTime) %>% 
   mutate(date_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
-  mutate(id = 'i800x2') 
+  mutate(id = 'i665')
+
+mod_oxy_760 <- get_var(nc_file_i760, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
+  mutate(id = 'i760')
+
+mod_oxy_788 <- get_var(nc_file_i788, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
+  mutate(id = 'i788')
+
+mod_oxy_790 <- get_var(nc_file_i790, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
+  mutate(id = 'i790')
+
+mod_oxy_800 <- get_var(nc_file_i800, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
+  mutate(id = 'i800')
+
+mod_oxy_805 <- get_var(nc_file_i805, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
+  mutate(id = 'i805')
+
+mod_oxy_830 <- get_var(nc_file_i830, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
+  mutate(id = 'i830')
+
+mod_oxy_835 <- get_var(nc_file_i835, var, reference="surface", z_out=depths) %>%
+  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
+  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
+  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
+  group_by(Depth) %>% 
+  mutate(depth_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
+  group_by(DateTime) %>% 
+  mutate(date_avg = mean(OXY_sat, na.rm = TRUE)) %>% 
+  mutate(id = 'i835')
 
 
-bound_oxy <- rbind(mod_oxy_unaltered, mod_oxy_500x2, mod_oxy_600x2, mod_oxy_700x2, mod_oxy_800x2)
+
+bound_oxy <- rbind(mod_oxy_unaltered, mod_oxy_505, mod_oxy_510, mod_oxy_665, mod_oxy_760, mod_oxy_790, mod_oxy_830, mod_oxy_835)
 bound_oxy_depth <- select(bound_oxy, Depth, depth_avg, id)
 bound_oxy_date <- select(bound_oxy, DateTime, date_avg, id)
 unique(bound_oxy_depth)
@@ -94,12 +173,16 @@ oxy_date_wide$month <- month(oxy_date_wide$DateTime)
 
 test <- subset(oxy_date_wide, month == 6) 
 
-ggplot(subset(oxy_date_wide, month >= 6 & month <= 8), aes(x = DateTime, y = unaltered, col = "Reference")) +
+ggplot(subset(oxy_date_wide), aes(x = DateTime, y = unaltered, col = "Reference")) +
   geom_line() + 
-  geom_line(aes(x = DateTime, y = i500x2, col = "i500x2")) + 
-  geom_line(aes(x = DateTime, y = i600x2, col = "i600x2")) + 
-  geom_line(aes(x = DateTime, y = i700x2, col = "i700x2")) + 
-  geom_line(aes(x = DateTime, y = i800x2, col = "i800x2")) + 
+  geom_line(aes(x = DateTime, y = i505, col = "i505")) +
+  geom_line(aes(x = DateTime, y = i510, col = "i510")) + 
+  geom_line(aes(x = DateTime, y = i665, col = "i665")) + 
+  geom_line(aes(x = DateTime, y = i760, col = "i760")) + 
+  geom_line(aes(x = DateTime, y = i790, col = "i790")) + 
+  geom_line(aes(x = DateTime, y = i830, col = "i830")) + 
+  geom_line(aes(x = DateTime, y = i835, col = "i835")) + 
+  geom_line(aes(x = DateTime, y = i510, col = "i510")) + 
   ylab("% Saturation") + 
   ggtitle("Summer Oxygen Saturation")
   
@@ -135,7 +218,7 @@ mod_obs_ox <- merge(oxy_date_wide, obs_oxy_filtered, by = "DateTime", all = TRUE
 
 ggplot(subset(mod_obs_ox, DateTime <= "2016-01-01"), aes(x = DateTime, y = unaltered, col = "Reference")) +
   geom_line() +
-  geom_line(aes(x = DateTime, y = i500x2, col = "i500x2")) + 
+  geom_line(aes(x = DateTime, y = i500, col = "i500x2")) + 
   geom_line(aes(x = DateTime, y = i600x2, col = "i600x2")) + 
   geom_line(aes(x = DateTime, y = i700x2, col = "i700x2")) + 
   geom_line(aes(x = DateTime, y = i800x2, col = "i800x2")) + 
