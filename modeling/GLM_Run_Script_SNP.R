@@ -124,7 +124,7 @@ for(i in 1:length(unique(watertemp$Depth))){
 }
 
 #thermocline depth comparison
-field_file<-file.path(sim_folder,'/field_data/CleanedObsTemp.csv')
+field_file<- file.path(sim_folder,'data/formatted-data/manual_buoy_temp.csv')
 plot_var_compare(nc_file,field_file,var_name = "temp", precision="days",col_lim = c(0,30)) #compare obs vs modeled
 therm_depths <- compare_to_field(nc_file, field_file, metric="thermo.depth", precision="days",method='interp',as_value=TRUE, na.rm=T)
 compare_to_field(nc_file, field_file, metric="thermo.depth", precision="days", method='interp',as_value=F, na.rm=TRUE) #prints RMSE
