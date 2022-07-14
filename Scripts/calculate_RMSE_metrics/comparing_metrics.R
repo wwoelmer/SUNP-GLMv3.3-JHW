@@ -148,6 +148,7 @@ RMSE = function(m, o){
 }
 
 #calculate RMSE for oxygen
+field_file <- file.path(sim_folder, 'data/formatted-data/oxy_fieldfile.csv')
 oxygen <- resample_to_field(nc_file, field_file, precision="days", method='interp', 
                             var_name="OXY_oxy")
 oxygen <-oxygen[complete.cases(oxygen),] #remove missing data
