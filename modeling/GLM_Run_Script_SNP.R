@@ -4,93 +4,68 @@
 #* DATE:   Originally developed by CCC on 16 July 2018; 
 #*         Last modified by CCC in May 2022 for 4 zones calibration                           
 #* NOTES:  CCC modified the original script in 2019 for FCR modeling, 
-#*        with subsequent tweaks to annotation in summer 2021 for Carey 
-#*        et al. 2022 GCB paper & analysis. 
+#*        with subsequent tweaks to annotation in summer 2022 by JHW and WMW 
+#*        for LSPA Calhoun Fellowship 
 #*        Code compares modeled output vs. observations for all focal
 #*        variables, and calculates RMSE for each depth.
 #*****************************************************************
 
 # changing to glm3r
-remotes::install_github("CareyLabVT/GLM3r", force = T)
+remotes::install_github("FLARE-forecast/GLM3r", force = T)
 remotes::install_github("CareyLabVT/glmtools", force = T)
 
 Sys.setenv(TZ = 'America/New_York')
 
 # Load packages, set sim folder, load nml file ####
 #if (!require('pacman')) install.packages('pacman'); library('pacman')
-pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools)
+pacman::p_load(tidyverse, lubridate, ncdf4, glmtools, here)
+glm_version()
 
-setwd("~/Dropbox/SUNP-GLMv3.3-JHW/")
+setwd(here())
 sim_folder <- getwd()
-
-#file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
-pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools, here)
-
-sim_folder <- here::here()
 
 #look at glm and aed nml files
 nml_file <- paste0(sim_folder,"/glm3.nml")
-aed_file <- paste0(sim_folder,"/aed/aed.nml")
-aed_phytos_file <- paste0(sim_folder,"/aed/aed2_phyto_pars_2May2022_RQT.nml")
 nml <- read_nml(nml_file) 
-aed <- read_nml(aed_file) #you may get a warning about an incomplete final line but it doesn't matter
-aed_phytos <- read_nml(aed_phytos_file)
 print(nml)
-print(aed)
-print(aed_phytos)
 
 ##### run the model! #######
-setwd(sim_folder)
 
-# GLM3r::run_glm(sim_folder, nml_file = 'glm3.nml', verbose = T)
-
+GLM3r::run_glm(sim_folder, nml_file = 'glm3.nml', verbose = T)
 
 
-system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
+
+#system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
 #system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm+.app/Contents/MacOS/glm+", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm+.app/Contents/MacOS")
 #system2(paste0(sim_folder, "/", "glm"), stdout = TRUE, stderr = TRUE, env = paste0("DYLD_LIBRARY_PATH=",sim_folder))
 #sometimes, you'll get an error that says "Error in file, 'Time(Date)' is not first column!
 #in this case, open the input file in Excel, set the column in Custom ("YYYY-MM-DD") format, resave, and close the file
 nc_file <- file.path(sim_folder, 'output/output.nc') #defines the output.nc file 
-
-
-#glm_version()
+print(sim_vars(nc_file))
 
 #get water level
 water_level<-get_surface_height(nc_file, ice.rm = TRUE, snow.rm = TRUE)
 plot(water_level$DateTime,water_level$surface_height)
 
-phs_frp_ads <-get_var(nc_file, ice.rm = TRUE, snow.rm = TRUE)
-plot(water_level$DateTime,water_level$surface_height)
-
 #get WRT
-volume<-get_var(nc_file, "Tot_V", reference="surface") #in m3
-evap<-get_var(nc_file, "evap", reference="surface")
-precip<-get_var(nc_file, "precip", reference="surface")
+volume<-get_var(nc_file, "lake_volume", reference="surface") #in m3
+evap<-get_var(nc_file, "evaporation", reference="surface")
+precip<-get_var(nc_file, "precipitation", reference="surface")
 colnames(volume)[1]<-"time"
 colnames(precip)[1]<-"time"
 colnames(evap)[1]<-"time"
-plot(volume$time, volume$Tot_V)
-plot(evap$time, evap$evap)
-plot(precip$time, precip$precip)
+plot(volume$time, volume$lake_volume)
+plot(evap$time, evap$evaporation)
+plot(precip$time, precip$precipitation)
 
-volume$time<-as.POSIXct(strptime(volume$time, "%Y-%m-%d", tz="EST"))
-wrt<-merge(volume, outflow, by='time')
-wrt$wrt <- ((wrt$Tot_V)/(wrt$FLOW))*(1/60)*(1/60)*(1/24) #residence time in days
-plot(wrt$time,wrt$wrt)
 
-hist(wrt$wrt)
-median(wrt$wrt)
-mean(wrt$wrt)
-range(wrt$wrt)
 
 #get ice
 
 #write.csv(sim_vars(nc_file), "vars.csv")
-iceblue <- get_var(nc_file, "blue_ice_thickness")
-ice<-get_var(nc_file,"hwice")
-iceblue<-get_var(nc_file,"hice")
-icesnow <- get_var(nc_file, "hsnow")
+iceblue <- get_var(nc_file, "vol_blue_ice")
+ice<-get_var(nc_file,"vol_white_ice")
+icesnow <- get_var(nc_file, "vol_snow")
 
 
 
@@ -117,9 +92,13 @@ plot(avgsurftemp$DateTime, avgsurftemp$avg_surf_temp, ylim=c(-1,30))
 
 
 ############## temperature data #######
-obstemp<-read_csv("data/formatted-data/field_temp_noon_obs.csv") %>%
+obstemp<-read_csv("data/formatted-data/manual_buoy_temp.csv") %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>% 
-  rename(obstemp = Temp)
+  rename(obstemp = Temp) %>%  
+  mutate(Depth = round(Depth)) %>% 
+  group_by(Depth, DateTime) %>% 
+  mutate(temp_avg = mean(obstemp, na.rm = TRUE)) %>% 
+  distinct(DateTime, Depth, .keep_all = TRUE)
 
 unique(obstemp$Depth)
 
