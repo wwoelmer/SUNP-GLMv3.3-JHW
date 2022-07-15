@@ -66,14 +66,14 @@
 /
 &time
    timefmt = 2
-   start = '2015-01-01 12:00:00'
+   start = '2005-01-01 12:00:00'
    stop = '2020-12-31 12:00:00'
    dt = 3600
    num_days = 150
    timezone = 0
 /
 &output
-   out_dir = 'scenario_output'
+   out_dir = '/Volumes/G-DRIVE SSD/scenario_output'
    out_fn = 'output_i665'
    nsave = 24
    csv_lake_fname = 'lake_i665'
