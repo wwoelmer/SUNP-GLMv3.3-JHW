@@ -1,7 +1,8 @@
+# script to compare modeled output from GLm to observations
+
 pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools, Metrics)
 
-setwd("~/Dropbox/SUNP-GLMv3.3-JHW/")
-sim_folder <- getwd()
+sim_folder <- here:here()
 
 # file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
 # file.copy('aed/aed4.nml', 'aed/aed.nml', overwrite = TRUE)
@@ -77,7 +78,7 @@ field_file<-file.path(sim_folder,"data/formatted-data/manual_buoy_temp.csv")
 temps <- resample_to_field(nc_file, field_file, precision="mins", method='interp')
 temps<-temps[complete.cases(temps),]
 
-temps <- filter(temps, DateTime >= "2007-01-01")
+#temps <- filter(temps, DateTime >= "2007-01-01")
 
 m_temp <- temps$Modeled_temp[temps$Depth==c(1)] #1m depth (epi) RMSE
 o_temp <- temps$Observed_temp[temps$Depth==c(1)] 
@@ -106,30 +107,26 @@ bias(o_temp, m_temp)
 ################################# Oxygen Data ###############################################
 #read in cleaned CTD temp file with long-term obs at focal depths
 var="OXY_oxy"
-obs_oxy<-read.csv('data/formatted-data/manual_buoy_oxy.csv') %>%
+obs_oxy<-read.csv('data/formatted-data/oxy_fieldfile.csv') %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST")))
-field_file <- file.path(sim_folder,'data/formatted-data/oxy_fieldfile.csv') 
 depths<- unique(obs_oxy$Depth)
-#plot_var(nc_file,var_name = var, precision="days",col_lim = c(0, 600)) #compare obs vs modeled
+plot_var(nc_file,var_name = var, precision="days",col_lim = c(0, 600)) #compare obs vs modeled
 
 #get modeled oxygen concentrations for focal depths
 mod_oxy <- get_var(nc_file, var, reference="surface", z_out=depths) %>%
   pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
   mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) 
 
-
-
-#plot_var(nc_file,var_name = var, precision="days",col_lim = c(0,600)) #compare obs vs modeled
-
 colnames(obs_oxy)
-colnames(mod_oxy)
+colnames(obs_oxy)[4] <- 'obs_oxy'
+colnames(mod_oxy)[3] <- 'mod_oxy'
 obs_oxy$Depth <- as.numeric(obs_oxy$Depth)
 mod_oxy$Depth <- gsub('_', '', mod_oxy$Depth)
 mod_oxy$Depth <- as.numeric(mod_oxy$Depth)
 
+
 #lets do depth by depth comparisons of modeled vs. observed oxygen
-oxy_compare <- merge(mod_oxy, obs_oxy, by=c("DateTime","Depth")) %>% 
-  rename(mod_oxy = OXY_oxy, obs_oxy = DOppm)
+oxy_compare <- merge(mod_oxy, obs_oxy, by=c("DateTime","Depth")) 
 depths<- unique(oxy_compare$Depth)
 
 oxy_compare$mod_oxy <- oxy_compare$mod_oxy*32/1000
@@ -151,6 +148,7 @@ RMSE = function(m, o){
 }
 
 #calculate RMSE for oxygen
+field_file <- file.path(sim_folder, 'data/formatted-data/oxy_fieldfile.csv')
 oxygen <- resample_to_field(nc_file, field_file, precision="days", method='interp', 
                             var_name="OXY_oxy")
 oxygen <-oxygen[complete.cases(oxygen),] #remove missing data

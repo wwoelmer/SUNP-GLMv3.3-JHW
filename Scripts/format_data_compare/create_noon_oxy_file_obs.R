@@ -82,6 +82,8 @@ namechange <- data_nodups
 colnames(namechange) <- c("DateTime", "Depth", "OXY_sat", "OXY_oxy", "Flag")
 namechange <- select(namechange, -Flag)
 
+namechange <- namechange[order(namechange$DateTime),]
+
 write.csv(data_nodups, row.names = FALSE, './data/formatted-data/manual_buoy_oxy.csv')
 
 write.csv(namechange, row.names = FALSE, './data/formatted-data/oxy_fieldfile.csv')
