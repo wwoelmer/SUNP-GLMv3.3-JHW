@@ -3,7 +3,7 @@ rm(list = ls())
 pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools)
 sim_folder <- getwd()
 
-setwd('Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/')
+setwd('/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/')
 # Make sure the most recent version of glm3.nml is copied to glm4.nml
 file.copy('glm3.nml', 'glm4.nml', overwrite = TRUE)
 

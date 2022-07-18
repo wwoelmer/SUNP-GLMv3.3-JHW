@@ -54,7 +54,7 @@
    out_dir = '/Volumes/G-DRIVE SSD/scenario_output'
    out_fn = 'output_i505'
    nsave = 24
-   !csv_lake_fname = 'lake_i505'
+   csv_lake_fname = 'lake_i505'
 /
 &init_profiles
    lake_depth = 33.33408
