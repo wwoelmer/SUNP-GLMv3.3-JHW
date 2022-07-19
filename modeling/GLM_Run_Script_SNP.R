@@ -11,8 +11,8 @@
 #*****************************************************************
 
 # changing to glm3r
-remotes::install_github("FLARE-forecast/GLM3r", force = T)
-remotes::install_github("CareyLabVT/glmtools", force = T)
+#remotes::install_github("FLARE-forecast/GLM3r", force = T)
+#remotes::install_github("CareyLabVT/glmtools", force = T)
 
 Sys.setenv(TZ = 'America/New_York')
 
@@ -31,11 +31,11 @@ print(nml)
 
 ##### run the model! #######
 
-GLM3r::run_glm(sim_folder, nml_file = 'glm3.nml', verbose = T)
+#GLM3r::run_glm(sim_folder, nml_file = 'glm3.nml', verbose = T)
 
 
 
-#system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
+system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
 #system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm+.app/Contents/MacOS/glm+", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm+.app/Contents/MacOS")
 #system2(paste0(sim_folder, "/", "glm"), stdout = TRUE, stderr = TRUE, env = paste0("DYLD_LIBRARY_PATH=",sim_folder))
 #sometimes, you'll get an error that says "Error in file, 'Time(Date)' is not first column!

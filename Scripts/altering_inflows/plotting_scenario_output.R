@@ -5,22 +5,31 @@ pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools, ggplot2, reshape2)
 # visualizations are for LSPA
 
 setwd("~/Dropbox/SUNP-GLMv3.3-JHW/")
+
 sim_folder <- getwd()
+
+mytheme <- theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),  
+                 axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"), 
+                 axis.text.x=element_text(size=18, colour='black'), axis.text.y=element_text(size=18, colour='black'), 
+                 axis.title.x=element_text(size=18), axis.title.y=element_text(size=18),
+                 strip.text.x = element_text(size=14), strip.text.y = element_text(size=14),
+                 panel.background = element_rect(fill = NA, color = "black"), legend.text=element_text(size=16),
+                 legend.title = element_text(size = 20))
 
 
 # read unaltered nc file as well as altered nc files 
 nc_file <- file.path(sim_folder, 'output/output.nc') #defines the output.nc file 
-nc_file_i505 <- file.path(sim_folder, 'scenario_output/output_i505.nc')
-nc_file_i510 <- file.path(sim_folder, 'scenario_output/output_i510.nc')
-nc_file_i540 <- file.path(sim_folder, 'scenario_output/output_i540.nc')
-nc_file_i665 <- file.path(sim_folder, 'scenario_output/output_i665.nc')
-nc_file_i760 <- file.path(sim_folder, 'scenario_output/output_i760.nc')
-nc_file_i788 <- file.path(sim_folder, 'scenario_output/output_i788.nc')
-nc_file_i790 <- file.path(sim_folder, 'scenario_output/output_i790.nc')
-nc_file_i800 <- file.path(sim_folder, 'scenario_output/output_i800.nc')
-nc_file_i805 <- file.path(sim_folder, 'scenario_output/output_i805.nc')
-nc_file_i830 <- file.path(sim_folder, 'scenario_output/output_i830.nc')
-nc_file_i835 <- file.path(sim_folder, 'scenario_output/output_i835.nc')
+nc_file_i505 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i505.nc')
+nc_file_i510 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i510.nc')
+nc_file_i540 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i540.nc')
+nc_file_i665 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i665.nc')
+nc_file_i760 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i760.nc')
+nc_file_i788 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i788.nc')
+nc_file_i790 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i790.nc')
+nc_file_i800 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i800.nc')
+nc_file_i805 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i805.nc')
+nc_file_i830 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i830.nc')
+nc_file_i835 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i835.nc')
 
 
 
@@ -173,7 +182,7 @@ oxy_date_wide$month <- month(oxy_date_wide$DateTime)
 
 test <- subset(oxy_date_wide, month == 6) 
 
-ggplot(subset(oxy_date_wide), aes(x = DateTime, y = unaltered, col = "Reference")) +
+ggplot(subset(oxy_date_wide, DateTime >= "2015-01-01"), aes(x = DateTime, y = unaltered, col = "Reference")) +
   geom_line() + 
   geom_line(aes(x = DateTime, y = i505, col = "i505")) + 
   geom_line(aes(x = DateTime, y = i510, col = "i510")) + 
@@ -188,7 +197,16 @@ ggplot(subset(oxy_date_wide), aes(x = DateTime, y = unaltered, col = "Reference"
   geom_line(aes(x = DateTime, y = i835, col = "i835")) + 
   geom_line(aes(x = DateTime, y = i510, col = "i510")) + 
   ylab("% Saturation") + 
-  ggtitle("Summer Oxygen Saturation")
+  ggtitle("Summer Oxygen Saturation") + 
+  mytheme
+
+ggplot(subset(bound_oxy, DateTime >= "2015-01-01"), aes(x=factor(id), y=date_avg, fill = id))+
+  geom_boxplot() + 
+  theme( legend.position = "none" ) +
+  xlab("Site") + 
+  ylab("% Saturation") + 
+  ggtitle("Summer Oxygen Saturation") + 
+  mytheme
   
 # ggplot(subset(oxy_date_wide, month >= 1 & month <= 2), aes(x = DateTime, y = unaltered, col = "Reference")) +
 #   geom_line() +
@@ -231,6 +249,7 @@ mod_obs_ox <- merge(oxy_date_wide, obs_oxy_filtered, by = "DateTime", all = TRUE
 #   ggtitle("Year round oxygen saturation")
 
 bound_oxy_hypo <- bound_oxy %>% 
+  filter(DateTime >= "2010-01-01") %>% 
   group_by(id) %>% 
   mutate(oxy_avg = mean(depth_avg, na.rm = T)) %>% 
   select(id, oxy_avg) 
@@ -242,61 +261,6 @@ bound_oxy_hypo$var_type <- as.factor("oxygen")
 ggplot(data = bound_oxy_hypo, aes(x = var_type, y = oxy_avg, col = as.factor(id))) + geom_point()
 
 # surface chla
-depths = c(0.1)
-var="PHY_tchla"
-mod_chla_unaltered <- get_var(nc_file, var, reference="surface", z_out=depths) %>%
-  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
-  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
-  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
-  group_by(Depth) %>% 
-  mutate(depth_avg = mean(PHY_tchla)) %>% 
-  group_by(DateTime) %>% 
-  mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
-  mutate(id = 'unaltered')
-
-mod_chla_500x2 <- get_var(nc_file_i500x2, var, reference="surface", z_out=depths) %>%
-  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
-  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
-  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
-  group_by(Depth) %>% 
-  mutate(depth_avg = mean(PHY_tchla)) %>% 
-  group_by(DateTime) %>% 
-  mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
-  mutate(id = 'i500x2')
-
-mod_chla_600x2 <- get_var(nc_file_i600x2, var, reference="surface", z_out=depths) %>%
-  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
-  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
-  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
-  group_by(Depth) %>% 
-  mutate(depth_avg = mean(PHY_tchla)) %>% 
-  group_by(DateTime) %>% 
-  mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
-  mutate(id = 'i600x2')
-
-mod_chla_700x2 <- get_var(nc_file_i700x2, var, reference="surface", z_out=depths) %>%
-  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
-  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
-  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
-  group_by(Depth) %>% 
-  mutate(depth_avg = mean(PHY_tchla)) %>% 
-  group_by(DateTime) %>% 
-  mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
-  mutate(id = 'i700x2')
-
-mod_chla_800x2 <- get_var(nc_file_i800x2, var, reference="surface", z_out=depths) %>%
-  pivot_longer(cols=starts_with(var), names_to="Depth", names_prefix=var, values_to = var) %>%
-  mutate(DateTime = as.POSIXct(strptime(DateTime, "%Y-%m-%d", tz="EST"))) %>%  
-  mutate(Depth = as.numeric(gsub('_', '', Depth))) %>% 
-  group_by(Depth) %>% 
-  mutate(depth_avg = mean(PHY_tchla)) %>% 
-  group_by(DateTime) %>% 
-  mutate(date_avg = mean(PHY_tchla, na.rm = TRUE)) %>% 
-  mutate(id = 'i800x2')
-
-
-
-
 depths = c(0.1)
 var="PHY_tchla"
 
@@ -441,11 +405,11 @@ bound_chla_surf$var_type <- as.factor("chla")
 ggplot(data = bound_chla_surf, aes(x = var_type, y = chla_avg, col = as.factor(id))) + geom_point()
 
 
-bound_chla <- rbind(mod_chla_unaltered, mod_chla_500x2, mod_chla_600x2, mod_chla_700x2, mod_chla_800x2)
 bound_chla <- select(bound_chla, Depth, depth_avg, id)
 unique(bound_chla)
 
-bound_chla_surf <- bound_chla %>% 
+bound_chla_surf <- bound_chla %>%
+  filter(DateTime >= "2010-01-01") %>% 
   group_by(id) %>% 
   mutate(chla_avg = mean(depth_avg, na.rm = T)) %>% 
   select(id, chla_avg) 
@@ -476,7 +440,7 @@ chla_date_wide <- dcast(bound_chla_date, DateTime~id, value.var = "date_avg")
 chla_date_wide$month <- month(chla_date_wide$DateTime)
 
 
-ggplot(subset(chla_date_wide), aes(x = DateTime, y = unaltered, col = "Reference")) +
+ggplot(subset(chla_date_wide, DateTime >= "2015-01-01"), aes(x = DateTime, y = unaltered, col = "Reference")) +
   geom_line() +
   geom_line(aes(x = DateTime, y = i505, col = "i505")) + 
   geom_line(aes(x = DateTime, y = i510, col = "i510")) + 
@@ -489,8 +453,17 @@ ggplot(subset(chla_date_wide), aes(x = DateTime, y = unaltered, col = "Reference
   geom_line(aes(x = DateTime, y = i805, col = "i805")) + 
   geom_line(aes(x = DateTime, y = i830, col = "i830")) + 
   geom_line(aes(x = DateTime, y = i835, col = "i835")) + 
-  ylab("Total chla") + 
-  ggtitle("Surface Chlorophyll-a")
+  ylab("ug/L") + 
+  ggtitle("Surface Chlorophyll-a") + 
+  mytheme
+
+ggplot(subset(bound_chla, DateTime >= "2015-01-01"), aes(x=factor(id), y=date_avg, fill = id))+
+  geom_boxplot() + 
+  theme( legend.position = "none" ) + 
+  ylab("ug/L") + 
+  xlab("Site") + 
+  ggtitle("Surface Chlorophyll-a") + 
+  mytheme
 
 
 
@@ -663,7 +636,7 @@ tp_date_wide <- dcast(bound_tp_date, DateTime~id, value.var = "date_avg")
 tp_date_wide$month <- month(tp_date_wide$DateTime)
 
 
-ggplot(subset(tp_date_wide), aes(x = DateTime, y = unaltered, col = "Reference")) +
+ggplot(subset(tp_date_wide, DateTime >= "2015-01-01"), aes(x = DateTime, y = unaltered, col = "Reference")) +
   geom_line() +
   geom_line(aes(x = DateTime, y = i505, col = "i505")) + 
   geom_line(aes(x = DateTime, y = i510, col = "i510")) + 
@@ -677,9 +650,17 @@ ggplot(subset(tp_date_wide), aes(x = DateTime, y = unaltered, col = "Reference")
   geom_line(aes(x = DateTime, y = i830, col = "i830")) + 
   geom_line(aes(x = DateTime, y = i835, col = "i835")) + 
   ylab("Total TP") + 
-  ggtitle("Surface Total Phosphorus")
+  ggtitle("Surface Total Phosphorus") + 
+  mytheme
 
 
+ggplot(subset(bound_tp, DateTime >= "2015-01-01"), aes(x=factor(id), y=date_avg, fill = id))+
+  geom_boxplot() + 
+  theme( legend.position = "none" ) + 
+  ylab("Total TP") + 
+  xlab("Site") + 
+  ggtitle("Surface Total Phosphorus") + 
+  mytheme
 
 
 
@@ -848,8 +829,8 @@ tn_date_wide <- dcast(bound_tn_date, DateTime~id, value.var = "date_avg")
 tn_date_wide$month <- month(tn_date_wide$DateTime)
 
 
-ggplot(subset(tn_date_wide), aes(x = DateTime, y = unaltered, col = "Reference")) +
-  geom_line() +
+ggplot(subset(tn_date_wide, DateTime >= "2015-01-01"), aes(x = DateTime, y = unaltered, col = "Reference")) +
+  geom_line() + 
   geom_line(aes(x = DateTime, y = i505, col = "i505")) + 
   geom_line(aes(x = DateTime, y = i510, col = "i510")) + 
   geom_line(aes(x = DateTime, y = i540, col = "i540")) + 
@@ -862,13 +843,17 @@ ggplot(subset(tn_date_wide), aes(x = DateTime, y = unaltered, col = "Reference")
   geom_line(aes(x = DateTime, y = i830, col = "i830")) + 
   geom_line(aes(x = DateTime, y = i835, col = "i835")) + 
   ylab("Total TN") + 
-  ggtitle("Surface Total Nitrogen")
+  ggtitle("Surface Total Nitrogen") + 
+  mytheme
 
 
-water_level <-get_surface_height(nc_file_i665, ice.rm = TRUE, snow.rm = TRUE)
-plot(water_level$DateTime,water_level$surface_height)
-
-
+ggplot(subset(bound_tn, DateTime >= "2015-01-01"), aes(x=factor(id), y=date_avg, fill = id))+
+  geom_boxplot() + 
+  theme(legend.position = "none") + 
+  ylab("Total TN") + 
+  xlab("Site") +
+  ggtitle("Surface Total Nitrogen") + 
+  mytheme
 
 
 
