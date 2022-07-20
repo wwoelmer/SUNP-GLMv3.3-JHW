@@ -45,16 +45,16 @@
 &time
    timefmt = 2
    start = '2005-01-01 12:00:00'
-   stop = '2015-12-31 12:00:00'
+   stop = '2020-12-31 12:00:00'
    dt = 3600
    num_days = 1
    timezone = -5
 /
 &output
-   out_dir = 'output'
-   out_fn = 'output'
+   out_dir = '/Volumes/G-DRIVE SSD/scenario_output'
+   out_fn = 'output_i835_dx2'
    nsave = 24
- !  csv_lake_fname = 'lake'
+   !csv_lake_fname = 'lake_i835_dx2'
 /
 &init_profiles
    lake_depth = 33.33408
@@ -114,7 +114,7 @@
    strmbd_slope = 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05
    strmbd_drag = 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016
    inflow_factor = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-   inflow_fl = 'data/individual_inflows/formatted_ind_inflows_loads/i505_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i510_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i540_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i665_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i760_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i788_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i790_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i800_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i805_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i830_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i835_load_input.csv'
+   inflow_fl = 'data/individual_inflows/formatted_ind_inflows_loads/i505_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i510_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i540_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i665_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i760_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i788_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i790_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i800_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i805_load_input.csv','data/individual_inflows/formatted_ind_inflows_loads/i830_load_input.csv','data/discharge_t2/i835d_x2.csv'
    inflow_varnum = 13
    inflow_vars = 'FLOW','SALT','TEMP','OGM_doc','OGM_poc','OGM_don','NIT_nit','NIT_amm','OGM_pon','PHS_frp','OGM_dop','OGM_pop','PHS_frp_ads'
 /
@@ -129,10 +129,10 @@
 /
 &snowice
    snow_albedo_factor = 1
-   snow_rho_max = 500
-   snow_rho_min = 100
+   snow_rho_max = 300
+   snow_rho_min = 50
    min_ice_thickness = 0.001
-   dt_iceon_avg = 0.5
+   dt_iceon_avg = 0.01
    avg_surf_temp_thres = 0.5
 /
 &sediment

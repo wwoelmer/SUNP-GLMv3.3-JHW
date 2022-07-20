@@ -27,7 +27,14 @@ dflist <- list(i505, i510, i540, i665, i760, i788, i790, i800, i805, i830, i835)
 dflist_names <- c("i505", "i510", "i540", "i665", "i760", "i788", "i790", "i800", "i805", "i830", "i835")
 
 dflist <- lapply(dflist, function(df) {
-  df$FLOW <- df$FLOW * 2
+  df$OGM_don <- df$OGM_don * 2
+  df$NIT_nit <- df$NIT_nit * 2
+  df$NIT_amm <- df$NIT_amm * 2
+  df$OGM_pon <- df$OGM_pon * 2
+  df$PHS_frp <- df$PHS_frp * 2
+  df$OGM_dop <- df$OGM_dop * 2
+  df$OGM_pop <- df$OGM_pop * 2
+  df$PHS_frp_ads <- df$PHS_frp_ads * 2
   return(df)
 })
 
@@ -46,10 +53,9 @@ i835 <- dflist[[11]]
 
 for(i in 1:length(dflist_names)) {                              # Head of for-loop
   write.csv(get(dflist_names[i]),                              # Write CSV files to folder
-             paste0("data/discharge_t2/",
-                    dflist_names[i],
-                    "d_x2.csv"),
-             row.names = FALSE, 
+            paste0("data/altered_inflows/",
+                   dflist_names[i],
+                   "PN_x2.csv"),
+            row.names = FALSE, 
             quot = FALSE)
 }
-
