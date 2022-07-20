@@ -197,7 +197,7 @@ ggplot(subset(oxy_date_wide, DateTime >= "2015-01-01"), aes(x = DateTime, y = un
   geom_line(aes(x = DateTime, y = i835, col = "i835")) + 
   geom_line(aes(x = DateTime, y = i510, col = "i510")) + 
   ylab("% Saturation") + 
-  ggtitle("Summer Oxygen Saturation") + 
+  ggtitle("Hypolimnetic Summer Oxygen Saturation") + 
   mytheme
 
 ggplot(subset(bound_oxy, DateTime >= "2015-01-01"), aes(x=factor(id), y=date_avg, fill = id))+
@@ -205,7 +205,7 @@ ggplot(subset(bound_oxy, DateTime >= "2015-01-01"), aes(x=factor(id), y=date_avg
   theme( legend.position = "none" ) +
   xlab("Site") + 
   ylab("% Saturation") + 
-  ggtitle("Summer Oxygen Saturation") + 
+  ggtitle("Hypolimnetic Summer Oxygen Saturation") + 
   mytheme
   
 # ggplot(subset(oxy_date_wide, month >= 1 & month <= 2), aes(x = DateTime, y = unaltered, col = "Reference")) +
@@ -649,7 +649,7 @@ ggplot(subset(tp_date_wide, DateTime >= "2015-01-01"), aes(x = DateTime, y = una
   geom_line(aes(x = DateTime, y = i805, col = "i805")) + 
   geom_line(aes(x = DateTime, y = i830, col = "i830")) + 
   geom_line(aes(x = DateTime, y = i835, col = "i835")) + 
-  ylab("Total TP") + 
+  ylab("mmol/m3") + 
   ggtitle("Surface Total Phosphorus") + 
   mytheme
 
@@ -657,7 +657,7 @@ ggplot(subset(tp_date_wide, DateTime >= "2015-01-01"), aes(x = DateTime, y = una
 ggplot(subset(bound_tp, DateTime >= "2015-01-01"), aes(x=factor(id), y=date_avg, fill = id))+
   geom_boxplot() + 
   theme( legend.position = "none" ) + 
-  ylab("Total TP") + 
+  ylab("mmol/m3") + 
   xlab("Site") + 
   ggtitle("Surface Total Phosphorus") + 
   mytheme
@@ -842,7 +842,7 @@ ggplot(subset(tn_date_wide, DateTime >= "2015-01-01"), aes(x = DateTime, y = una
   geom_line(aes(x = DateTime, y = i805, col = "i805")) + 
   geom_line(aes(x = DateTime, y = i830, col = "i830")) + 
   geom_line(aes(x = DateTime, y = i835, col = "i835")) + 
-  ylab("Total TN") + 
+  ylab("mmol/m3") + 
   ggtitle("Surface Total Nitrogen") + 
   mytheme
 
@@ -850,7 +850,7 @@ ggplot(subset(tn_date_wide, DateTime >= "2015-01-01"), aes(x = DateTime, y = una
 ggplot(subset(bound_tn, DateTime >= "2015-01-01"), aes(x=factor(id), y=date_avg, fill = id))+
   geom_boxplot() + 
   theme(legend.position = "none") + 
-  ylab("Total TN") + 
+  ylab("mmol/m3") + 
   xlab("Site") +
   ggtitle("Surface Total Nitrogen") + 
   mytheme
