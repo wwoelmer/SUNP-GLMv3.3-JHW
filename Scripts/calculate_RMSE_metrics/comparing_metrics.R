@@ -35,7 +35,7 @@ modtemp <- get_temp(nc_file, reference="surface", z_out=depths) %>%
 watertemp<-merge(modtemp, obstemp, by=c("DateTime","Depth"))
 watertemp$Depth <- as.numeric(watertemp$Depth)
 watertemp$DateTime <- as.Date(watertemp$DateTime)
-watertemp <- filter(watertemp, DateTime >= "2007-01-01")
+watertemp <- filter(watertemp, DateTime >= "2010-01-01")
 for(i in 1:length(unique(watertemp$Depth))){
   tempdf<-subset(watertemp, watertemp$Depth==depths[i])
   plot(as.Date(tempdf$DateTime), tempdf$obstemp, type='p', col='red',
@@ -78,7 +78,7 @@ field_file<-file.path(sim_folder,"data/formatted-data/manual_buoy_temp.csv")
 temps <- resample_to_field(nc_file, field_file, precision="mins", method='interp')
 temps<-temps[complete.cases(temps),]
 
-#temps <- filter(temps, DateTime >= "2007-01-01")
+#temps <- filter(temps, DateTime >= "2010-01-01")
 
 m_temp <- temps$Modeled_temp[temps$Depth==c(1)] #1m depth (epi) RMSE
 o_temp <- temps$Observed_temp[temps$Depth==c(1)] 
@@ -131,7 +131,7 @@ depths<- unique(oxy_compare$Depth)
 
 oxy_compare$mod_oxy <- oxy_compare$mod_oxy*32/1000
 oxy_compare$obs_oxy <- oxy_compare$obs_oxy*32/1000
-oxy_compare <- filter(oxy_compare, DateTime >= "2007-01-01")
+oxy_compare <- filter(oxy_compare, DateTime >= "2010-01-01")
 
 for(i in 1:length(unique(oxy_compare$Depth))){
   tempdf<-subset(oxy_compare, oxy_compare$Depth==depths[i])
@@ -152,7 +152,7 @@ field_file <- file.path(sim_folder, 'data/formatted-data/oxy_fieldfile.csv')
 oxygen <- resample_to_field(nc_file, field_file, precision="days", method='interp', 
                             var_name="OXY_oxy")
 oxygen <-oxygen[complete.cases(oxygen),] #remove missing data
-oxygen <- filter(oxygen, DateTime >= "2007-01-01")
+oxygen <- filter(oxygen, DateTime >= "2010-01-01")
 
 oxygen$Observed_OXY_oxy_mgl <- oxygen$Observed_OXY_oxy*32/1000
 oxygen$Modeled_OXY_oxy_mgl <- oxygen$Modeled_OXY_oxy*32/1000
@@ -211,8 +211,8 @@ mod<- get_var(nc_file, var, reference="surface", z_out=depths) %>%
 #lets do depth by depth comparisons of the sims
 #compare<-merge(mod, obs, by=c("DateTime","Depth"))
 #compare<-na.omit(compare)
-mod <- filter(mod, DateTime >= "2007-01-01")
-obs <- filter(obs, DateTime >= "2007-01-01")
+mod <- filter(mod, DateTime >= "2010-01-01")
+obs <- filter(obs, DateTime >= "2010-01-01")
 for(i in 1:length(depths)){
   modeled <-subset(mod, mod$Depth==depths[i])
   observed <-subset(obs, obs$Depth==depths[i] & DateTime >= "2005-06-27" & DateTime <= "2015-01-01")
@@ -234,7 +234,7 @@ newdata <- resample_to_field(nc_file, field_file, precision="hours", method='int
                              var_name=var)
 newdata <-newdata[complete.cases(newdata),]
 
-newdata <- filter(newdata, DateTime >= "2007-01-01")
+newdata <- filter(newdata, DateTime >= "2010-01-01")
 
 mod <- eval(parse(text=paste0("newdata$Modeled_",var)))[newdata$Depth>=1 & newdata$Depth<=1] 
 obs <- eval(parse(text=paste0("newdata$Observed_",var)))[newdata$Depth>=1 & newdata$Depth<=1] 
@@ -279,7 +279,7 @@ mod<- get_var(nc_file, var, reference="surface", z_out=depths) %>%
 #lets do depth by depth comparisons of the sims
 compare<-merge(mod, obs, by=c("DateTime","Depth"))
 compare<-na.omit(compare)
-compare <- filter(compare, DateTime >= "2007-01-01")
+compare <- filter(compare, DateTime >= "2010-01-01")
 compare$TOT_tp.x <- compare$TOT_tp.x*30.9738
 compare$TOT_tp.y <- compare$TOT_tp.y*30.9738
 
@@ -298,7 +298,7 @@ for(i in 1:length(depths)){
 newdata <- resample_to_field(nc_file, field_file, precision="hours", method='interp', 
                              var_name=var)
 newdata <-newdata[complete.cases(newdata),]
-newdata <- filter(newdata, DateTime >= "2007-01-01")
+newdata <- filter(newdata, DateTime >= "2010-01-01")
 
 newdata$Observed_TOT_tp_ugl <- newdata$Observed_TOT_tp*30.9738
 newdata$Modeled_TOT_tp_ugl <- newdata$Modeled_TOT_tp*30.9738

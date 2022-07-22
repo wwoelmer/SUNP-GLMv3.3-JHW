@@ -19,17 +19,17 @@ mytheme <- theme(panel.grid.major = element_blank(), panel.grid.minor = element_
 
 # read unaltered nc file as well as altered nc files 
 nc_file <- file.path(sim_folder, 'output/output.nc') #defines the output.nc file 
-nc_file_i505 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i505.nc')
-nc_file_i510 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i510.nc')
-nc_file_i540 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i540.nc')
-nc_file_i665 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i665.nc')
-nc_file_i760 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i760.nc')
-nc_file_i788 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i788.nc')
-nc_file_i790 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i790.nc')
-nc_file_i800 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i800.nc')
-nc_file_i805 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i805.nc')
-nc_file_i830 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i830.nc')
-nc_file_i835 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i835.nc')
+nc_file_i505 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i505_dx2.nc')
+nc_file_i510 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i510_dx2.nc')
+nc_file_i540 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i540_dx2.nc')
+nc_file_i665 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i665_dx2.nc')
+nc_file_i760 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i760_dx2.nc')
+nc_file_i788 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i788_dx2.nc')
+nc_file_i790 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i790_dx2.nc')
+nc_file_i800 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i800_dx2.nc')
+nc_file_i805 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i805_dx2.nc')
+nc_file_i830 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i830_dx2.nc')
+nc_file_i835 <- file.path('/Volumes/G-DRIVE SSD/scenario_output/output_i835_dx2.nc')
 
 
 

@@ -33,6 +33,9 @@ print(nml)
 
 #GLM3r::run_glm(sim_folder, nml_file = 'glm3.nml', verbose = T)
 
+remotes::install_github("FLARE-forecast/GLM3r", force = T)
+glm_version() # test glm version
+GLM3r::run_glm(sim_folder, nml_file = 'glm3.nml', verbose = T)
 
 
 system2("/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS/glm", stdout = TRUE, stderr = TRUE, env = "DYLD_LIBRARY_PATH=/Users/jacobwynne/Dropbox/SUNP-GLMv3.3-JHW/glm.app/Contents/MacOS")
