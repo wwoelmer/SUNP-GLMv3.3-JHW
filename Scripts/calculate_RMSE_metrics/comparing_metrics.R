@@ -2,7 +2,7 @@
 
 pacman::p_load(tidyverse, lubridate, ncdf4, GLMr, glmtools, Metrics)
 
-sim_folder <- here:here()
+sim_folder <- here::here()
 
 # file.copy('glm4.nml', 'glm3.nml', overwrite = TRUE)
 # file.copy('aed/aed4.nml', 'aed/aed.nml', overwrite = TRUE)
