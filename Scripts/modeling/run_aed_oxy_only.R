@@ -114,12 +114,15 @@ depths
 ggplot(data = oxy_compare, aes(x = DateTime, y = OXY_oxy, col = as.factor(Depth))) +
   geom_line() +
   geom_point(aes(x = DateTime, y = DOppm)) +
-  facet_wrap(~Depth)
+  facet_wrap(~Depth) +
+  ggtitle(' Fsed_oxy = -0.01, -0.01, -0.001, -0.001, RMSE = 44 mmol/m3 or 1.4mg/L')
 
 ggplot(data = oxy_compare, aes(x = DateTime, y = OXY_oxy*32/1000, col = as.factor(Depth))) +
   geom_line() +
   geom_point(aes(x = DateTime, y = DOppm*32/1000)) +
-  facet_wrap(~Depth)
+  facet_wrap(~Depth) +
+  ggtitle(' Fsed_oxy = -0.01, -0.01, -0.001, -0.001')
+
 
 #calculate RMSE for oxygen
 RMSE(oxy_compare$OXY_oxy,oxy_compare$DOppm)
